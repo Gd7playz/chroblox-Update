@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <title>Chroblox | Workspace</title>
+        <meta name="description" content="Chroblox is a fast, secure web proxy optimized for Chromebooks." />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0c10" />
+        
+        <link rel="shortcut icon" content="favicon.ico" />
+        <link rel="stylesheet" href="index.css" />
+
+        <script src="/scram/scramjet.all.js"></script>
+        <script src="/baremux/index.js"></script>
+    </head>
+
+    <body>
+        <div id="proxy-top-bar" class="hidden">
+            <div class="nav-controls">
+                <button id="nav-home" title="Go Home">🏠</button>
+                <button id="nav-reload" title="Reload Page">↻</button>
+            </div>
+            
+            <form id="top-form" class="top-search-box">
+                <input id="top-address" type="text" autocomplete="off" />
+            </form>
+
+            <div class="top-brand">
+                <span>CHROBLOX</span>
+            </div>
+        </div>
+
+        <div class="webos-container" id="home-ui">
+            <aside class="sidebar">
+                <div class="brand">
+                    <img class="sidebar-logo" src="favicon.ico" alt="Chroblox" onerror="this.src='uv.png'" />
+                    <h2>CHROBLOX</h2>
+                </div>
+                
+                <div class="nav-menu">
+                    <button class="nav-item active"><span class="icon">🚀</span> Launch</button>
+                </div>
+
+                <div class="gd7-widget">
+                    <p class="widget-title">Creator & Tutorials</p>
+                    <a href="https://www.youtube.com/@Gd7OS" target="_blank" class="yt-btn">▶ Gd7 OS</a>
+                </div>
+            </aside>
+
+            <main class="workspace">
+                <div class="launch-center">
+                    <h1 class="system-title">System Ready.</h1>
+                    <p class="subtitle">Chromebook core. Roblox power. Total freedom.</p>
+
+                    <form id="sj-form" class="search-box">
+                        <input id="sj-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
+                        <input id="sj-address" type="text" placeholder="Search the web or enter a URL..." autocomplete="off" />
+                        <button type="submit" class="launch-btn">IGNITE</button>
+                    </form>
+
+                    <div class="error-container">
+                        <p id="sj-error"></p>
+                        <pre id="sj-error-code"></pre>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <div id="proxy-ad-banner" class="hidden">
+            <button id="close-ad-btn" title="Close Ad">×</button>
+            <div class="ad-content">
+                
+                <script>
+                    atOptions = {
+                        'key' : 'e5329f54bea294b733b7ba46c03c2250',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
+                
+            </div>
+        </div>
+        
+        <script src="register-sw.js"></script>
+        <script src="search.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
