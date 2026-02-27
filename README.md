@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/MercuryWorkshop/scramjet/main/assets/scramjet.png](https://github.com/Gd7playz/chroblox-Update/blob/104567116645e349126bb5ee2b5defc33cb124bf/public/sj.png" height="200" alt="Chroblox Logo"></p>
+<p align="center"><img src="[https://raw.githubusercontent.com/MercuryWorkshop/scramjet/main/assets/scramjet.png](https://github.com/Gd7playz/chroblox-Update/blob/104567116645e349126bb5ee2b5defc33cb124bf/public/sj.png](https://github.com/Gd7playz/chroblox-Update/blob/104567116645e349126bb5ee2b5defc33cb124bf/public/sj.png?raw=true)" height="200" alt="Chroblox Logo"></p>
 
 <h1 align="center">Chroblox</h1>
 
