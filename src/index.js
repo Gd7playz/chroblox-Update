@@ -25,7 +25,8 @@ const fastify = Fastify({
 		return createServer()
 			.on("request", (req, res) => {
 				res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-				res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+				// REVISED: Changed from 'require-corp' to 'credentialless' to allow Adsterra ads
+				res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
 				handler(req, res);
 			})
 			.on("upgrade", (req, socket, head) => {
