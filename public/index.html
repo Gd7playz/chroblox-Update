@@ -17,6 +17,14 @@
     </head>
 
     <body>
+        <div id="anti-adblock-overlay" class="hidden">
+    <div class="adblock-modal">
+        <img src="uv.png" alt="Warning" />
+        <h2>Ads help us stay fast and free</h2>
+        <p>Please disable your adblocker to continue using Chroblox. We rely on ads to keep the servers running smoothly.</p>
+        <button onclick="location.reload()">I've disabled it, let me in</button>
+    </div>
+</div>
         <div id="proxy-top-bar" class="hidden">
             <div class="nav-controls">
                 <button id="nav-home" title="Go Home">🏠</button>
@@ -89,5 +97,34 @@
         <script src="register-sw.js"></script>
         <script src="search.js"></script>
         <script src="index.js"></script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            let adblockDetected = false;
+
+            const honeypot = document.createElement('div');
+            honeypot.innerHTML = '&nbsp;';
+            honeypot.className = 'adsbox ad-placement ad-banner doubleclick ad-content';
+            honeypot.style.position = 'absolute';
+            honeypot.style.top = '-999px';
+            document.body.appendChild(honeypot);
+
+            if (honeypot.offsetHeight === 0 || window.getComputedStyle(honeypot).display === 'none') {
+                adblockDetected = true;
+            }
+            honeypot.remove();
+
+            if (window.adsbygoogle === undefined) {
+                adblockDetected = true;
+            }
+
+            if (adblockDetected) {
+                const overlay = document.getElementById('anti-adblock-overlay');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+            }
+        }, 1500);
+    });
+</script>
     </body>
 </html>
