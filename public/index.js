@@ -30,7 +30,6 @@ if (settingsClose) {
     settingsClose.onclick = () => settingsDrawer.classList.remove("open");
 }
 
-// Apply saved theme on load
 const savedTheme = localStorage.getItem("chroblox-theme") || "dark";
 document.documentElement.setAttribute("data-theme", savedTheme);
 
@@ -62,10 +61,18 @@ let currentFrame = null;
 
 // ==========================================
 // POP-UNDER MINI BROWSER
-// - Intercepts window.open() from Adsterra script
-// - Routes the URL through /ad-proxy to strip
-//   X-Frame-Options so it loads without errors
-// - Also fires on key user interactions with cooldown
+//
+// The iframe loads /ad-frame — a page served from
+// our OWN server that runs the Adsterra script.
+// Since it's same-origin, there are zero
+// X-Frame-Options / refused-to-connect issues.
+//
+// Adsterra's pop-under script calls window.open().
+// We intercept that so no real tab opens — instead
+// we just refresh the mini browser with a new ad load.
+//
+// Triggers: window.open intercept + user interactions.
+// Cooldown: 30s minimum between shows.
 // ==========================================
 (function setupMiniBrowser() {
     const miniBrowser = document.getElementById("popunder-mini-browser");
@@ -76,49 +83,41 @@ let currentFrame = null;
     const titleBar    = document.getElementById("popunder-titlebar");
 
     let lastShownAt   = 0;
-    const COOLDOWN_MS = 30000; // min 30s between shows
+    const COOLDOWN_MS = 30000;
+    let adShownOnce   = false;
 
-    // Route a URL through the server proxy so iframe headers are stripped
-    function proxyUrl(url) {
-        return "/ad-proxy?url=" + encodeURIComponent(url);
-    }
-
-    function showWithUrl(url) {
+    function showAdFrame() {
         const now = Date.now();
         if (now - lastShownAt < COOLDOWN_MS) return;
         lastShownAt = now;
 
-        try {
-            miniTitle.textContent = new URL(url).hostname;
-        } catch(_) {
-            miniTitle.textContent = "Advertisement";
-        }
+        miniTitle.textContent = "Advertisement";
 
-        miniFrame.src = proxyUrl(url);
+        // Reload the frame each time so a fresh ad is served
+        // Cache-bust with timestamp so the ad network counts each impression
+        miniFrame.src = "/ad-frame?t=" + now;
+
         miniBrowser.classList.remove("hidden", "minimized");
         btnMinimize.textContent = "—";
+        adShownOnce = true;
     }
 
-    // Intercept window.open — this is what Adsterra pop-under calls
+    // Intercept window.open from Adsterra pop-under script.
+    // Instead of opening a new tab, we show/refresh our mini browser.
     const _nativeOpen = window.open.bind(window);
     window.open = function(url, target, features) {
         if (url && url !== "" && url !== "about:blank") {
-            showWithUrl(url);
-            // Return a fake window object so the ad script doesn't error
-            return {
-                closed: false,
-                focus:  () => {},
-                blur:   () => {},
-                close:  () => {},
-            };
+            showAdFrame();
+            // Return a fake window object so ad script doesn't throw
+            return { closed: false, focus: () => {}, blur: () => {}, close: () => {} };
         }
         return _nativeOpen(url, target, features);
     };
 
-    // Expose for manual interaction triggers
-    window._showMiniBrowser = showWithUrl;
+    // Exposed globally for interaction triggers
+    window._showAdFrame = showAdFrame;
 
-    // Minimize toggle
+    // Minimize / restore
     btnMinimize.addEventListener("click", () => {
         miniBrowser.classList.toggle("minimized");
         btnMinimize.textContent = miniBrowser.classList.contains("minimized") ? "□" : "—";
@@ -157,9 +156,7 @@ let currentFrame = null;
 })();
 
 // ==========================================
-// ADBLOCK DETECTION
-// Reliable bait-element method.
-// Shows a SOFT warning — user can still dismiss.
+// ADBLOCK DETECTION — hard block, no bypass
 // ==========================================
 function runAdblockCheck() {
     const bait = document.createElement("div");
@@ -168,14 +165,12 @@ function runAdblockCheck() {
     bait.innerHTML = "&nbsp;";
     document.body.appendChild(bait);
 
-    // Wait a tick for extensions to act
     setTimeout(() => {
         const blocked =
             bait.offsetHeight === 0 ||
             bait.offsetWidth  === 0 ||
             window.getComputedStyle(bait).display === "none" ||
             window.getComputedStyle(bait).visibility === "hidden";
-
         bait.remove();
 
         if (blocked) {
@@ -185,20 +180,18 @@ function runAdblockCheck() {
     }, 200);
 }
 
-// Run check after a short delay so extensions are fully loaded
 window.addEventListener("DOMContentLoaded", () => {
     setTimeout(runAdblockCheck, 1200);
 });
 
 // ==========================================
-// BANNER AD LOGIC
+// BANNER AD
 // ==========================================
 function triggerAdBanner() {
     const adBanner = document.getElementById("proxy-ad-banner");
     if (adBanner) adBanner.classList.add("show");
 }
 
-// Show banner on home page load after delay
 window.addEventListener("DOMContentLoaded", () => {
     setTimeout(triggerAdBanner, 2000);
 });
@@ -210,6 +203,26 @@ if (closeAdBtn) {
         if (adBanner) adBanner.classList.remove("show");
     });
 }
+
+// ==========================================
+// INTERACTION TRIGGERS FOR MINI BROWSER
+// Fires on meaningful user actions with 30s cooldown.
+// ==========================================
+window.addEventListener("DOMContentLoaded", () => {
+    // Discord & YouTube sidebar links
+    document.querySelectorAll(".yt-btn, .discord-btn").forEach(link => {
+        link.addEventListener("click", () => {
+            setTimeout(() => window._showAdFrame && window._showAdFrame(), 700);
+        });
+    });
+
+    // Nav items (Settings, Launch)
+    document.querySelectorAll(".nav-item").forEach(btn => {
+        btn.addEventListener("click", () => {
+            setTimeout(() => window._showAdFrame && window._showAdFrame(), 500);
+        });
+    });
+});
 
 // ==========================================
 // PROXY LAUNCH LOGIC
@@ -233,7 +246,6 @@ async function launchProxy(inputValue) {
         await connection.setTransport("/libcurl/index.mjs", [{ websocket: wispUrl }]);
     }
 
-    // Switch from home UI to proxy view
     homeUI.classList.add("hidden");
     topBar.classList.remove("hidden");
     topAddress.value = url;
@@ -241,66 +253,32 @@ async function launchProxy(inputValue) {
     const loader = document.getElementById("proxy-loader");
     loader.classList.remove("hidden");
 
-    // Remove old frame cleanly
     if (currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
         currentFrame.frame.parentNode.removeChild(currentFrame.frame);
     }
 
-    // Create and inject new proxy frame
     currentFrame = scramjet.createFrame();
     currentFrame.frame.id = "sj-frame";
 
     currentFrame.frame.onload = () => {
         loader.classList.add("hidden");
-        // Update address bar with actual loaded URL if possible
         try {
             const frameUrl = currentFrame.frame.contentWindow.location.href;
             if (frameUrl && frameUrl !== "about:blank") topAddress.value = frameUrl;
-        } catch(_) { /* cross-origin, ignore */ }
+        } catch(_) {}
     };
 
     document.body.appendChild(currentFrame.frame);
     currentFrame.go(url);
 
-    // Show banner ad shortly after launch
     setTimeout(triggerAdBanner, 1500);
 
-    // Also trigger mini browser after user launches proxy
-    setTimeout(tryShowAd, 3500);
+    // Show mini browser ad after launch
+    setTimeout(() => window._showAdFrame && window._showAdFrame(), 3500);
 }
 
 // ==========================================
-// INTERACTION TRIGGERS FOR MINI BROWSER
-// The Adsterra script fires window.open automatically,
-// but we also manually trigger on key interactions as backup,
-// passing the Adsterra pop-under URL directly.
-// ==========================================
-const ADSTERRA_POPUNDER_URL = "https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js";
-
-function tryShowAd() {
-    if (window._showMiniBrowser) {
-        // Use the adsterra invoke URL - the script itself calls window.open
-        // This just ensures the mini browser is ready; actual URL comes from
-        // the intercepted window.open call from the Adsterra script.
-        // As a reliable fallback, show the Adsterra banner page directly.
-        window._showMiniBrowser("https://www.effectivegate.com");
-    }
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-    // Sidebar external links
-    document.querySelectorAll(".yt-btn, .discord-btn").forEach(link => {
-        link.addEventListener("click", () => setTimeout(tryShowAd, 700));
-    });
-
-    // Nav item clicks
-    document.querySelectorAll(".nav-item").forEach(btn => {
-        btn.addEventListener("click", () => setTimeout(tryShowAd, 500));
-    });
-});
-
-// ==========================================
-// FORM EVENT HANDLERS
+// FORM & NAV HANDLERS
 // ==========================================
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -321,7 +299,6 @@ btnHome.addEventListener("click", () => {
     document.getElementById("proxy-loader").classList.add("hidden");
     homeUI.classList.remove("hidden");
     address.value = "";
-    // Hide banner when returning home
     const adBanner = document.getElementById("proxy-ad-banner");
     if (adBanner) adBanner.classList.remove("show");
 });
