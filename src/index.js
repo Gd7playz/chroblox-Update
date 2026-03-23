@@ -86,7 +86,14 @@ function shutdown() {
 	fastify.close();
 	process.exit(0);
 }
-
+fastify.get("/api/visitors", async (req, reply) => {
+    const res = await fetch(
+        "https://cloud.umami.is/api/websites/6cab02bf-b484-4f0b-86f5-f87401d1975a/active",
+        { headers: { Authorization: `Bearer ${process.env.UMAMI_API_KEY}` } }
+    );
+    const data = await res.json();
+    return reply.send({ count: data.visitors ?? 0 });
+});
 let port = parseInt(process.env.PORT || "");
 
 if (isNaN(port)) port = 8080;
