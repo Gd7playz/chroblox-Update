@@ -1,15 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
 
+/* =========================================
+   THEME TOKENS
+========================================= */
+[data-theme="dark"] {
+    --bg: #0a0c10;
+    --surface: rgba(20, 24, 32, 0.95);
+    --surface-solid: #141820;
+    --surface2: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.05);
+    --border2: rgba(255, 255, 255, 0.1);
+    --accent: #ff4b4b;
+    --accent-glow: rgba(255, 75, 75, 0.15);
+    --text: #ffffff;
+    --text-muted: #8b949e;
+}
+
+[data-theme="light"] {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-solid: #ffffff;
+    --surface2: #efefef;
+    --border: rgba(0,0,0,0.07);
+    --border2: rgba(0,0,0,0.12);
+    --accent: #ff4b4b;
+    --accent-glow: rgba(255,60,60,0.1);
+    --text: #111118;
+    --text-muted: #555566;
+}
+
+[data-theme="midnight"] {
+    --bg: #05060f;
+    --surface: #0c0d1e;
+    --surface-solid: #0c0d1e;
+    --surface2: #12132a;
+    --border: rgba(100,120,255,0.08);
+    --border2: rgba(100,120,255,0.15);
+    --accent: #6478ff;
+    --accent-glow: rgba(100,120,255,0.15);
+    --text: #dde2ff;
+    --text-muted: #8b9be0;
+}
+
+[data-theme="forest"] {
+    --bg: #070f0a;
+    --surface: #0d1810;
+    --surface-solid: #0d1810;
+    --surface2: #122015;
+    --border: rgba(80,200,100,0.07);
+    --border2: rgba(80,200,100,0.13);
+    --accent: #3dba60;
+    --accent-glow: rgba(60,186,90,0.15);
+    --text: #d5f0da;
+    --text-muted: #6b9e78;
+}
+
 body {
     font-family: "Inter", Arial, sans-serif;
     margin: 0;
-    background-color: #0a0c10;
-    color: white;
-    overflow: hidden; /* Prevents scrolling, acts like an OS */
+    background-color: var(--bg);
+    color: var(--text);
+    overflow: hidden; 
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* =========================================
-   CORE LAYOUT (SIDEBAR + WORKSPACE)
+   CORE LAYOUT
 ========================================= */
 .webos-container {
     display: flex;
@@ -17,23 +73,18 @@ body {
     width: 100vw;
 }
 
-/* =========================================
-   SIDEBAR
-========================================= */
 .sidebar {
     width: 280px;
-    background: rgba(20, 24, 32, 0.95);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
     box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 20;
+    flex-shrink: 0; 
 }
 
-/* =========================================
-   SIDEBAR BRANDING (LOGO & TEXT)
-========================================= */
 .brand {
     display: flex;
     align-items: center;
@@ -45,7 +96,7 @@ body {
 .sidebar-logo {
     width: 60px;  
     height: 60px; 
-    filter: drop-shadow(0 0 12px rgba(255, 75, 75, 0.6)); 
+    filter: drop-shadow(0 0 12px var(--accent-glow)); 
 }
 
 .brand h2 {
@@ -53,11 +104,10 @@ body {
     font-weight: 900;
     margin: 0;
     letter-spacing: 1.5px;
+    color: var(--text);
+    white-space: nowrap; 
 }
 
-/* =========================================
-   NAVIGATION MENU
-========================================= */
 .nav-menu {
     display: flex;
     flex-direction: column;
@@ -67,7 +117,7 @@ body {
 .nav-item {
     background: transparent;
     border: none;
-    color: #8b949e;
+    color: var(--text-muted);
     text-align: left;
     padding: 15px 20px;
     font-size: 1.1rem;
@@ -78,24 +128,31 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    white-space: nowrap; 
 }
 
 .nav-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    background: var(--surface2);
+    color: var(--text);
 }
 
 .nav-item.active {
-    background: linear-gradient(90deg, rgba(255, 75, 75, 0.15), transparent);
-    color: white;
-    border-left: 4px solid #ff4b4b;
+    background: linear-gradient(90deg, var(--accent-glow), transparent);
+    color: var(--text);
+    border-left: 4px solid var(--accent);
 }
 
 /* =========================================
-   GD7 OS WIDGET
+   SIDEBAR WIDGETS
 ========================================= */
-.gd7-widget {
+.sidebar-widgets {
     margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gd7-widget {
     background: linear-gradient(135deg, #1f0505, #3a0000);
     border: 1px solid #5a1010;
     padding: 25px 20px;
@@ -131,9 +188,128 @@ body {
     transition: background 0.2s;
 }
 
-.yt-btn:hover {
-    background: #cc0000;
+.yt-btn:hover { background: #cc0000; }
+
+.discord-widget {
+    background: linear-gradient(135deg, #050a1f, #000a3a);
+    border: 1px solid #101a5a;
+    box-shadow: 0 10px 30px rgba(0, 0, 255, 0.15);
 }
+
+.discord-widget:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 255, 0.25);
+}
+
+.discord-widget .widget-title {
+    color: #b3c2ff;
+}
+
+.discord-btn {
+    display: block;
+    background: #5865F2;
+    color: white;
+    text-decoration: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+
+.discord-btn:hover { background: #4752c4; }
+
+/* =========================================
+   SETTINGS DRAWER
+========================================= */
+.settings-drawer {
+    box-sizing: border-box; 
+    width: 0;
+    overflow: hidden;
+    background: var(--surface-solid);
+    border-right: 1px solid var(--border);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    z-index: 15;
+    flex-shrink: 0; 
+}
+
+.settings-drawer.open { width: 250px; }
+
+.settings-header {
+    box-sizing: border-box; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    min-width: 250px;
+}
+
+.settings-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.settings-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.settings-close:hover { color: var(--text); }
+
+.settings-section {
+    box-sizing: border-box; 
+    padding: 20px;
+    min-width: 250px;
+}
+
+.settings-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.theme-btn {
+    box-sizing: border-box; 
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.theme-btn:hover { border-color: var(--accent); color: var(--text); }
+
+.theme-preview { width: 100%; height: 32px; border-radius: 6px; }
+.dark-prev     { background: linear-gradient(135deg, #09090f 50%, #ff4b4b 100%); }
+.light-prev    { background: linear-gradient(135deg, #f5f5f7 50%, #ff4b4b 100%); border: 1px solid rgba(0,0,0,0.08); }
+.midnight-prev { background: linear-gradient(135deg, #05060f 50%, #6478ff 100%); }
+.forest-prev   { background: linear-gradient(135deg, #070f0a 50%, #3dba60 100%); }
 
 /* =========================================
    MAIN WORKSPACE
@@ -143,8 +319,25 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at top right, #1a1e29 0%, #0a0c10 70%);
+    background: var(--bg);
     position: relative;
+    transition: background 0.3s;
+    overflow: hidden; 
+}
+
+.workspace::before {
+    content: '';
+    position: absolute;
+    width: 700px; 
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    transform: translate(30%, -30%);
+    transition: background 0.3s;
+    z-index: 0; 
 }
 
 .launch-center {
@@ -154,6 +347,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -167,14 +361,14 @@ body {
     font-weight: 900;
     margin: 0;
     letter-spacing: -1px;
-    background: linear-gradient(90deg, #ffffff, #a0aab5);
+    background: linear-gradient(90deg, var(--text), var(--text-muted));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
 
 .subtitle {
-    color: #8b949e;
+    color: var(--text-muted);
     font-size: 1.2rem;
     font-weight: 500;
     margin: 15px 0 50px 0;
@@ -190,29 +384,30 @@ body {
     margin-bottom: 40px;
 }
 
-/* SCRAMJET ID PATCHES START HERE */
 #sj-address {
     flex-grow: 1;
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: transparent;
+    border: 2px solid var(--border2);
+    color: var(--text);
     padding: 22px 30px;
     border-radius: 16px;
     font-size: 1.2rem;
     font-family: inherit;
     outline: none;
     transition: all 0.3s ease;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
 }
 
+#sj-address::placeholder { color: var(--text-muted); }
+
 #sj-address:focus {
-    border-color: #ff4b4b;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 20px rgba(255, 75, 75, 0.2);
+    border-color: var(--accent);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .launch-btn {
-    background: #ff4b4b;
+    background: var(--accent);
     border: none;
     color: white;
     font-weight: 800;
@@ -225,52 +420,38 @@ body {
 }
 
 .launch-btn:hover {
-    background: #ff6b6b;
+    filter: brightness(1.2);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 75, 75, 0.3);
+    box-shadow: 0 10px 20px var(--accent-glow);
 }
 
 /* =========================================
-   ERRORS & PROXY FRAME
-========================================= */
-#sj-error-code:empty { display: none; }
-#sj-error { color: #ff4d4d !important; margin-top: 20px; font-weight: bold; }
-#sj-error-code { font-size: 14px; color: #ffb3b3; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-top: 15px; }
-
-/* =========================================
-   NEW BROWSER TOP BAR
+   TOP BAR (proxy browser bar)
 ========================================= */
 #proxy-top-bar {
     display: flex;
     align-items: center;
-    background: #141820; /* Slightly matched to your sidebar color */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--surface-solid);
+    border-bottom: 1px solid var(--border);
     height: 60px;
     padding: 0 20px;
     gap: 20px;
-    
-    /* THE FIX: Lock width to the exact screen size */
     width: 100%;
     box-sizing: border-box; 
-    
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1000;
 }
 
-#proxy-top-bar.hidden {
-    display: none !important;
-}
-
-#home-ui.hidden {
+#proxy-top-bar.hidden, #home-ui.hidden {
     display: none !important;
 }
 
 .nav-controls button {
     background: transparent;
     border: none;
-    color: #8b949e;
+    color: var(--text-muted);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 10px;
@@ -279,23 +460,22 @@ body {
 }
 
 .nav-controls button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: var(--surface2);
+    color: var(--text);
 }
 
 .top-search-box {
     flex-grow: 1;
     display: flex;
-    /* Optional: Limit how wide the search bar gets so it looks like a real browser */
     max-width: 800px; 
     margin: 0 auto; 
 }
 
 #top-address {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 75, 75, 0.5); /* Copied your red border aesthetic */
-    color: white;
+    background: var(--surface2);
+    border: 1px solid var(--border2); 
+    color: var(--text);
     padding: 10px 20px;
     border-radius: 20px;
     font-family: inherit;
@@ -304,28 +484,24 @@ body {
     transition: all 0.3s;
 }
 
-#top-address:focus {
-    border-color: #ff4b4b;
-    background: rgba(0, 0, 0, 0.6);
-}
+#top-address:focus { border-color: var(--accent); }
 
 .top-brand {
     font-weight: 900;
-    color: #ff4b4b;
+    color: var(--accent);
     letter-spacing: 1.5px;
-    /* THE FIX: Force the text to stay on one line and not get squished */
     white-space: nowrap; 
     padding-right: 10px;
 }
 
 /* =========================================
-   ERRORS & PROXY FRAME (UPDATED)
+   ERRORS & PROXY FRAME 
 ========================================= */
+#sj-error:empty { display: none; }
 #sj-error-code:empty { display: none; }
-#sj-error { color: #ff4d4d !important; margin-top: 20px; font-weight: bold; }
-#sj-error-code { font-size: 14px; color: #ffb3b3; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-top: 15px; }
+#sj-error { color: var(--accent) !important; margin-top: 20px; font-weight: bold; }
+#sj-error-code { font-size: 14px; color: var(--text-muted); background: var(--surface-solid); padding: 15px; border-radius: 8px; margin-top: 15px; }
 
-/* The frame now sits BELOW the 60px top bar */
 #sj-frame { 
     border: none; 
     position: absolute; 
@@ -334,42 +510,104 @@ body {
     width: 100vw; 
     height: calc(100vh - 60px); 
     background-color: #fff; 
-    z-index: 999; 
+    z-index: 990;
 }
+
 /* =========================================
-   SLIDE-DOWN AD BANNER (FROM TOP)
+   LOADING ANIMATION
+========================================= */
+#proxy-loader {
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background: var(--bg);
+    z-index: 998; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+#proxy-loader.hidden {
+    display: none !important;
+}
+
+.loader-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.loader-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid var(--accent);
+    border-color: var(--accent) transparent var(--accent) transparent;
+    animation: loader-spin 1.2s linear infinite;
+}
+
+@keyframes loader-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+    margin-top: 20px;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    animation: loader-pulse 1.5s infinite;
+}
+
+@keyframes loader-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* =========================================
+   BANNER AD (slide-down)
 ========================================= */
 #proxy-ad-banner {
-    position: absolute;
+    position: fixed;
     top: 0; 
     left: 50%;
     transform: translateX(-50%) translateY(-120%); 
+    visibility: hidden;
     width: 100%;
     max-width: 760px;
-    background: #141820;
-    border: 1px solid rgba(255, 75, 75, 0.3);
+    background: var(--surface-solid);
+    border: 1px solid var(--border2);
     border-top: none; 
     border-radius: 0 0 12px 12px; 
     z-index: 2000;
     text-align: center;
     padding: 15px;
+    box-sizing: border-box;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.8); 
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s 0.6s;
 }
 
-#proxy-ad-banner.show {
+#proxy-ad-banner.show { 
     transform: translateX(-50%) translateY(0); 
-}
-
-#proxy-ad-banner.hidden {
-    display: none !important;
+    visibility: visible;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s 0s;
 }
 
 #close-ad-btn {
     position: absolute;
     bottom: -15px; 
     right: -10px;
-    background: #ff4b4b;
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: 50%;
@@ -379,24 +617,117 @@ body {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    transition: background 0.2s, transform 0.2s;
+    transition: filter 0.2s, transform 0.2s;
+    z-index: 2001;
 }
 
 #close-ad-btn:hover {
-    background: #ff1a1a;
+    filter: brightness(1.2);
     transform: scale(1.1);
 }
 
 /* =========================================
+   POP-UNDER MINI BROWSER
+   Floating draggable window, bottom-right corner.
+   Non-intrusive — user can minimize or close.
+========================================= */
+#popunder-mini-browser {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 380px;
+    height: 260px;
+    background: var(--surface-solid);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    animation: popunder-slide-in 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes popunder-slide-in {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#popunder-mini-browser.hidden {
+    display: none !important;
+}
+
+#popunder-mini-browser.minimized {
+    height: 42px;
+}
+
+#popunder-mini-browser.minimized #popunder-frame {
+    display: none;
+}
+
+#popunder-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    height: 42px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    cursor: move;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+#popunder-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.popunder-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.popunder-controls button {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--text-muted);
+    border-radius: 6px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.popunder-controls button:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+#popunder-frame {
+    flex-grow: 1;
+    border: none;
+    width: 100%;
+    background: #fff;
+}
+
+/* =========================================
    ANTI-ADBLOCK OVERLAY
+   Soft warning — user can dismiss.
 ========================================= */
 #anti-adblock-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 12, 16, 0.9);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 16, 0.88);
     backdrop-filter: blur(10px);
     z-index: 9999999;
     display: flex;
@@ -406,66 +737,53 @@ body {
     text-align: center;
 }
 
-#anti-adblock-overlay.hidden {
-    display: none !important;
-}
+#anti-adblock-overlay.hidden { display: none !important; }
 
 .adblock-modal {
-    background: #1c2128;
+    background: var(--surface-solid);
     padding: 40px;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    max-width: 400px;
+    max-width: 420px;
     width: 90%;
-    border: 1px solid #30363d;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
-.adblock-modal img {
-    width: 120px;
-    margin-bottom: 20px;
-}
-
-.adblock-modal h2 {
-    color: #ffffff;
-    font-family: "Inter", Arial, sans-serif;
-    margin-bottom: 10px;
-}
-
-.adblock-modal p {
-    color: #8b949e;
-    font-family: "Inter", Arial, sans-serif;
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
+.adblock-modal img { width: 100px; margin-bottom: 10px; }
+.adblock-modal h2 { color: var(--text); margin: 0; font-size: 1.4rem; }
+.adblock-modal p  { color: var(--text-muted); margin: 0 0 10px; line-height: 1.6; font-size: 0.95rem; }
 
 .adblock-modal button {
-    background: #ff4b4b; /* Changed to match your red Chroblox theme */
+    background: var(--accent);
     color: white;
     border: none;
     padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.2s;
+    font-size: 1rem;
+    width: 100%;
+    transition: filter 0.2s;
 }
 
-.adblock-modal button:hover {
-    background: #ff6b6b;
+.adblock-modal button:hover { filter: brightness(1.15); }
+
+/* Secondary "continue anyway" button — understated */
+.adblock-soft-btn {
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    border: 1px solid var(--border2) !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
 }
 
-/* =========================================
-   LIVE VISITOR COUNTER
-========================================= */
-#live-counter {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #3d4450;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    pointer-events: none;
-    user-select: none;
+.adblock-soft-btn:hover {
+    color: var(--text) !important;
+    border-color: var(--text-muted) !important;
+    filter: none !important;
 }
