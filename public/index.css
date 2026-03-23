@@ -453,3 +453,19 @@ body {
 .adblock-modal button:hover {
     background: #ff6b6b;
 }
+
+/* =========================================
+   LIVE VISITOR COUNTER
+========================================= */
+#live-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #3d4450;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    user-select: none;
+}
