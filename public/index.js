@@ -62,31 +62,61 @@ let currentFrame = null;
 
 // ==========================================
 // POP-UNDER MINI BROWSER
-// Intercepts window.open() calls so pop-under
-// ads render in a small floating window instead
-// of opening a real new tab or window.
+// - Intercepts window.open() from Adsterra script
+// - Routes the URL through /ad-proxy to strip
+//   X-Frame-Options so it loads without errors
+// - Also fires on key user interactions with cooldown
 // ==========================================
-(function interceptPopUnders() {
-    const miniBrowser  = document.getElementById("popunder-mini-browser");
-    const miniFrame    = document.getElementById("popunder-frame");
-    const miniTitle    = document.getElementById("popunder-title");
-    const btnMinimize  = document.getElementById("popunder-minimize");
-    const btnClose     = document.getElementById("popunder-close");
-    const titleBar     = document.getElementById("popunder-titlebar");
+(function setupMiniBrowser() {
+    const miniBrowser = document.getElementById("popunder-mini-browser");
+    const miniFrame   = document.getElementById("popunder-frame");
+    const miniTitle   = document.getElementById("popunder-title");
+    const btnMinimize = document.getElementById("popunder-minimize");
+    const btnClose    = document.getElementById("popunder-close");
+    const titleBar    = document.getElementById("popunder-titlebar");
 
-    // Override window.open to capture pop-under URLs
-    const _windowOpen = window.open.bind(window);
+    let lastShownAt   = 0;
+    const COOLDOWN_MS = 30000; // min 30s between shows
+
+    // Route a URL through the server proxy so iframe headers are stripped
+    function proxyUrl(url) {
+        return "/ad-proxy?url=" + encodeURIComponent(url);
+    }
+
+    function showWithUrl(url) {
+        const now = Date.now();
+        if (now - lastShownAt < COOLDOWN_MS) return;
+        lastShownAt = now;
+
+        try {
+            miniTitle.textContent = new URL(url).hostname;
+        } catch(_) {
+            miniTitle.textContent = "Advertisement";
+        }
+
+        miniFrame.src = proxyUrl(url);
+        miniBrowser.classList.remove("hidden", "minimized");
+        btnMinimize.textContent = "—";
+    }
+
+    // Intercept window.open — this is what Adsterra pop-under calls
+    const _nativeOpen = window.open.bind(window);
     window.open = function(url, target, features) {
         if (url && url !== "" && url !== "about:blank") {
-            // Show in mini browser instead of a new tab
-            miniFrame.src = url;
-            miniTitle.textContent = (new URL(url, location.href)).hostname || "Advertisement";
-            miniBrowser.classList.remove("hidden", "minimized");
-            return { closed: false, focus: () => {}, blur: () => {} };
+            showWithUrl(url);
+            // Return a fake window object so the ad script doesn't error
+            return {
+                closed: false,
+                focus:  () => {},
+                blur:   () => {},
+                close:  () => {},
+            };
         }
-        // Fallthrough for blank windows (needed by some ad networks)
-        return _windowOpen(url, target, features);
+        return _nativeOpen(url, target, features);
     };
+
+    // Expose for manual interaction triggers
+    window._showMiniBrowser = showWithUrl;
 
     // Minimize toggle
     btnMinimize.addEventListener("click", () => {
@@ -101,7 +131,7 @@ let currentFrame = null;
     });
 
     // Drag support
-    let isDragging = false, dragStartX = 0, dragStartY = 0, origRight = 20, origBottom = 20;
+    let isDragging = false, dragStartX = 0, dragStartY = 0;
 
     titleBar.addEventListener("mousedown", (e) => {
         if (e.target.tagName === "BUTTON") return;
@@ -114,10 +144,8 @@ let currentFrame = null;
 
     document.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
-        const x = e.clientX - dragStartX;
-        const y = e.clientY - dragStartY;
-        miniBrowser.style.left   = x + "px";
-        miniBrowser.style.top    = y + "px";
+        miniBrowser.style.left   = (e.clientX - dragStartX) + "px";
+        miniBrowser.style.top    = (e.clientY - dragStartY) + "px";
         miniBrowser.style.right  = "auto";
         miniBrowser.style.bottom = "auto";
     });
@@ -155,15 +183,6 @@ function runAdblockCheck() {
             if (overlay) overlay.classList.remove("hidden");
         }
     }, 200);
-}
-
-// "Continue anyway" dismisses the overlay without reloading
-const continueBtn = document.getElementById("adblock-continue-btn");
-if (continueBtn) {
-    continueBtn.addEventListener("click", () => {
-        const overlay = document.getElementById("anti-adblock-overlay");
-        if (overlay) overlay.classList.add("hidden");
-    });
 }
 
 // Run check after a short delay so extensions are fully loaded
@@ -245,7 +264,40 @@ async function launchProxy(inputValue) {
 
     // Show banner ad shortly after launch
     setTimeout(triggerAdBanner, 1500);
+
+    // Also trigger mini browser after user launches proxy
+    setTimeout(tryShowAd, 3500);
 }
+
+// ==========================================
+// INTERACTION TRIGGERS FOR MINI BROWSER
+// The Adsterra script fires window.open automatically,
+// but we also manually trigger on key interactions as backup,
+// passing the Adsterra pop-under URL directly.
+// ==========================================
+const ADSTERRA_POPUNDER_URL = "https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js";
+
+function tryShowAd() {
+    if (window._showMiniBrowser) {
+        // Use the adsterra invoke URL - the script itself calls window.open
+        // This just ensures the mini browser is ready; actual URL comes from
+        // the intercepted window.open call from the Adsterra script.
+        // As a reliable fallback, show the Adsterra banner page directly.
+        window._showMiniBrowser("https://www.effectivegate.com");
+    }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    // Sidebar external links
+    document.querySelectorAll(".yt-btn, .discord-btn").forEach(link => {
+        link.addEventListener("click", () => setTimeout(tryShowAd, 700));
+    });
+
+    // Nav item clicks
+    document.querySelectorAll(".nav-item").forEach(btn => {
+        btn.addEventListener("click", () => setTimeout(tryShowAd, 500));
+    });
+});
 
 // ==========================================
 // FORM EVENT HANDLERS
