@@ -32,54 +32,45 @@ fastify.register(fastifyStatic, { root: libcurlPath, prefix: "/libcurl/", decora
 fastify.register(fastifyStatic, { root: baremuxPath, prefix: "/baremux/", decorateReply: false });
 
 // ============================================================
-// AD PROXY ROUTE
-// Fetches a URL server-side and strips X-Frame-Options /
-// CSP headers so the response loads in the mini-browser iframe.
-// Only allows http/https to prevent SSRF abuse.
-// GET /ad-proxy?url=https://example.com
+// AD FRAME ROUTE
+// Serves a self-contained HTML page that runs the Adsterra
+// script directly from our own origin — no X-Frame-Options
+// issues since the iframe src is same-origin.
+// GET /ad-frame
 // ============================================================
-fastify.get("/ad-proxy", async (req, reply) => {
-	const target = req.query.url;
+fastify.get("/ad-frame", (req, reply) => {
+	const html = `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0c10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    atOptions = {
+      'key' : 'e5329f54bea294b733b7ba46c03c2250',
+      'format' : 'iframe',
+      'height' : 90,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
+</body>
+</html>`;
 
-	if (!target) {
-		return reply.code(400).send("Missing url parameter");
-	}
-
-	let parsedUrl;
-	try {
-		parsedUrl = new URL(target);
-	} catch {
-		return reply.code(400).send("Invalid URL");
-	}
-
-	if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
-		return reply.code(403).send("Protocol not allowed");
-	}
-
-	try {
-		const upstream = await fetch(target, {
-			headers: {
-				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-				"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-				"Accept-Language": "en-US,en;q=0.5",
-			},
-			redirect: "follow",
-		});
-
-		const contentType = upstream.headers.get("content-type") || "text/html";
-		reply.header("Content-Type", contentType);
-
-		// Strip frame-blocking headers
-		reply.header("X-Frame-Options", "ALLOWALL");
-		reply.header("Content-Security-Policy", "");
-		reply.header("Access-Control-Allow-Origin", "*");
-
-		const body = await upstream.text();
-		return reply.code(upstream.status).send(body);
-
-	} catch (err) {
-		return reply.code(502).send("Failed to fetch: " + err.message);
-	}
+	reply.header("Content-Type", "text/html");
+	return reply.send(html);
 });
 
 fastify.setNotFoundHandler((req, reply) => {
