@@ -124,3 +124,16 @@ btnReload.addEventListener("click", () => {
         currentFrame.go(topAddress.value);
     }
 });
+
+// ── LIVE VISITOR COUNTER ──────────────────────────────────────────
+async function updateVisitorCount() {
+    try {
+        const res = await fetch("/api/visitors");
+        const data = await res.json();
+        document.getElementById("visitor-count").textContent = data.count;
+    } catch {
+        // fail silently — counter just stays at –
+    }
+}
+updateVisitorCount();
+setInterval(updateVisitorCount, 5000); // refresh every 5s
