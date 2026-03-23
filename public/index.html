@@ -1,34 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
         <title>Chroblox | Workspace</title>
         <meta name="description" content="Chroblox is a fast, secure web proxy optimized for Chromebooks." />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0c10" />
+        <meta name="theme-color" content="#0a0c10" />
         
-        <link rel="shortcut icon" content="favicon.ico" />
+        <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" href="index.css" />
 
         <script src="/scram/scramjet.all.js"></script>
         <script src="/baremux/index.js"></script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4761281742564485"
-     crossorigin="anonymous"></script>
+
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4761281742564485" crossorigin="anonymous"></script>
         
-        <!-- Umami Analytics -->
+        <!-- Analytics -->
         <script defer src="https://cloud.umami.is/script.js" data-website-id="6cab02bf-b484-4f0b-86f5-f87401d1975a"></script>
-    <script src="https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js"></script>
+
+        <!-- Adsterra Pop-under (loads silently; index.js intercepts window.open to show in mini-browser) -->
+        <script src="https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js"></script>
     </head>
 
     <body>
+        <!-- =============================================
+             ANTI-ADBLOCK OVERLAY
+             Soft warning — user can dismiss & continue.
+             Only triggered when adblock is confirmed.
+        ============================================= -->
         <div id="anti-adblock-overlay" class="hidden">
-    <div class="adblock-modal">
-        <img src='sj.png' alt="Chroblox" />
-        <h2>Ads help us stay fast and free</h2>
-        <p>Please disable your adblocker to continue using Chroblox. We rely on ads to keep the servers running smoothly.</p>
-        <button onclick="location.reload()">I've disabled it, let me in</button>
-    </div>
-</div>
+            <div class="adblock-modal">
+                <img src='sj.png' alt="Chroblox" />
+                <h2>Ads keep us running</h2>
+                <p>Chroblox is free because of ads. Please whitelist this site in your adblocker to keep the servers online.</p>
+                <button onclick="location.reload()">I've whitelisted it — Reload</button>
+                <button id="adblock-continue-btn" class="adblock-soft-btn">Continue anyway</button>
+            </div>
+        </div>
+
+        <!-- =============================================
+             POP-UNDER MINI BROWSER
+             Floating, draggable, minimizable.
+             Pop-under ads load here instead of a new tab.
+        ============================================= -->
+        <div id="popunder-mini-browser" class="hidden">
+            <div id="popunder-titlebar">
+                <span id="popunder-title">Advertisement</span>
+                <div class="popunder-controls">
+                    <button id="popunder-minimize" title="Minimize">—</button>
+                    <button id="popunder-close" title="Close">✕</button>
+                </div>
+            </div>
+            <iframe id="popunder-frame" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" referrerpolicy="no-referrer"></iframe>
+        </div>
+
+        <!-- =============================================
+             TOP BAR (shown while browsing via proxy)
+        ============================================= -->
         <div id="proxy-top-bar" class="hidden">
             <div class="nav-controls">
                 <button id="nav-home" title="Go Home">🏠</button>
@@ -44,27 +73,68 @@
             </div>
         </div>
 
+        <!-- Loading spinner -->
+        <div id="proxy-loader" class="hidden">
+            <div class="loader-ring"></div>
+            <div class="loader-text">IGNITING...</div>
+        </div>
+
+        <!-- =============================================
+             HOME UI
+        ============================================= -->
         <div class="webos-container" id="home-ui">
             <aside class="sidebar">
                 <div class="brand">
-                    <img class="sidebar-logo" src="favicon.ico" alt="Chroblox" onerror="this.src='uv.png'" />
+                    <img class="sidebar-logo" src="favicon.ico" alt="Chroblox" onerror="this.src='sj.png'" />
                     <h2>CHROBLOX</h2>
                 </div>
                 
                 <div class="nav-menu">
                     <button class="nav-item active"><span class="icon">🚀</span> Launch</button>
+                    <button class="nav-item" id="nav-settings-btn"><span class="icon">⚙️</span> Settings</button>
                 </div>
 
-                <div class="gd7-widget">
-                    <p class="widget-title">Creator & Tutorials</p>
-                    <a href="https://www.youtube.com/@Gd7OS" target="_blank" class="yt-btn">▶ Gd7 OS</a>
+                <div class="sidebar-widgets">
+                    <div class="gd7-widget">
+                        <p class="widget-title">Creator & Tutorials</p>
+                        <a href="https://www.youtube.com/@Gd7OS" target="_blank" class="yt-btn">▶ Gd7 OS</a>
+                    </div>
+
+                    <div class="gd7-widget discord-widget">
+                        <p class="widget-title">Community</p>
+                        <a href="https://discord.gg/AbrmZFwppU" target="_blank" class="discord-btn">💬 Discord</a>
+                    </div>
                 </div>
             </aside>
 
+            <div id="settings-drawer" class="settings-drawer">
+                <div class="settings-header">
+                    <span class="settings-title">SETTINGS</span>
+                    <button id="settings-close">✕</button>
+                </div>
+                <div class="settings-section">
+                    <div class="settings-label">Theme</div>
+                    <div class="theme-grid">
+                        <button class="theme-btn" data-theme="dark">
+                            <div class="theme-preview dark-prev"></div>Dark
+                        </button>
+                        <button class="theme-btn" data-theme="light">
+                            <div class="theme-preview light-prev"></div>Light
+                        </button>
+                        <button class="theme-btn" data-theme="midnight">
+                            <div class="theme-preview midnight-prev"></div>Midnight
+                        </button>
+                        <button class="theme-btn" data-theme="forest">
+                            <div class="theme-preview forest-prev"></div>Forest
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <main class="workspace">
                 <div class="launch-center">
-                    <h1 class="system-title">Chroblox v1.1</h1>
-                    <p class="subtitle">New Update in 5 hours</p>
+                    <h1 class="system-title">System Ready.</h1>
+                    <p class="subtitle">Chromebook core. Roblox power. Total freedom.</p>
 
                     <form id="sj-form" class="search-box">
                         <input id="sj-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
@@ -77,18 +147,16 @@
                         <pre id="sj-error-code"></pre>
                     </div>
                 </div>
-
-                <!-- Live visitor counter -->
-                <div id="live-counter">
-                    <span id="visitor-count">–</span> Online
-                </div>
             </main>
         </div>
         
-        <div id="proxy-ad-banner" class="hidden">
+        <!-- =============================================
+             BANNER AD (slide-down after launch)
+             Adsterra 728x90
+        ============================================= -->
+        <div id="proxy-ad-banner">
             <button id="close-ad-btn" title="Close Ad">×</button>
             <div class="ad-content">
-                
                 <script>
                     atOptions = {
                         'key' : 'e5329f54bea294b733b7ba46c03c2250',
@@ -105,37 +173,5 @@
         <script src="register-sw.js"></script>
         <script src="search.js"></script>
         <script src="index.js"></script>
-        <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            let adblockDetected = false;
-
-            const honeypot = document.createElement('div');
-            honeypot.innerHTML = '&nbsp;';
-            honeypot.className = 'adsbox ad-placement ad-banner doubleclick ad-content';
-            honeypot.style.position = 'absolute';
-            honeypot.style.top = '-999px';
-            document.body.appendChild(honeypot);
-
-            if (honeypot.offsetHeight === 0 || window.getComputedStyle(honeypot).display === 'none') {
-                adblockDetected = true;
-            }
-            honeypot.remove();
-
-            if (window.adsbygoogle === undefined) {
-                adblockDetected = true;
-            }
-
-            if (adblockDetected) {
-                const overlay = document.getElementById('anti-adblock-overlay');
-                overlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
-            }
-        }, 500);
-    });
-</script>
-
-        <!-- Adsterra Popunder -->
-        <script async src="//pl26XXXXXX.profitablecpmgate.com/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/invoke.min.js"></script>
     </body>
 </html>
