@@ -10,39 +10,53 @@ const homeUI       = document.getElementById("home-ui");
 const error        = document.getElementById("sj-error");
 const errorCode    = document.getElementById("sj-error-code");
 
-const topBar       = document.getElementById("proxy-top-bar");
-const topForm      = document.getElementById("top-form");
-const topAddress   = document.getElementById("top-address");
-const btnHome      = document.getElementById("nav-home");
-const btnReload    = document.getElementById("nav-reload");
+const topBar     = document.getElementById("proxy-top-bar");
+const topForm    = document.getElementById("top-form");
+const topAddress = document.getElementById("top-address");
+const btnHome    = document.getElementById("nav-home");
+const btnReload  = document.getElementById("nav-reload");
 
 const settingsDrawer = document.getElementById("settings-drawer");
 const settingsBtn    = document.getElementById("nav-settings-btn");
 const settingsClose  = document.getElementById("settings-close");
 
 // ==========================================
-// SETTINGS & THEME
+// SETTINGS DRAWER
 // ==========================================
 if (settingsBtn) {
-    settingsBtn.onclick = () => settingsDrawer.classList.toggle("open");
+    settingsBtn.onclick = () => {
+        settingsDrawer.classList.toggle("open");
+        settingsBtn.classList.toggle("active");
+    };
 }
 if (settingsClose) {
-    settingsClose.onclick = () => settingsDrawer.classList.remove("open");
+    settingsClose.onclick = () => {
+        settingsDrawer.classList.remove("open");
+        if (settingsBtn) settingsBtn.classList.remove("active");
+    };
 }
 
+// ==========================================
+// THEME SWITCHER
+// ==========================================
 const savedTheme = localStorage.getItem("chroblox-theme") || "dark";
 document.documentElement.setAttribute("data-theme", savedTheme);
 
 document.querySelectorAll(".theme-btn").forEach(btn => {
+    if (btn.dataset.theme === savedTheme) btn.classList.add("active");
+    else btn.classList.remove("active");
+
     btn.onclick = () => {
         const theme = btn.dataset.theme;
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("chroblox-theme", theme);
+        document.querySelectorAll(".theme-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
     };
 });
 
 // ==========================================
-// SCRAMJET PROXY INIT
+// SCRAMJET INIT
 // ==========================================
 const { ScramjetController } = $scramjetLoadController();
 
@@ -60,19 +74,9 @@ const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 let currentFrame = null;
 
 // ==========================================
-// POP-UNDER MINI BROWSER
-//
-// The iframe loads /ad-frame — a page served from
-// our OWN server that runs the Adsterra script.
-// Since it's same-origin, there are zero
-// X-Frame-Options / refused-to-connect issues.
-//
-// Adsterra's pop-under script calls window.open().
-// We intercept that so no real tab opens — instead
-// we just refresh the mini browser with a new ad load.
-//
-// Triggers: window.open intercept + user interactions.
-// Cooldown: 30s minimum between shows.
+// MINI BROWSER (POPUNDER)
+// Uses scramjet.encodeUrl() to proxy the ad destination
+// URL — strips X-Frame-Options so every ad loads cleanly.
 // ==========================================
 (function setupMiniBrowser() {
     const miniBrowser = document.getElementById("popunder-mini-browser");
@@ -82,40 +86,35 @@ let currentFrame = null;
     const btnClose    = document.getElementById("popunder-close");
     const titleBar    = document.getElementById("popunder-titlebar");
 
-    let lastShownAt   = 0;
-    const COOLDOWN_MS = 30000;
-    let adShownOnce   = false;
+    if (!miniBrowser || !miniFrame) return;
 
-    function showAdFrame() {
+    let lastShownAt = 0;
+    const COOLDOWN  = 30000; // 30s between shows
+
+    function showPopunder(url) {
         const now = Date.now();
-        if (now - lastShownAt < COOLDOWN_MS) return;
+        if (now - lastShownAt < COOLDOWN) return;
         lastShownAt = now;
 
-        miniTitle.textContent = "Advertisement";
+        miniTitle.textContent = url;
 
-        // Reload the frame each time so a fresh ad is served
-        // Cache-bust with timestamp so the ad network counts each impression
-        miniFrame.src = "/ad-frame?t=" + now;
+        // Encode through Scramjet — strips X-Frame-Options on the way back
+        const proxiedUrl = scramjet.encodeUrl(url);
+        miniFrame.src = proxiedUrl;
 
         miniBrowser.classList.remove("hidden", "minimized");
         btnMinimize.textContent = "—";
-        adShownOnce = true;
     }
 
-    // Intercept window.open from Adsterra pop-under script.
-    // Instead of opening a new tab, we show/refresh our mini browser.
+    // Intercept window.open — Adsterra popunder fires this
     const _nativeOpen = window.open.bind(window);
     window.open = function(url, target, features) {
         if (url && url !== "" && url !== "about:blank") {
-            showAdFrame();
-            // Return a fake window object so ad script doesn't throw
+            showPopunder(url);
             return { closed: false, focus: () => {}, blur: () => {}, close: () => {} };
         }
         return _nativeOpen(url, target, features);
     };
-
-    // Exposed globally for interaction triggers
-    window._showAdFrame = showAdFrame;
 
     // Minimize / restore
     btnMinimize.addEventListener("click", () => {
@@ -156,7 +155,7 @@ let currentFrame = null;
 })();
 
 // ==========================================
-// ADBLOCK DETECTION — hard block, no bypass
+// ADBLOCK DETECTION
 // ==========================================
 function runAdblockCheck() {
     const bait = document.createElement("div");
@@ -172,7 +171,6 @@ function runAdblockCheck() {
             window.getComputedStyle(bait).display === "none" ||
             window.getComputedStyle(bait).visibility === "hidden";
         bait.remove();
-
         if (blocked) {
             const overlay = document.getElementById("anti-adblock-overlay");
             if (overlay) overlay.classList.remove("hidden");
@@ -185,7 +183,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// BANNER AD
+// BANNER AD (slide-down)
 // ==========================================
 function triggerAdBanner() {
     const adBanner = document.getElementById("proxy-ad-banner");
@@ -205,26 +203,6 @@ if (closeAdBtn) {
 }
 
 // ==========================================
-// INTERACTION TRIGGERS FOR MINI BROWSER
-// Fires on meaningful user actions with 30s cooldown.
-// ==========================================
-window.addEventListener("DOMContentLoaded", () => {
-    // Discord & YouTube sidebar links
-    document.querySelectorAll(".yt-btn, .discord-btn").forEach(link => {
-        link.addEventListener("click", () => {
-            setTimeout(() => window._showAdFrame && window._showAdFrame(), 700);
-        });
-    });
-
-    // Nav items (Settings, Launch)
-    document.querySelectorAll(".nav-item").forEach(btn => {
-        btn.addEventListener("click", () => {
-            setTimeout(() => window._showAdFrame && window._showAdFrame(), 500);
-        });
-    });
-});
-
-// ==========================================
 // PROXY LAUNCH LOGIC
 // ==========================================
 async function launchProxy(inputValue) {
@@ -239,9 +217,9 @@ async function launchProxy(inputValue) {
         return;
     }
 
-    const url = search(inputValue, searchEngine.value);
-
+    const url     = search(inputValue, searchEngine.value);
     const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+
     if ((await connection.getTransport()) !== "/libcurl/index.mjs") {
         await connection.setTransport("/libcurl/index.mjs", [{ websocket: wispUrl }]);
     }
@@ -251,7 +229,7 @@ async function launchProxy(inputValue) {
     topAddress.value = url;
 
     const loader = document.getElementById("proxy-loader");
-    loader.classList.remove("hidden");
+    if (loader) loader.classList.remove("hidden");
 
     if (currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
         currentFrame.frame.parentNode.removeChild(currentFrame.frame);
@@ -261,7 +239,7 @@ async function launchProxy(inputValue) {
     currentFrame.frame.id = "sj-frame";
 
     currentFrame.frame.onload = () => {
-        loader.classList.add("hidden");
+        if (loader) loader.classList.add("hidden");
         try {
             const frameUrl = currentFrame.frame.contentWindow.location.href;
             if (frameUrl && frameUrl !== "about:blank") topAddress.value = frameUrl;
@@ -272,9 +250,6 @@ async function launchProxy(inputValue) {
     currentFrame.go(url);
 
     setTimeout(triggerAdBanner, 1500);
-
-    // Show mini browser ad after launch
-    setTimeout(() => window._showAdFrame && window._showAdFrame(), 3500);
 }
 
 // ==========================================
@@ -296,7 +271,8 @@ btnHome.addEventListener("click", () => {
         currentFrame = null;
     }
     topBar.classList.add("hidden");
-    document.getElementById("proxy-loader").classList.add("hidden");
+    const loader = document.getElementById("proxy-loader");
+    if (loader) loader.classList.add("hidden");
     homeUI.classList.remove("hidden");
     address.value = "";
     const adBanner = document.getElementById("proxy-ad-banner");
@@ -305,7 +281,24 @@ btnHome.addEventListener("click", () => {
 
 btnReload.addEventListener("click", () => {
     if (currentFrame) {
-        document.getElementById("proxy-loader").classList.remove("hidden");
+        const loader = document.getElementById("proxy-loader");
+        if (loader) loader.classList.remove("hidden");
         currentFrame.go(topAddress.value.trim());
     }
 });
+
+// ==========================================
+// LIVE VISITOR COUNTER
+// ==========================================
+async function updateVisitorCount() {
+    try {
+        const res  = await fetch("/api/visitors");
+        const data = await res.json();
+        const el   = document.getElementById("visitor-count");
+        if (el) el.textContent = data.count;
+    } catch {
+        // fail silently
+    }
+}
+updateVisitorCount();
+setInterval(updateVisitorCount, 5000);
