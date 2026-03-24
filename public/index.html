@@ -19,58 +19,31 @@
         <!-- Analytics -->
         <script defer src="https://cloud.umami.is/script.js" data-website-id="6cab02bf-b484-4f0b-86f5-f87401d1975a"></script>
 
-        <!-- Adsterra Pop-under (loads silently; index.js intercepts window.open to show in mini-browser) -->
+        <!-- Adsterra Pop-under — opens a small background window via window.open, controlled in index.js -->
         <script src="https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js"></script>
     </head>
 
     <body>
-        <!-- =============================================
-             ANTI-ADBLOCK OVERLAY
-             Soft warning — user can dismiss & continue.
-             Only triggered when adblock is confirmed.
-        ============================================= -->
+        <!-- ANTI-ADBLOCK OVERLAY — hard block, no bypass -->
         <div id="anti-adblock-overlay" class="hidden">
             <div class="adblock-modal">
                 <img src='sj.png' alt="Chroblox" />
                 <h2>Ads keep us running</h2>
                 <p>Chroblox is free because of ads. Please whitelist this site in your adblocker to keep the servers online.</p>
                 <button onclick="location.reload()">I've whitelisted it — Reload</button>
-                <button id="adblock-continue-btn" class="adblock-soft-btn">Continue anyway</button>
             </div>
         </div>
 
-        <!-- =============================================
-             POP-UNDER MINI BROWSER
-             Floating, draggable, minimizable.
-             Pop-under ads load here instead of a new tab.
-        ============================================= -->
-        <div id="popunder-mini-browser" class="hidden">
-            <div id="popunder-titlebar">
-                <span id="popunder-title">Advertisement</span>
-                <div class="popunder-controls">
-                    <button id="popunder-minimize" title="Minimize">—</button>
-                    <button id="popunder-close" title="Close">✕</button>
-                </div>
-            </div>
-            <iframe id="popunder-frame" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" referrerpolicy="no-referrer"></iframe>
-        </div>
-
-        <!-- =============================================
-             TOP BAR (shown while browsing via proxy)
-        ============================================= -->
+        <!-- TOP BAR (shown while browsing via proxy) -->
         <div id="proxy-top-bar" class="hidden">
             <div class="nav-controls">
                 <button id="nav-home" title="Go Home">🏠</button>
                 <button id="nav-reload" title="Reload Page">↻</button>
             </div>
-            
             <form id="top-form" class="top-search-box">
                 <input id="top-address" type="text" autocomplete="off" />
             </form>
-
-            <div class="top-brand">
-                <span>CHROBLOX</span>
-            </div>
+            <div class="top-brand"><span>CHROBLOX</span></div>
         </div>
 
         <!-- Loading spinner -->
@@ -79,27 +52,22 @@
             <div class="loader-text">IGNITING...</div>
         </div>
 
-        <!-- =============================================
-             HOME UI
-        ============================================= -->
+        <!-- HOME UI -->
         <div class="webos-container" id="home-ui">
             <aside class="sidebar">
                 <div class="brand">
                     <img class="sidebar-logo" src="favicon.ico" alt="Chroblox" onerror="this.src='sj.png'" />
                     <h2>CHROBLOX</h2>
                 </div>
-                
                 <div class="nav-menu">
                     <button class="nav-item active"><span class="icon">🚀</span> Launch</button>
                     <button class="nav-item" id="nav-settings-btn"><span class="icon">⚙️</span> Settings</button>
                 </div>
-
                 <div class="sidebar-widgets">
                     <div class="gd7-widget">
                         <p class="widget-title">Creator & Tutorials</p>
                         <a href="https://www.youtube.com/@Gd7OS" target="_blank" class="yt-btn">▶ Gd7 OS</a>
                     </div>
-
                     <div class="gd7-widget discord-widget">
                         <p class="widget-title">Community</p>
                         <a href="https://discord.gg/AbrmZFwppU" target="_blank" class="discord-btn">💬 Discord</a>
@@ -133,15 +101,13 @@
 
             <main class="workspace">
                 <div class="launch-center">
-                    <h1 class="system-title">Chroblox v1.1.2</h1>
-                    <p class="subtitle">Updated Chroblox version 1.1 release</p>
-
+                    <h1 class="system-title">System Ready.</h1>
+                    <p class="subtitle">Chromebook core. Roblox power. Total freedom.</p>
                     <form id="sj-form" class="search-box">
                         <input id="sj-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
                         <input id="sj-address" type="text" placeholder="Search the web or enter a URL..." autocomplete="off" />
                         <button type="submit" class="launch-btn">IGNITE</button>
                     </form>
-
                     <div class="error-container">
                         <p id="sj-error"></p>
                         <pre id="sj-error-code"></pre>
@@ -150,12 +116,26 @@
             </main>
         </div>
         
-        <!-- =============================================
-             BANNER AD (slide-down after launch)
-             Adsterra 728x90
-        ============================================= -->
-        <div id="proxy-ad-banner">
-            <button id="close-ad-btn" title="Close Ad">×</button>
+        <!-- TOP BANNER AD — slides down from top -->
+        <div id="proxy-ad-banner-top">
+            <button id="close-ad-top-btn" title="Close">×</button>
+            <div class="ad-content">
+                <script>
+                    atOptions = {
+                        'key' : 'e5329f54bea294b733b7ba46c03c2250',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
+            </div>
+        </div>
+
+        <!-- BOTTOM BANNER AD — slides up from bottom -->
+        <div id="proxy-ad-banner-bottom">
+            <button id="close-ad-bottom-btn" title="Close">×</button>
             <div class="ad-content">
                 <script>
                     atOptions = {
