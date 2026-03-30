@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Minecraft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/eagle-craft.jpg",
+    "url": "https://maddox.games/db/html/minecraft/index.html"
+  },
+  {
+    "name": "Subway Surfers",
+    "img": "https://szgames.github.io/img/subway-surfers-beijing.png",
+    "url": "https://iframe.unblocked-76-games.org/subway-surfers-main"
+  },
+  {
+    "name": "Traffic Escape",
+    "img": "https://szgames.github.io/img/traffic-escape.png",
+    "url": "https://iframe.unblocked-76-games.org/traffic-escape-main"
+  },
+  {
+    "name": "Steal a Brainrot",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/steal-a-brainrot.jpg",
+    "url": "https://maddox.games/db/html/steal_a_brainrot_2/index.html?school=1"
+  },
+  {
+    "name": "Friday Night Funkin",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/friday.webp",
+    "url": "https://maddox.games/db/html/friday_night_funkin/index.html?school=1"
+  },
+  {
+    "name": "Moto X3M",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io//img/gun-spin.jpg",
+    "url": "https://maddox.games/db/html/gun_spin/index.html?school=1"
+  }
+]
