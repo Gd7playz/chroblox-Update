@@ -1,157 +1,330 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-        <title>Chroblox | Workspace</title>
-        <meta name="description" content="Chroblox is a fast, secure web proxy optimized for Chromebooks." />
-        <meta name="theme-color" content="#0a0c10" />
-        
-        <link rel="shortcut icon" href="favicon.ico" />
-        <link rel="stylesheet" href="index.css" />
+<html lang="en" data-mode="dark" data-theme="sakura">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Chroblox | Workspace v1.2</title>
+    <meta name="description" content="Chroblox is a fast, secure web proxy optimized for Chromebooks." />
+    
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
-        <script src="/scram/scramjet.all.js"></script>
-        <script src="/baremux/index.js"></script>
+    <script src="/scram/scramjet.all.js"></script>
+    <script src="/baremux/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4761281742564485" crossorigin="anonymous"></script>
+</head>
 
-        <!-- Google AdSense -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4761281742564485" crossorigin="anonymous"></script>
-        
-        <!-- Analytics -->
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="6cab02bf-b484-4f0b-86f5-f87401d1975a"></script>
+<body>
+    <canvas id="bg" style="position:fixed; top:0; left:0; z-index:-2;"></canvas>
+    <div id="tsparticles" class="bg-layer"></div>
+    <div id="svg-bg-layer" class="bg-layer"></div>
+    <div class="flur" id="flur"></div>
 
-        <!-- Adsterra Pop-under — opens a small background window via window.open, controlled in index.js -->
-        <script src="https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js"></script>
-    </head>
+    <button id="mobile-menu-btn" class="mobile-toggle">☰</button>
 
-    <body>
-        <!-- ANTI-ADBLOCK OVERLAY — hard block, no bypass -->
-        <div id="anti-adblock-overlay" class="hidden">
-            <div class="adblock-modal">
-                <img src='sj.png' alt="Chroblox" />
-                <h2>Ads keep us running</h2>
-                <p>Chroblox is free because of ads. Please whitelist this site in your adblocker to keep the servers online.</p>
-                <button onclick="location.reload()">I've whitelisted it — Reload</button>
+    <div class="stealth-controls" id="stealth-controls">
+        <button id="mode-tog" class="stealth-pill-btn">🌙 Mode</button>
+        <div style="position: relative;">
+            <button id="t-tog" class="stealth-pill-btn">🎨 Themes</button>
+            <div id="t-menu" class="stealth-menu hidden">
+                <button class="m-item active" onclick="setTheme('sakura')">🌸 Sakura White</button>
+                <button class="m-item" onclick="setTheme('blue')">🔵 Ocean Blue</button>
+                <button class="m-item" onclick="setTheme('gold')">🔥 Golden Fire</button>
+                <button class="m-item" onclick="setTheme('purple')">🟣 Cyber Purple</button>
+                <button class="m-item" onclick="setTheme('green')">🟢 Matrix Green</button>
+                <button class="m-item" onclick="setTheme('dark')">🔴 Default Red</button>
             </div>
         </div>
-
-        <!-- TOP BAR (shown while browsing via proxy) -->
-        <div id="proxy-top-bar" class="hidden">
-            <div class="nav-controls">
-                <button id="nav-home" title="Go Home">🏠</button>
-                <button id="nav-reload" title="Reload Page">↻</button>
+        <div style="position: relative;">
+            <button id="stealth-btn" class="stealth-pill-btn red-accent" title="Mask Tab">
+                <span class="stealth-icon">👻</span> Mask Tab
+            </button>
+            <div id="stealth-menu" class="stealth-menu hidden" style="right:0;">
+                <button class="m-item" onclick="handleCloak('none')">❌ Remove Mask</button>
+                <button class="m-item" onclick="handleCloak('drive')">📄 Google Drive</button>
+                <button class="m-item" onclick="handleCloak('classroom')">🏫 Google Classroom</button>
+                <button class="m-item" onclick="handleCloak('blooket')">🟦 Blooket</button>
             </div>
-            <form id="top-form" class="top-search-box">
-                <input id="top-address" type="text" autocomplete="off" />
-            </form>
-            <div class="top-brand"><span>CHROBLOX</span></div>
         </div>
+    </div>
 
-        <!-- Loading spinner -->
-        <div id="proxy-loader" class="hidden">
-            <div class="loader-ring"></div>
-            <div class="loader-text">IGNITING...</div>
+    <div id="update-overlay" class="hidden">
+        <div class="update-content glass-panel">
+            <div class="update-header">
+                <h2>🚀 Chroblox <span class="ac">v1.2</span> is here!</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">We just dropped a massive update.</p>
+            </div>
+            <div class="update-body">
+                <ul>
+                    <li><strong>📱 Mobile Optimized:</strong> Flawless UI and controls for playing on your phone.</li>
+                    <li><strong>🎨 Global Themes:</strong> Interactive Particles, Dark/Light modes, & sleek animations.</li>
+                    <li><strong>👻 Privacy Masking:</strong> Instantly cloak your tab as Google Drive or Classroom.</li>
+                    <li><strong>🎮 App Vault Search:</strong> Easily find your favorite games with the live search bar.</li>
+                </ul>
+            </div>
+            <button id="close-update-btn" class="launch-btn" style="width:100%; margin-top: 15px; padding: 15px;">Awesome, let's go!</button>
         </div>
+    </div>
 
-        <!-- HOME UI -->
-        <div class="webos-container" id="home-ui">
-            <aside class="sidebar">
+    <div id="anti-adblock-overlay" class="hidden">
+        <div class="adblock-modal">
+            <img src='sj.png' alt="Chroblox" onerror="this.src='favicon.ico'" />
+            <h2>Ads keep us running</h2>
+            <p>Chroblox is free because of ads. Please whitelist this site to keep the servers online.</p>
+            <button onclick="location.reload()">I've whitelisted it — Reload</button>
+        </div>
+    </div>
+
+    <div class="webos-container" id="home-ui">
+        
+        <aside class="sidebar" id="main-sidebar">
+            <button id="desktop-collapse-btn" class="collapse-btn" title="Toggle Sidebar">
+                <span class="chevron">❮</span>
+            </button>
+            
+            <div class="sidebar-inner">
                 <div class="brand">
-                    <img class="sidebar-logo" src="favicon.ico" alt="Chroblox" onerror="this.src='sj.png'" />
-                    <h2>CHROBLOX</h2>
+                    <img src="sj.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="bmark" style="display:none;">C</div>
+                    <h2 class="sidebar-text" style="margin:0;">CHRO<span class="ac">BLOX</span></h2>
                 </div>
-                <div class="nav-menu">
-                    <button class="nav-item active"><span class="icon">🚀</span> Launch</button>
-                    <button class="nav-item" id="nav-settings-btn"><span class="icon">⚙️</span> Settings</button>
+                
+                <div class="nav-menu" id="main-nav">
+                    <button class="nav-item active" data-target="view-launch">
+                        <span class="icon">🚀</span> <span class="sidebar-text">Launch</span>
+                    </button>
+                    <button class="nav-item" data-target="view-games">
+                        <span class="icon">🎮</span> <span class="sidebar-text">Games</span>
+                    </button>
+                    <button class="nav-item" data-target="view-browser">
+                        <span class="icon">🌐</span> <span class="sidebar-text">Browser</span>
+                    </button>
+                    <button class="nav-item" data-target="view-settings">
+                        <span class="icon">⚙️</span> <span class="sidebar-text">Settings</span>
+                    </button>
                 </div>
+
                 <div class="sidebar-widgets">
                     <div class="gd7-widget">
-                        <p class="widget-title">Creator & Tutorials</p>
-                        <a href="https://www.youtube.com/@Gd7OS" target="_blank" class="yt-btn">▶ Gd7 OS</a>
+                        <p class="widget-title sidebar-text">Creator & Tutorials</p>
+                        <a href="https://www.youtube.com/@Gd7OS" target="_blank" class="yt-btn">
+                            <svg class="official-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            <span class="sidebar-text">Gd7 OS</span>
+                        </a>
                     </div>
                     <div class="gd7-widget discord-widget">
-                        <p class="widget-title">Community</p>
-                        <a href="https://discord.gg/AbrmZFwppU" target="_blank" class="discord-btn">💬 Discord</a>
-                    </div>
-                </div>
-            </aside>
-
-            <div id="settings-drawer" class="settings-drawer">
-                <div class="settings-header">
-                    <span class="settings-title">SETTINGS</span>
-                    <button id="settings-close">✕</button>
-                </div>
-                <div class="settings-section">
-                    <div class="settings-label">Theme</div>
-                    <div class="theme-grid">
-                        <button class="theme-btn" data-theme="dark">
-                            <div class="theme-preview dark-prev"></div>Dark
-                        </button>
-                        <button class="theme-btn" data-theme="light">
-                            <div class="theme-preview light-prev"></div>Light
-                        </button>
-                        <button class="theme-btn" data-theme="midnight">
-                            <div class="theme-preview midnight-prev"></div>Midnight
-                        </button>
-                        <button class="theme-btn" data-theme="forest">
-                            <div class="theme-preview forest-prev"></div>Forest
-                        </button>
+                        <p class="widget-title sidebar-text">Community</p>
+                        <a href="https://discord.gg/AbrmZFwppU" target="_blank" class="discord-btn">
+                            <svg class="official-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                            <span class="sidebar-text">Discord</span>
+                        </a>
                     </div>
                 </div>
             </div>
+        </aside>
 
-            <main class="workspace">
+        <main class="workspace">
+            
+            <div id="view-launch" class="view-section active">
                 <div class="launch-center">
-                    <h1 class="system-title">Chroblox v1.1</h1>
-                    <p class="subtitle">Update 1.2 Coming Soon. Join discord for suggestions</p>
+                    <h1 class="system-title">Chro<span class="ac">blox</span> <span class="version-text">v1.2</span></h1>
+                    <p class="subtitle">Your secure, high-speed workspace.</p>
+                    
                     <form id="sj-form" class="search-box">
                         <input id="sj-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
                         <input id="sj-address" type="text" placeholder="Search the web or enter a URL..." autocomplete="off" />
                         <button type="submit" class="launch-btn">IGNITE</button>
                     </form>
+
+                    <div class="cherri-links">
+                        <button class="cherri-card" onclick="launchBrowser('https://youtube.com')" type="button">
+                            <div class="cherri-icon" style="color: #ff0000;">
+                                <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </div>
+                            <span class="cherri-text">YouTube</span>
+                        </button>
+                        <button class="cherri-card" onclick="launchBrowser('https://discord.com/app')" type="button">
+                            <div class="cherri-icon" style="color: #5865F2;">
+                                <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                            </div>
+                            <span class="cherri-text">Discord</span>
+                        </button>
+                        <button class="cherri-card" onclick="launchBrowser('https://open.spotify.com/')" type="button">
+                            <div class="cherri-icon" style="color: #1DB954;">
+                                <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.394-.751.52-1.146.281-3.139-1.916-7.091-2.348-11.751-1.285-.465.106-.921-.186-1.026-.65a.817.817 0 01.65-1.025c5.109-1.164 9.475-.68 13.003 1.535.394.24.52.75.281 1.145zm1.433-3.213c-.301.492-.936.65-1.428.349-3.585-2.203-9.083-2.791-13.111-1.528-.553.173-1.139-.136-1.312-.689a1.047 1.047 0 01.688-1.312c4.61-1.442 10.702-.792 14.816 1.681.492.301.65.936.349 1.428zm.135-3.37c-4.286-2.535-11.36-2.766-15.45-1.53-.655.196-1.353-.176-1.549-.831-.196-.655.176-1.353.831-1.549 4.71-1.423 12.518-1.162 17.458 1.734.591.349.789 1.114.44 1.705-.349.591-1.114.789-1.705.44z"/></svg>
+                            </div>
+                            <span class="cherri-text">Spotify</span>
+                        </button>
+                        <button class="cherri-card" onclick="launchBrowser('https://github.com')" type="button">
+                            <div class="cherri-icon" style="color: var(--text);">
+                                <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                            </div>
+                            <span class="cherri-text">GitHub</span>
+                        </button>
+                    </div>
+
                     <div class="error-container">
                         <p id="sj-error"></p>
                         <pre id="sj-error-code"></pre>
                     </div>
                 </div>
-            </main>
-        </div>
-        
-        <!-- TOP BANNER AD — slides down from top -->
-        <div id="proxy-ad-banner-top">
-            <button id="close-ad-top-btn" title="Close">×</button>
-            <div class="ad-content">
-                <script>
-                    atOptions = {
-                        'key' : 'e5329f54bea294b733b7ba46c03c2250',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
             </div>
-        </div>
 
-        <!-- BOTTOM BANNER AD — slides up from bottom -->
-        <div id="proxy-ad-banner-bottom">
-            <button id="close-ad-bottom-btn" title="Close">×</button>
-            <div class="ad-content">
-                <script>
-                    atOptions = {
-                        'key' : 'e5329f54bea294b733b7ba46c03c2250',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
+            <div id="view-proxy" class="view-section hidden" style="padding: 0; position: relative;">
+                <button id="nav-home" class="floating-exit-btn" title="Drag to move">❌ Exit Game</button>
+                <div id="proxy-frame-container" class="proxy-frame-container">
+                    <div id="proxy-loader" class="hidden">
+                        <div class="loader-ring"></div>
+                        <div class="loader-text">IGNITING...</div>
+                    </div>
+                </div>
             </div>
+
+            <div id="view-browser" class="view-section hidden" style="padding: 0;">
+                <div class="browser-app">
+                    <div class="browser-tab-bar">
+                        <div id="browser-tabs-list" class="tabs-scroll"></div>
+                        <button class="new-tab-btn" onclick="createNewBrowserTab()">+</button>
+                    </div>
+                    <div class="proxy-top-bar browser-toolbar-custom">
+                        <div class="nav-controls">
+                            <button onclick="reloadBrowserTab()" title="Reload">↻</button>
+                        </div>
+                        <form id="browser-url-form" class="top-search-box" style="margin:0;">
+                            <input type="text" id="browser-url-bar" placeholder="Search or type a URL..." autocomplete="off" />
+                        </form>
+                        <div class="nav-controls">
+                            <button onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+                        </div>
+                    </div>
+                    <div id="browser-viewport" class="browser-viewport">
+                        <div id="browser-splash" class="browser-splash">
+                            <div class="splash-center">
+                                <div class="bmark" style="width:60px; height:60px; font-size:1.8rem; margin:0 auto 20px;">C</div>
+                                <h2 style="font-family: 'Space Grotesk', sans-serif;">Browser Hub</h2>
+                                <p style="color:var(--text-muted); margin-bottom:20px;">Multi-session unblocked surfing enabled.</p>
+                                <button class="launch-btn" style="padding: 12px 30px; font-size:1rem;" onclick="createNewBrowserTab()">Open New Tab</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-games" class="view-section hidden" style="padding: 60px;">
+                <div class="page-header" id="vault-header">
+                    <div>
+                        <h2>App Vault</h2>
+                        <p>Premium workspace applications. Source paths are hidden for security.</p>
+                    </div>
+                    <div class="game-search">
+                        <span style="color: var(--text-muted); font-size: 1.2rem;">🔍</span>
+                        <input type="text" id="game-search-input" placeholder="Find a game..." autocomplete="off" />
+                    </div>
+                </div>
+                
+                <div class="premium-games-grid" id="games-grid">
+                    <p style="color:var(--text-muted);">Syncing catalog...</p>
+                </div>
+
+                <div class="request-games-banner" style="margin-top: 50px; width: 100%; max-width: 1000px; background: rgba(var(--surface-rgb), 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 35px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); box-sizing: border-box;">
+                    <h3 style="margin: 0 0 10px 0; font-size: 1.8rem; font-family: 'Space Grotesk', sans-serif;">More coming soon...</h3>
+                    <p style="color: var(--text-muted); margin: 0 0 25px 0; font-size: 1.05rem;">Have a game you really want to play? Request it directly in our community!</p>
+                    
+                    <button class="launch-btn" style="padding: 14px 35px; font-size: 1rem; border-radius: 14px; background: #5865F2; color: #fff; box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);" onclick="window.open('https://discord.gg/AbrmZFwppU', '_blank')">
+                        <span style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                            Request Games in Discord
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="view-settings" class="view-section hidden" style="padding: 60px;">
+                <div class="page-header">
+                    <h2>System Settings</h2>
+                    <p>Customize your workspace appearance and privacy controls.</p>
+                </div>
+                
+                <div class="settings-wrapper">
+                    <div class="settings-card glass-panel">
+                        <div class="card-header">
+                            <span class="card-icon">🎨</span>
+                            <div>
+                                <h3>Appearance & Atmospheres</h3>
+                                <p>Powered by tsParticles & Global Tints.</p>
+                            </div>
+                        </div>
+                        <div class="theme-grid">
+                            <button class="theme-btn" onclick="setTheme('dark')">
+                                <div class="theme-preview" style="background: #1a1c23;"></div>Dark (Static)
+                            </button>
+                            <button class="theme-btn" onclick="setTheme('blue')">
+                                <div class="theme-preview" style="background: linear-gradient(180deg, #001220, #005b96);"></div>Deep Ocean
+                            </button>
+                            <button class="theme-btn" onclick="setTheme('purple')">
+                                <div class="theme-preview" style="background: radial-gradient(circle at center, #1b1136, #000);"></div>Cosmos
+                            </button>
+                            <button class="theme-btn" onclick="setTheme('sakura')">
+                                <div class="theme-preview" style="background: linear-gradient(135deg, #ffe0e9, #ffb6c1);"></div>Sakura Fall
+                            </button>
+                            <button class="theme-btn" onclick="setTheme('gold')">
+                                <div class="theme-preview" style="background: linear-gradient(135deg, #f5a623, #ff4b4b);"></div>Golden Fire
+                            </button>
+                            <button class="theme-btn" onclick="setTheme('green')">
+                                <div class="theme-preview" style="background: #000; color:#0f0; display:flex; align-items:center; justify-content:center; font-family:monospace;">0101</div>Matrix Rain
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card glass-panel">
+                        <div class="card-header">
+                            <span class="card-icon">👻</span>
+                            <div>
+                                <h3>Privacy & Cloaking</h3>
+                                <p>Mask your tab to look like an educational tool.</p>
+                            </div>
+                        </div>
+                        <div class="theme-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="handleCloak('none')">❌ Remove Mask</button>
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="handleCloak('drive')">📄 Google Drive</button>
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="handleCloak('classroom')">🏫 Classroom</button>
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="handleCloak('blooket')">🟦 Blooket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+    <div id="proxy-ad-banner-top">
+        <button id="close-ad-top-btn" title="Close">×</button>
+        <div class="ad-content">
+            <script>atOptions={'key':'e5329f54bea294b733b7ba46c03c2250','format':'iframe','height':90,'width':728,'params':{}};</script>
+            <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
         </div>
-        
-        <script src="register-sw.js"></script>
-        <script src="search.js"></script>
-        <script src="index.js"></script>
-    </body>
+    </div>
+
+    <div id="proxy-ad-banner-bottom">
+        <button id="close-ad-bottom-btn" title="Close">×</button>
+        <div class="ad-content">
+            <script>atOptions={'key':'e5329f54bea294b733b7ba46c03c2250','format':'iframe','height':90,'width':728,'params':{}};</script>
+            <script src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
+        </div>
+    </div>
+
+    <div id="sleep-overlay" class="hidden">
+        <div class="sleep-content glass-panel">
+            <h2>Session Paused</h2>
+            <p>You've been idle for 15 minutes. We paused your connection to keep the servers fast.</p>
+            <button onclick="location.reload()">Return to Menu</button>
+        </div>
+    </div>
+    
+    <script src="register-sw.js"></script>
+    <script src="search.js"></script>
+    <script src="index.js"></script>
+</body>
 </html>
