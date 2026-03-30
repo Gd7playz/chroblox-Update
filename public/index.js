@@ -38,7 +38,15 @@ function switchView(targetId) {
 }
 
 navButtons.forEach(btn => {
-    btn.addEventListener('click', () => switchView(btn.getAttribute('data-target')));
+    btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        // If a game is running and user clicks Games tab, show the game not the library
+        if (target === 'view-games' && currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
+            switchView('view-proxy');
+            return;
+        }
+        switchView(target);
+    });
 });
 
 window.handleCloak = function(type) {
@@ -190,29 +198,33 @@ const connection = window.BareMux ? new window.BareMux.BareMuxConnection("/barem
 // 6. ADS, POPUNDERS & OVERLAYS 
 // ==========================================
 
-// Standard Popunder Logic (Revenue Optimized)
-(function initStandardPopunder() {
-    // Replace this with your Direct Link from Adsterra
-    const DIRECT_AD_LINK = "https://hospitalforgery.com/your-direct-link-id-here"; 
-    
-    // Cooldown timer: Triggers once every 2 minutes per user
-    const POPUNDER_COOLDOWN = 2 * 60 * 1000; 
-    let lastPopunderTrigger = 0;
-
-    // Global click listener
-    document.addEventListener('click', () => {
-        if (Date.now() - lastPopunderTrigger > POPUNDER_COOLDOWN) {
-            lastPopunderTrigger = Date.now();
-            
-            // Open the ad in a new tab/window
-            let adWindow = window.open(DIRECT_AD_LINK, '_blank');
-            
-            // Attempt to keep focus on your workspace (true pop-under behavior)
-            if (adWindow) {
-                window.focus();
-            }
+// Pop-under — intercepts Adsterra's window.open, opens as small
+// background window and immediately pushes it behind the site.
+(function setupPopunder() {
+    const _nativeOpen = window.open.bind(window);
+    window.open = function(url, target, features) {
+        if (!url || url === "" || url === "about:blank") {
+            return _nativeOpen(url, target, features);
         }
-    });
+        const sw = window.screen.width  || 1280;
+        const sh = window.screen.height || 800;
+        const pw = Math.min(700, sw - 100);
+        const ph = Math.min(500, sh - 100);
+        const px = Math.round((sw - pw) / 2);
+        const py = Math.round((sh - ph) / 2);
+        const popFeatures = [
+            "width=" + pw, "height=" + ph,
+            "left=" + px, "top=" + py,
+            "resizable=yes", "scrollbars=yes",
+            "toolbar=no", "menubar=no",
+            "location=yes", "status=no"
+        ].join(",");
+        const popWin = _nativeOpen(url, "_blank", popFeatures);
+        if (popWin) {
+            try { popWin.blur(); window.focus(); } catch(_) {}
+        }
+        return popWin;
+    };
 })();
 
 // Banners — smart frequency
@@ -222,9 +234,9 @@ function hideTopBanner() { document.getElementById("proxy-ad-banner-top")?.class
 function hideBottomBanner() { document.getElementById("proxy-ad-banner-bottom")?.classList.remove("show"); }
 
 var _lastTopShow = 0, _lastBottomShow = 0, _lastTabReturn = 0;
-var AD_COOLDOWN = 60 * 1000;           // 1 minute
-var TAB_AD_COOLDOWN = 30 * 1000;       // 30 seconds
-var ROTATE_INTERVAL = 2 * 60 * 1000;   // Rotate ads every 2 minutes
+var AD_COOLDOWN = 60 * 1000;
+var TAB_AD_COOLDOWN = 30 * 1000;
+var ROTATE_INTERVAL = 2 * 60 * 1000;
 
 function smartShowTop() {
     if (Date.now() - _lastTopShow < AD_COOLDOWN) return;
