@@ -188,7 +188,7 @@ const { ScramjetController } = window.$scramjetLoadController ? window.$scramjet
 
 if (ScramjetController) {
     window.scramjet = new ScramjetController({
-        files: { wasm: "/scram/scramjet.wasm.wasm", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
+        files: { wasm: "/scram/scramjet.wasm", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
     });
     window.scramjet.init();
 }
