@@ -188,8 +188,7 @@ const { ScramjetController } = window.$scramjetLoadController ? window.$scramjet
 
 if (ScramjetController) {
     window.scramjet = new ScramjetController({
-        // MODIFIED: Added ?bypass=1 to break Cloudflare cache
-        files: { wasm: "/scram/scramjet.wasm.wasm?bypass=1", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
+        files: { wasm: "/scram/scramjet.wasm.wasm", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
     });
     window.scramjet.init();
 }
@@ -303,8 +302,7 @@ window.launchGame = async function(inputValue) {
     const url = window.search ? search(inputValue, searchEngine.value) : inputValue;
     const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
     if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
-        // MODIFIED: Changed "websocket:" to "wisp:"
-        await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
+        await connection.setTransport("/libcurl/index.mjs", [{ websocket: wispUrl }]);
     }
 
     switchView("view-proxy");
@@ -477,8 +475,7 @@ async function loadUrlInBrowserTab(id, rawInput) {
 
     const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
     if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
-        // MODIFIED: Changed "websocket:" to "wisp:"
-        await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
+        await connection.setTransport("/libcurl/index.mjs", [{ websocket: wispUrl }]);
     }
     
     if(!tab.frameObj) {
