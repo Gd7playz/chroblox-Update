@@ -22,4 +22,11 @@ async function registerSW() {
 	}
 
 	await navigator.serviceWorker.register(stockSW);
+
+    // Wait for the proxy to be fully awake before continuing
+    if (!navigator.serviceWorker.controller) {
+        await new Promise((resolve) => {
+            navigator.serviceWorker.addEventListener("controllerchange", resolve, { once: true });
+        });
+    }
 }
