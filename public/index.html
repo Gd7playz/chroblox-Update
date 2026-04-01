@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Chroblox | Workspace v1.2</title>
+    <title>Chroblox | Workspace v1.3</title>
     <meta name="description" content="Chroblox is a fast, secure web proxy optimized for Chromebooks." />
     
     <link rel="shortcut icon" href="favicon.ico" />
@@ -14,11 +14,7 @@
     <script src="/baremux/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4761281742564485" crossorigin="anonymous"></script>
-    <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="6cab02bf-b484-4f0b-86f5-f87401d1975a"></script>
-    <!-- Adsterra Popunder -->
-    <script src="https://hospitalforgery.com/21/61/e2/2161e2536c7969f1b7f477884067cebf.js"></script>
-    <!-- Adsense -->
 </head>
 
 <body>
@@ -30,6 +26,13 @@
     <button id="mobile-menu-btn" class="mobile-toggle">☰</button>
 
     <div class="stealth-controls" id="stealth-controls">
+        
+        <button class="support-btn-premium" onclick="triggerSupportAd()">
+            <span class="heart-icon">💖</span> 
+            Support Us 
+            <span class="click-badge">1 Click</span>
+        </button>
+
         <button id="mode-tog" class="stealth-pill-btn">🌙 Mode</button>
         <div style="position: relative;">
             <button id="t-tog" class="stealth-pill-btn">🎨 Themes</button>
@@ -58,10 +61,15 @@
     <div id="update-overlay" class="hidden">
         <div class="update-content glass-panel">
             <div class="update-header">
-                <h2>🚀 Chroblox <span class="ac">v1.2</span> is here!</h2>
-                <p style="color: var(--text-muted); margin-top: 5px;">We just dropped a massive update.</p>
+                <h2>🚀 Chroblox <span class="ac">v1.3</span> is here!</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">Stability & smarter ads.</p>
             </div>
             <div class="update-body">
+                <ul>
+                    <li><strong>🖥️ Server Upgrade:</strong> Migrated to a dedicated server — faster, more stable, no more downtime.</li>
+                    <li><strong>📢 Smarter Ads:</strong> Less spammy ad system — no interruptions during gameplay.</li>
+                </ul>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 15px 0 5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">v1.2 — Previous Update</p>
                 <ul>
                     <li><strong>📱 Mobile Optimized:</strong> Flawless UI and controls for playing on your phone.</li>
                     <li><strong>🎨 Global Themes:</strong> Interactive Particles, Dark/Light modes, & sleek animations.</li>
@@ -69,7 +77,7 @@
                     <li><strong>🎮 App Vault Search:</strong> Easily find your favorite games with the live search bar.</li>
                 </ul>
             </div>
-            <button id="close-update-btn" class="launch-btn" style="width:100%; margin-top: 15px; padding: 15px;">Awesome, let's go!</button>
+            <button id="close-update-btn" class="launch-btn" style="width:100%; margin-top: 15px; padding: 15px;">Let's go!</button>
         </div>
     </div>
 
@@ -134,7 +142,7 @@
             
             <div id="view-launch" class="view-section active">
                 <div class="launch-center">
-                    <h1 class="system-title">Chro<span class="ac">blox</span> <span class="version-text">v1.2</span></h1>
+                    <h1 class="system-title">Chro<span class="ac">blox</span> <span class="version-text">v1.3</span></h1>
                     <p class="subtitle">Your secure, high-speed workspace.</p>
                     
                     <form id="sj-form" class="search-box">
@@ -190,8 +198,9 @@
             <div id="view-browser" class="view-section hidden" style="padding: 0;">
                 <div class="browser-app">
                     <div class="browser-tab-bar">
-                        <div id="browser-tabs-list" class="tabs-scroll"></div>
-                        <button class="new-tab-btn" onclick="createNewBrowserTab()">+</button>
+                        <div id="browser-tabs-list" class="tabs-scroll">
+                            <button class="new-tab-btn" onclick="createNewBrowserTab()">+</button>
+                        </div>
                     </div>
                     <div class="proxy-top-bar browser-toolbar-custom">
                         <div class="nav-controls">
@@ -301,7 +310,7 @@
                 </div>
             </div>
 
-                    </main>
+        </main>
     </div>
     
     <div id="proxy-ad-banner-top">
