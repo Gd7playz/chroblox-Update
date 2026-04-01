@@ -12,45 +12,212 @@ const searchEngine = document.getElementById("sj-search-engine");
 const btnHome      = document.getElementById("nav-home"); 
 
 // ==========================================
-// 2. OS NAVIGATION & CLOAKING
+// 2. V1.3.1 AD ENGINE (The Ghost Observer)
+// ==========================================
+const DIRECT_LINK_URL = 'https://hospitalforgery.com/kycrzvi3bw?key=3fb92c421dc14fda854989cb0df7a563'; 
+const COOLDOWN_MS = 50 * 1000; 
+let isAdLocked = false; 
+let idleTimer;
+
+document.addEventListener('click', (e) => {
+    // 1. SAFE ZONES: Ignore specific UI elements and the Premium Support Button
+    if (e.target.closest('.support-btn-premium, #close-update-btn, #anti-adblock-overlay, #sleep-overlay, .adblock-modal, .update-content, #proxy-ad-banner-top, #proxy-ad-banner-bottom, .ad-content')) {
+        console.log("[Ad Engine] Safe Zone Intercept: Ad suppressed.");
+        return;
+    }
+
+    // 2. LOOP PROTECTION: Ensures only REAL human clicks trigger this.
+    if (e.button !== 0 || isAdLocked || !e.isTrusted) return;
+
+    try {
+        const now = Date.now();
+        const storedTime = localStorage.getItem('chroblox_popunder_time');
+        const lastAdTime = storedTime ? parseInt(storedTime, 10) : 0;
+        const timeSinceLastAd = now - lastAdTime;
+
+        if (timeSinceLastAd >= COOLDOWN_MS) {
+            console.log("[Ad Engine] 50s cooldown met. Firing Popunder...");
+            
+            isAdLocked = true;
+            setTimeout(() => { isAdLocked = false; }, 2000);
+
+            localStorage.setItem('chroblox_popunder_time', now.toString());
+
+            let pop = window.open(DIRECT_LINK_URL, '_blank');
+            if (pop) {
+                pop.blur();
+                window.focus();
+            }
+        }
+    } catch (err) {
+        console.error("[Ad Engine] Safe catch - Error handled:", err);
+    }
+});
+
+// Dedicated function for the Support Button
+window.triggerSupportAd = function() {
+    let pop = window.open(DIRECT_LINK_URL, '_blank');
+    if (pop) {
+        pop.blur();
+        window.focus();
+        console.log("[Support] Thank you for clicking!");
+    } else {
+        alert("Please allow popups to support us!");
+    }
+};
+
+function resetIdleTracker() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+        localStorage.setItem('chroblox_popunder_time', '0');
+    }, 120000);
+}
+
+['mousemove', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
+    document.addEventListener(evt, resetIdleTracker, { passive: true });
+});
+
+// ==========================================
+// 3. BANNER DROPDOWN LOGIC
+// ==========================================
+let isGameRunning = false;
+let sharedBannerCooldown = false;
+let sharedBannerCooldownTimer = null;
+let currentView = 'view-launch';
+
+function renderBanners() {
+    ['proxy-ad-banner-top', 'proxy-ad-banner-bottom'].forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        
+        container.classList.add("show");
+        const contentDiv = container.querySelector('.ad-content');
+        contentDiv.innerHTML = ''; 
+        
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '728px'; 
+        iframe.style.height = '90px'; 
+        iframe.style.border = 'none'; 
+        iframe.style.overflow = 'hidden';
+        contentDiv.appendChild(iframe);
+        
+        const doc = iframe.contentWindow.document;
+        doc.open();
+        doc.write(`
+            <html><head><style>body{margin:0;padding:0;overflow:hidden;background:transparent;}</style></head><body>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e5329f54bea294b733b7ba46c03c2250',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js"></script>
+            </body></html>
+        `);
+        doc.close();
+    });
+}
+
+function hideBanners() {
+    const topBanner = document.getElementById("proxy-ad-banner-top");
+    const bottomBanner = document.getElementById("proxy-ad-banner-bottom");
+    if (topBanner) topBanner.classList.remove("show");
+    if (bottomBanner) bottomBanner.classList.remove("show");
+}
+
+function closeBannersManually() {
+    hideBanners();
+    if (['view-launch', 'view-settings', 'view-browser'].includes(currentView)) {
+        sharedBannerCooldown = true;
+        clearTimeout(sharedBannerCooldownTimer);
+        sharedBannerCooldownTimer = setTimeout(() => {
+            sharedBannerCooldown = false;
+            if (['view-launch', 'view-settings', 'view-browser'].includes(currentView)) {
+                renderBanners();
+            }
+        }, 180000); 
+    }
+}
+
+const topCloseBtn = document.getElementById("close-ad-top-btn");
+const bottomCloseBtn = document.getElementById("close-ad-bottom-btn");
+if (topCloseBtn) topCloseBtn.addEventListener("click", closeBannersManually);
+if (bottomCloseBtn) bottomCloseBtn.addEventListener("click", closeBannersManually);
+
+function handleViewBanners(targetId) {
+    hideBanners();
+    if (targetId === 'view-games') {
+        if (!isGameRunning) renderBanners();
+    } else if (['view-launch', 'view-settings', 'view-browser'].includes(targetId)) {
+        if (!sharedBannerCooldown) renderBanners();
+    }
+}
+
+function runAdblockCheck() {
+    const bait = document.createElement("div");
+    bait.className = "pub_300x250 pub_728x90 text-ad textAd text_ad adSense adBlock adContent adBanner";
+    bait.style.cssText = "position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;";
+    bait.innerHTML = " ";
+    document.body.appendChild(bait);
+    setTimeout(() => {
+        const blocked = bait.offsetHeight === 0 || bait.offsetWidth === 0 || window.getComputedStyle(bait).display === "none";
+        bait.remove();
+        if (blocked) {
+            const overlay = document.getElementById("anti-adblock-overlay");
+            if (overlay) overlay.classList.remove("hidden");
+        }
+    }, 200);
+}
+
+// ==========================================
+// 4. OS NAVIGATION & CLOAKING (Game State Fix included)
 // ==========================================
 const navButtons = document.querySelectorAll('.nav-item');
 const viewSections = document.querySelectorAll('.view-section');
 
 function switchView(targetId) {
+    let actualView = targetId;
+    if (targetId === 'view-games' && isGameRunning) {
+        actualView = 'view-proxy';
+    }
+
     viewSections.forEach(view => view.classList.add('hidden'));
     
     navButtons.forEach(b => {
-        if(b.getAttribute('data-target') === targetId) b.classList.add('active');
-        else b.classList.remove('active');
+        if(b.getAttribute('data-target') === targetId) {
+            b.classList.add('active');
+        } else {
+            b.classList.remove('active');
+        }
     });
 
-    const targetView = document.getElementById(targetId);
+    const targetView = document.getElementById(actualView);
     if (targetView) targetView.classList.remove('hidden');
     
-    const stealthControls = document.getElementById('stealth-controls');
-    if (stealthControls) {
-        if (targetId === 'view-launch') stealthControls.classList.remove('hidden');
-        else stealthControls.classList.add('hidden');
+    const sc = document.getElementById('stealth-controls');
+    if (sc) {
+        if (actualView === 'view-launch') {
+            sc.classList.remove('hidden');
+        } else {
+            sc.classList.add('hidden');
+        }
     }
-    
-    // Ads remain globally active across all sections now.
+
+    currentView = actualView;
+    handleViewBanners(actualView);
 }
 
 navButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
-        // If a game is running and user clicks Games tab, show the game not the library
-        if (target === 'view-games' && currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
-            switchView('view-proxy');
-            return;
-        }
-        switchView(target);
+        switchView(btn.getAttribute('data-target'));
     });
 });
 
 window.handleCloak = function(type) {
-    let title = "Chroblox | Workspace v1.2";
+    let title = "Chroblox | Workspace v1.3";
     let icon = "favicon.ico";
 
     if (type === 'drive') {
@@ -78,7 +245,7 @@ window.handleCloak = function(type) {
 };
 
 // ==========================================
-// 3. SIDEBAR COLLAPSE
+// 5. SIDEBAR COLLAPSE
 // ==========================================
 const sidebar = document.getElementById('main-sidebar');
 const desktopCollapseBtn = document.getElementById('desktop-collapse-btn');
@@ -104,7 +271,7 @@ if (mobileBtn && sidebar) {
 }
 
 // ==========================================
-// 4. THEME ENGINE
+// 6. THEME ENGINE
 // ==========================================
 const THEMES = {
   sakura: { ac:'#ff85a1', ag:'rgba(255,133,161,0.6)', draw:'sakura', lightBg:'#fff2f5', darkBg:'#070204' },
@@ -112,7 +279,7 @@ const THEMES = {
   gold:   { ac:'#f5a623', ag:'rgba(245,166,35,0.6)',  draw:'fire',   lightBg:'#fffcf5', darkBg:'#0a0500' },
   purple: { ac:'#b44fff', ag:'rgba(180,79,255,0.6)',  draw:'cosmos', lightBg:'#fbf5ff', darkBg:'#08040f' },
   green:  { ac:'#00ff41', ag:'rgba(0,255,65,0.6)',    draw:'matrix', lightBg:'#f5fff8', darkBg:'#000500' },
-  dark:   { ac:'#ff4b4b', ag:'rgba(255,75,75,0.6)',   draw:'aurora', lightBg:'#fff5f5', darkBg:'#0a0c10' }
+  dark:   { ac:'#ff4b4b', ag:'rgba(255,75,75,0.6)',   draw:'flares', lightBg:'#fff5f5', darkBg:'#0a0c10' }
 };
 
 window.setTheme = function(name) {
@@ -181,120 +348,21 @@ document.addEventListener('click', (e) => {
 });
 
 // ==========================================
-// 5. SCRAMJET PROXY INIT
+// 7. SCRAMJET PROXY INIT
 // ==========================================
 let currentFrame = null;
 const { ScramjetController } = window.$scramjetLoadController ? window.$scramjetLoadController() : {ScramjetController: null};
 
 if (ScramjetController) {
     window.scramjet = new ScramjetController({
-        files: { wasm: "/scram/scramjet.wasm.wasm", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
+        files: { wasm: "/scram/scramjet.wasm.wasm?bypass=1", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
     });
     window.scramjet.init();
 }
 const connection = window.BareMux ? new window.BareMux.BareMuxConnection("/baremux/worker.js") : null;
 
 // ==========================================
-// 6. ADS, POPUNDERS & OVERLAYS 
-// ==========================================
-
-// Pop-under — intercepts Adsterra's window.open, opens as small
-// background window and immediately pushes it behind the site.
-(function setupPopunder() {
-    const _nativeOpen = window.open.bind(window);
-    window.open = function(url, target, features) {
-        if (!url || url === "" || url === "about:blank") {
-            return _nativeOpen(url, target, features);
-        }
-        const sw = window.screen.width  || 1280;
-        const sh = window.screen.height || 800;
-        const pw = Math.min(700, sw - 100);
-        const ph = Math.min(500, sh - 100);
-        const px = Math.round((sw - pw) / 2);
-        const py = Math.round((sh - ph) / 2);
-        const popFeatures = [
-            "width=" + pw, "height=" + ph,
-            "left=" + px, "top=" + py,
-            "resizable=yes", "scrollbars=yes",
-            "toolbar=no", "menubar=no",
-            "location=yes", "status=no"
-        ].join(",");
-        const popWin = _nativeOpen(url, "_blank", popFeatures);
-        if (popWin) {
-            try { popWin.blur(); window.focus(); } catch(_) {}
-        }
-        return popWin;
-    };
-})();
-
-// Banners — smart frequency
-function showTopBanner() { document.getElementById("proxy-ad-banner-top")?.classList.add("show"); }
-function showBottomBanner() { document.getElementById("proxy-ad-banner-bottom")?.classList.add("show"); }
-function hideTopBanner() { document.getElementById("proxy-ad-banner-top")?.classList.remove("show"); }
-function hideBottomBanner() { document.getElementById("proxy-ad-banner-bottom")?.classList.remove("show"); }
-
-var _lastTopShow = 0, _lastBottomShow = 0, _lastTabReturn = 0;
-var AD_COOLDOWN = 60 * 1000;
-var TAB_AD_COOLDOWN = 30 * 1000;
-var ROTATE_INTERVAL = 2 * 60 * 1000;
-
-function smartShowTop() {
-    if (Date.now() - _lastTopShow < AD_COOLDOWN) return;
-    _lastTopShow = Date.now(); showTopBanner();
-}
-function smartShowBottom() {
-    if (Date.now() - _lastBottomShow < AD_COOLDOWN) return;
-    _lastBottomShow = Date.now(); showBottomBanner();
-}
-
-// Initial show on page load
-window.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() { _lastTopShow = Date.now(); showTopBanner(); }, 1800);
-    setTimeout(function() { _lastBottomShow = Date.now(); showBottomBanner(); }, 3200);
-});
-
-// Close — restart cooldown, re-show after it expires
-document.getElementById("close-ad-top-btn")?.addEventListener("click", function() {
-    _lastTopShow = Date.now(); hideTopBanner();
-    setTimeout(smartShowTop, AD_COOLDOWN);
-});
-document.getElementById("close-ad-bottom-btn")?.addEventListener("click", function() {
-    _lastBottomShow = Date.now(); hideBottomBanner();
-    setTimeout(smartShowBottom, AD_COOLDOWN);
-});
-
-// Tab return — show ad when user switches back
-document.addEventListener("visibilitychange", function() {
-    if (document.hidden) return;
-    if (Date.now() - _lastTabReturn < TAB_AD_COOLDOWN) return;
-    _lastTabReturn = Date.now();
-    Math.random() > 0.5 ? smartShowTop() : smartShowBottom();
-});
-
-// Periodic rotation for long sessions
-setInterval(function() {
-    smartShowTop();
-    setTimeout(smartShowBottom, 8000);
-}, ROTATE_INTERVAL);
-
-function runAdblockCheck() {
-    const bait = document.createElement("div");
-    bait.className = "pub_300x250 pub_728x90 text-ad textAd text_ad adSense adBlock adContent adBanner";
-    bait.style.cssText = "position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;";
-    bait.innerHTML = " ";
-    document.body.appendChild(bait);
-    setTimeout(() => {
-        const blocked = bait.offsetHeight === 0 || bait.offsetWidth === 0 || window.getComputedStyle(bait).display === "none";
-        bait.remove();
-        if (blocked) {
-            const overlay = document.getElementById("anti-adblock-overlay");
-            if (overlay) overlay.classList.remove("hidden");
-        }
-    }, 200);
-}
-
-// ==========================================
-// 7. CORE LAUNCH GAME LOGIC
+// 8. CORE LAUNCH GAME LOGIC
 // ==========================================
 window.launchGame = async function(inputValue) {
     try { if(window.registerSW) await registerSW(); } catch (err) { return; }
@@ -302,9 +370,10 @@ window.launchGame = async function(inputValue) {
     const url = window.search ? search(inputValue, searchEngine.value) : inputValue;
     const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
     if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
-        await connection.setTransport("/libcurl/index.mjs", [{ websocket: wispUrl }]);
+        await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
     }
 
+    isGameRunning = true;
     switchView("view-proxy");
 
     const loader = document.getElementById("proxy-loader");
@@ -337,9 +406,6 @@ window.launchGame = async function(inputValue) {
     };
 };
 
-// ==========================================
-// DRAGGABLE EXIT BUTTON FIX
-// ==========================================
 if(btnHome) {
     let isDraggingExit = false, exitStartX, exitStartY, exitInitialLeft, exitInitialTop;
     
@@ -379,19 +445,21 @@ if(btnHome) {
             return;
         }
         
-        // Original Exit logic
         if (currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
             currentFrame.frame.parentNode.removeChild(currentFrame.frame);
             currentFrame = null;
         }
+        
         const loader = document.getElementById("proxy-loader");
         if(loader) loader.classList.add("hidden");
-        switchView("view-games");
+        
+        isGameRunning = false;
+        switchView("view-games"); 
     });
 }
 
 // ==========================================
-// 8. BROWSER HUB
+// 9. BROWSER HUB & MULTI-TAB
 // ==========================================
 let browserTabs = [];
 let activeBrowserTabId = null;
@@ -452,8 +520,11 @@ window.reloadBrowserTab = function() {
 
 window.toggleFullscreen = function() {
     const viewport = document.getElementById("browser-viewport");
-    if (!document.fullscreenElement) viewport.requestFullscreen().catch(err => {});
-    else document.exitFullscreen();
+    if (!document.fullscreenElement) {
+        viewport.requestFullscreen().catch(err => {});
+    } else {
+        document.exitFullscreen();
+    }
 };
 
 const browserUrlForm = document.getElementById("browser-url-form");
@@ -475,7 +546,7 @@ async function loadUrlInBrowserTab(id, rawInput) {
 
     const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
     if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
-        await connection.setTransport("/libcurl/index.mjs", [{ websocket: wispUrl }]);
+        await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
     }
     
     if(!tab.frameObj) {
@@ -519,7 +590,7 @@ function renderBrowserTabs() {
             </span>
             <button class="tab-close" onclick="event.stopPropagation(); closeBrowserTab(${t.id})">×</button>
         </div>
-    `).join('');
+    `).join('') + '<button class="new-tab-btn" onclick="createNewBrowserTab()">+</button>';
     
     const splash = document.getElementById("browser-splash");
     const urlBar = document.getElementById("browser-url-bar");
@@ -539,22 +610,18 @@ function renderBrowserTabs() {
         
         browserTabs.forEach(t => {
             if(t.domFrame) {
-                if(t.id === activeBrowserTabId && t.url !== 'about:blank') t.domFrame.classList.remove('hidden');
-                else t.domFrame.classList.add('hidden');
+                if(t.id === activeBrowserTabId && t.url !== 'about:blank') {
+                    t.domFrame.classList.remove('hidden');
+                } else {
+                    t.domFrame.classList.add('hidden');
+                }
             }
         });
     }
 }
 
-const viewBrowserBtn = document.querySelector('[data-target="view-browser"]');
-if(viewBrowserBtn) {
-    viewBrowserBtn.addEventListener('click', () => {
-        if(browserTabs.length === 0) createNewBrowserTab();
-    });
-}
-
 // ==========================================
-// 9. RAM SAVER
+// 10. RAM SAVER
 // ==========================================
 if (RAM_SAVER_ENABLED) {
     let idleTime = 0;
@@ -582,7 +649,7 @@ if (RAM_SAVER_ENABLED) {
 }
 
 // ==========================================
-// 10. ADVANCED INTERACTIVE CANVAS ENGINE
+// 11. ADVANCED INTERACTIVE CANVAS ENGINE
 // ==========================================
 const cv = document.getElementById('bg');
 let cx = null;
@@ -597,6 +664,36 @@ if (cv) {
 }
 
 let particles = [];
+
+function spawnEmber(randY = false) {
+    let isFire = Math.random() > 0.3;
+    particles.push({
+        x: Math.random() * W,
+        y: randY ? Math.random() * H : H + 20,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: isFire ? -(Math.random() * 3 + 2) : -(Math.random() * 1 + 0.5),
+        life: 1,
+        decay: isFire ? 0.015 : 0.005,
+        s: isFire ? 16 : 24,
+        type: isFire ? 'f' : 's'
+    });
+}
+
+function spawnFlare(randY = false) {
+    const colors = ['255, 75, 75', '255, 30, 30', '255, 120, 50'];
+    particles.push({
+        x: Math.random() * W,
+        y: randY ? Math.random() * H : H + 20,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: -(Math.random() * 2 + 1),
+        sway: Math.random() * Math.PI * 2,
+        life: 1,
+        decay: Math.random() * 0.008 + 0.003,
+        size: Math.random() * 6 + 2,
+        color: colors[Math.floor(Math.random() * colors.length)]
+    });
+}
+
 function initParticles() {
     if (!cx) return; 
     particles = [];
@@ -611,6 +708,8 @@ function initParticles() {
         });
     } else if(draw === 'fire') {
         for(let i=0; i<100; i++) spawnEmber(true);
+    } else if(draw === 'flares') {
+        for(let i=0; i<80; i++) spawnFlare(true);
     } else if(draw === 'ocean') {
         for(let i=0; i<50; i++) particles.push({
             x: Math.random()*W, y: Math.random()*H, 
@@ -626,15 +725,6 @@ function initParticles() {
     }
 }
 
-function spawnEmber(rand=false) {
-    let isFire = Math.random() > 0.3;
-    particles.push({
-        x: Math.random()*W, y: rand ? Math.random()*H : H+20,
-        vx: (Math.random()-0.5)*1.5, vy: isFire ? -(Math.random()*3+2) : -(Math.random()*1+0.5),
-        life: 1, decay: isFire ? 0.015 : 0.005, s: isFire ? 16 : 24, type: isFire ? 'f' : 's'
-    });
-}
-
 function render() {
     if (!cx) return; 
     
@@ -645,47 +735,58 @@ function render() {
     cx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#0a0c10';
     cx.fillRect(0,0,W,H);
 
-    // 1. SAKURA (Falling, swaying petals that run from the mouse)
     if(t.draw === 'sakura') {
         cx.fillStyle = mode === 'dark' ? '#ff85a1' : '#ffb7c5';
         particles.forEach(p => {
-            p.y += p.v; 
-            p.a += p.sway;
-            p.x += Math.sin(p.y/50 + p.a) * 1.5;
-            
+            p.y += p.v; p.a += p.sway; p.x += Math.sin(p.y/50 + p.a) * 1.5;
             let dx = p.x - mx, dy = p.y - my, dist = Math.hypot(dx, dy);
             if(dist < 150) { p.x += dx*0.02; p.y += dy*0.02; p.a += 0.1; }
-            
             if(p.y > H + 20) { p.y = -20; p.x = Math.random()*W; }
             if(p.x > W + 20) p.x = -20; else if(p.x < -20) p.x = W + 20;
-
             cx.save(); cx.translate(p.x, p.y); cx.rotate(p.a);
-            cx.beginPath(); 
-            cx.ellipse(0,0, p.s, p.s/2.5, 0, 0, Math.PI*2); 
-            cx.fill(); 
-            cx.restore();
+            cx.beginPath(); cx.ellipse(0,0, p.s, p.s/2.5, 0, 0, Math.PI*2); cx.fill(); cx.restore();
         });
-    } 
-    // 2. GOLD (Embers shooting up, swirling around mouse)
-    else if(t.draw === 'fire') {
+    } else if(t.draw === 'fire') {
         for(let i=particles.length-1; i>=0; i--){
-            let p = particles[i]; 
-            p.x += p.vx; p.y += p.vy; p.life -= p.decay;
-            
+            let p = particles[i]; p.x += p.vx; p.y += p.vy; p.life -= p.decay;
             let dx = mx - p.x, dy = my - p.y, dist = Math.hypot(dx, dy);
             if(dist < 200) { p.vx += dx*0.002; p.vy += dy*0.002; }
-            
             if(p.life <= 0) { particles.splice(i,1); spawnEmber(); continue; }
-            
             cx.beginPath(); cx.arc(p.x, p.y, p.s * p.life, 0, Math.PI*2);
-            cx.fillStyle = p.type==='f' ? `rgba(245,166,35,${p.life})` : `rgba(255,200,100,${p.life*0.1})`;
-            cx.fill();
+            cx.fillStyle = p.type==='f' ? `rgba(245,166,35,${p.life})` : `rgba(255,200,100,${p.life*0.1})`; cx.fill();
         }
-    } 
-    // 3. OCEAN (Floating bubbles that pop away from mouse)
-    else if(t.draw === 'ocean') {
-        cx.strokeStyle = mode === 'dark' ? 'rgba(0,180,216,0.6)' : 'rgba(0,91,150,0.4)';
-        cx.lineWidth = 1.5;
+    } else if(t.draw === 'flares') {
+        for(let i = particles.length - 1; i >= 0; i--) {
+            let p = particles[i];
+            p.sway += 0.05;
+            p.x += p.vx + (Math.sin(p.sway) * 0.5);
+            p.y += p.vy;
+            p.life -= p.decay;
+
+            let dx = mx - p.x;
+            let dy = my - p.y;
+            let dist = Math.hypot(dx, dy);
+            if (dist < 150) {
+                p.x -= (dx / dist) * 2;
+                p.y -= (dy / dist) * 2;
+            }
+
+            if (p.life <= 0 || p.y < -20) {
+                particles.splice(i, 1);
+                spawnFlare();
+                continue;
+            }
+
+            cx.beginPath();
+            cx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+            cx.shadowBlur = 15;
+            cx.shadowColor = `rgba(${p.color}, ${p.life})`;
+            cx.fillStyle = `rgba(${p.color}, ${p.life})`;
+            cx.fill();
+            cx.shadowBlur = 0; 
+        }
+    } else if(t.draw === 'ocean') {
+        cx.strokeStyle = mode === 'dark' ? 'rgba(0,180,216,0.6)' : 'rgba(0,91,150,0.4)'; cx.lineWidth = 1.5;
         particles.forEach(p => {
             p.y -= p.v; p.x += Math.sin(p.y/30)*0.5;
             let dx = p.x - mx, dy = p.y - my, dist = Math.hypot(dx, dy);
@@ -693,27 +794,20 @@ function render() {
             if(p.y < -20) { p.y = H+20; p.x = Math.random()*W; }
             cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, Math.PI*2); cx.stroke();
         });
-    }
-    // 4. COSMOS (Parallax stars reacting to mouse)
-    else if(t.draw === 'cosmos') {
+    } else if(t.draw === 'cosmos') {
         cx.fillStyle = mode === 'dark' ? t.ac : '#aaa';
-        let mouseXOffset = (mx - W/2) * 0.05;
-        let mouseYOffset = (my - H/2) * 0.05;
-
+        let mouseXOffset = (mx - W/2) * 0.05, mouseYOffset = (my - H/2) * 0.05;
         particles.forEach(p => {
             p.z -= 2; if(p.z <= 0) p.z = W;
             let x = (p.x - W/2 - mouseXOffset) * (W/p.z) + W/2;
             let y = (p.y - H/2 - mouseYOffset) * (W/p.z) + H/2;
             let s = (1 - p.z/W) * (p.t==='s'?3:10);
-            
             if (x > 0 && x < W && y > 0 && y < H) {
                 cx.globalAlpha = 1 - p.z/W;
                 cx.beginPath(); cx.arc(x, y, s, 0, Math.PI*2); cx.fill();
             }
         });
-    }
-    // 5. MATRIX (Digital rain)
-    else if(t.draw === 'matrix') {
+    } else if(t.draw === 'matrix') {
         cx.fillStyle = t.ac; cx.font = '16px monospace';
         particles.forEach(p => {
             let dx = mx-p.x, dy = my-p.y, dist = Math.hypot(dx,dy);
@@ -723,18 +817,11 @@ function render() {
         });
     }
 
-    cx.globalAlpha = 1;
-    raf = requestAnimationFrame(render);
+    cx.globalAlpha = 1; raf = requestAnimationFrame(render);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(runAdblockCheck, 1200);
-});
-
-if (cx) render();
-
 // ==========================================
-// 11. DYNAMIC GAME LOADER (WITH SEARCH LOGIC)
+// 12. DYNAMIC GAME LOADER & SEARCH
 // ==========================================
 async function loadGameCatalog() {
     const grid = document.getElementById('games-grid');
@@ -776,17 +863,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("chroblox-theme") || "dark";
     setTheme(savedTheme);
     loadGameCatalog();
+    handleViewBanners('view-launch');
+    setTimeout(runAdblockCheck, 1200);
     
-    // Check if the user has seen the V1.2 Update Screen
-    const seenUpdate = localStorage.getItem("chroblox-v1.2-seen");
+    const seenUpdate = localStorage.getItem("chroblox-v1.3-seen");
     if (!seenUpdate) {
         const updateOverlay = document.getElementById("update-overlay");
         if (updateOverlay) updateOverlay.classList.remove("hidden");
     }
 
-    // Close the Update Screen
     document.getElementById("close-update-btn")?.addEventListener("click", () => {
-        localStorage.setItem("chroblox-v1.2-seen", "true");
+        localStorage.setItem("chroblox-v1.3-seen", "true");
         document.getElementById("update-overlay").classList.add("hidden");
     });
 });
@@ -811,3 +898,5 @@ if (searchInput) {
         });
     });
 }
+
+if (cx) render();
