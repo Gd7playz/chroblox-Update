@@ -28,5 +28,55 @@
     "name": "Moto X3M",
     "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io//img/gun-spin.jpg",
     "url": "https://maddox.games/db/html/gun_spin/index.html?school=1"
+  },
+  {
+    "name": "Five Nights At Freddy's",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fnaf.webp",
+    "url": "https://maddox.games/db/html/fnaf/index.html?school=1"
+  },
+  {
+    "name": "Race Survival Arena King",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/race-survival-arena-king.jpg",
+    "url": "https://maddox.games/db/html/race_survival_arena_king/index.html?school=1"
+  },
+  {
+    "name": "Clash Royal",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/clash-royale.jpg",
+    "url": "https://maddox.games/db/html/clash_royale/index.html?school=1"
+  },
+  {
+    "name": "Golf Orbit",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Golf-Orbit-Play-Online.jpg",
+    "url": "https://maddox.games/db/html/golf_orbit/index.html?school=1"
+  },
+  {
+    "name": "ULTRAKILL",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ultrakill.jpg",
+    "url": "https://maddox.games/db/html/ultrakill/index.html?school=1"
+  },
+  {
+    "name": "Retro Bowl",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/retro_bowl_icon.webp",
+    "url": "https://maddox.games/db/html/retro_bowl/index.html?school=1"
+  },
+  {
+    "name": "Backflip",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/backflip-challenge-game-lg.webp",
+    "url": "https://maddox.games/db2/2026/unity/backflip-challenge/index.html?school=1"
+  },
+  {
+    "name": "Spartahoppers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/spartahoppers.webp",
+    "url": "https://maddox.games/db2/2025/construct/227/spartahoppers/index.html?school=1"
+  },
+  {
+    "name": "Geometry Dash Scratch",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Geometry-Dash-Scratch.webp",
+    "url": "https://maddox.games/db2/2025/scratch/geometry-dash-scratch/index.html?school=1"
+  },
+  {
+    "name": "Escape car",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Escape-Car.jpg",
+    "url": "https://maddox.games/db/html/escape_car/index.html?school=1"
   }
 ]
