@@ -15,8 +15,7 @@ const fastify = Fastify({
 	serverFactory: (handler) => {
 		return createServer()
 			.on("request", (req, res) => {
-				res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-				res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
+				// Strict Cross-Origin headers removed so BareMux and Wisp can connect
 				handler(req, res);
 			})
 			.on("upgrade", (req, socket, head) => {
@@ -32,10 +31,14 @@ fastify.register(fastifyStatic, { root: libcurlPath, prefix: "/libcurl/", decora
 fastify.register(fastifyStatic, { root: baremuxPath, prefix: "/baremux/", decorateReply: false });
 
 fastify.setNotFoundHandler((req, reply) => {
-	return reply.code(404).type("text/html").sendFile("404.html");
+	reply.sendFile("404.html");
 });
 
-let port = parseInt(process.env.PORT || "8080");
-fastify.listen({ port: port, host: "0.0.0.0" }, () => {
-	console.log(`Chroblox v1.1.2 is running on port ${port}`);
+fastify.listen({
+	port: process.env.PORT || 80,
+	host: "0.0.0.0",
+});
+
+fastify.ready(() => {
+	console.log(`Chroblox v1.1.2 is running on port ${process.env.PORT || 80}`);
 });
