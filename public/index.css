@@ -28,7 +28,6 @@
   --sh: 0 15px 40px rgba(0,0,0,0.08);
 }
 
-/* Dynamic Global Backgrounds */
 [data-mode="light"][data-theme="sakura"] { --bg: #fff2f5; }
 [data-mode="light"][data-theme="blue"]   { --bg: #f0f9ff; }
 [data-mode="light"][data-theme="gold"]   { --bg: #fffcf0; }
@@ -43,27 +42,56 @@ body {
 
 .ac { color: var(--ac); transition: color 0.5s; }
 
-/* ── MOBILE MENU BUTTON ── */
 .mobile-toggle {
-    display: none; 
-    position: fixed; top: 15px; left: 15px; z-index: 100000;
-    background: var(--surface-solid); border: 1px solid var(--border);
-    color: var(--text); border-radius: 8px; padding: 8px 12px;
-    cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: none; position: fixed; top: 15px; left: 15px; z-index: 100000;
+    background: var(--surface-solid); border: 1px solid var(--border); color: var(--text); 
+    border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* =========================================
-   BACKGROUND FX LAYERS
-========================================= */
 .bg-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; transition: opacity 0.5s ease; }
 #svg-bg-layer { z-index: -1; }
 .flur { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at 80% 20%, var(--ag) 0%, transparent 50%); pointer-events: none; z-index: 1; opacity: var(--aura-op); transition: 0.8s; }
 
-/* =========================================
-   STEALTH CONTROLS
-========================================= */
+/* ── GLOBAL HEADER CONTROLS (INCLUDES NEW SUPPORT BUTTON) ── */
 .stealth-controls { position: fixed; top: 25px; right: 30px; z-index: 99999; font-family: "Inter", Arial, sans-serif; display: flex; flex-direction: row; align-items: center; gap: 10px; }
 .stealth-controls.hidden { display: none !important; }
+
+/* The Sleek Violet Premium Support Button */
+.support-btn-premium {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px 8px 12px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s;
+    font-family: inherit;
+}
+.support-btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+    filter: brightness(1.1);
+}
+.click-badge {
+    background: #ffffff;
+    color: #7c3aed; /* Violet text to match background */
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.heart-icon { font-size: 1.1rem; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); animation: heartbeat 1.5s infinite; }
+@keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+
+/* Other Controls */
 .stealth-pill-btn { background: var(--surface-solid); border: 1px solid var(--border); color: var(--text); padding: 10px 20px; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 .stealth-pill-btn:hover { border-color: var(--ac); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 .stealth-pill-btn.red-accent { background: #ff3b30; color: white; border: none; box-shadow: 0 5px 15px rgba(255,59,48,0.4); }
@@ -75,20 +103,10 @@ body {
 .stealth-menu .m-item:hover { background: var(--surface2); color: var(--ac); }
 .stealth-menu .m-item.active { background: var(--nb); color: var(--ac); }
 
-/* =========================================
-   CORE LAYOUT & SIDEBAR
-========================================= */
 .webos-container { display: flex; height: 100vh; width: 100vw; max-width: 100%; position: relative; z-index: 10; }
 
-.sidebar { 
-    width: 280px; background: rgba(var(--surface-rgb), 0.85); backdrop-filter: blur(20px); 
-    border-right: 1px solid var(--border); position: relative; flex-shrink: 0; z-index: 20; 
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 30px rgba(0, 0, 0, 0.4); 
-}
-.sidebar-inner {
-    width: 100%; height: 100%; padding: 30px 20px; box-sizing: border-box; display: flex; flex-direction: column;
-}
-
+.sidebar { width: 280px; background: rgba(var(--surface-rgb), 0.85); backdrop-filter: blur(20px); border-right: 1px solid var(--border); position: relative; flex-shrink: 0; z-index: 20; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 30px rgba(0, 0, 0, 0.4); }
+.sidebar-inner { width: 100%; height: 100%; padding: 30px 20px; box-sizing: border-box; display: flex; flex-direction: column; }
 .collapse-btn { position: absolute; top: 40px; right: -20px; width: 40px; height: 40px; border-radius: 50%; background: var(--ac); color: white; border: 4px solid var(--bg); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease, filter 0.3s, background 0.5s; font-size: 1rem; padding: 0; }
 .collapse-btn:hover { transform: scale(1.1); filter: brightness(1.2); }
 .collapse-btn .chevron { transition: transform 0.3s; display: inline-block; }
@@ -102,6 +120,13 @@ body {
 .sidebar.collapsed .brand-logo { display: none !important; }
 .sidebar.collapsed .nav-item { justify-content: center; padding: 15px 0; }
 .sidebar.collapsed .nav-item .icon { font-size: 1.5rem; margin: 0; }
+
+/* ── SIDEBAR COLLAPSED WIDGET FIX ── */
+/* Turns YT/Discord buttons into perfect 40x40 squares with no bulging */
+.sidebar.collapsed .gd7-widget { padding: 10px; background: transparent; border: none; box-shadow: none; }
+.sidebar.collapsed .yt-btn, 
+.sidebar.collapsed .discord-btn { width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin: 0 auto; box-sizing: border-box;}
+.sidebar.collapsed .official-icon { margin: 0; }
 
 .brand { display: flex; align-items: center; gap: 15px; margin-bottom: 50px; padding-left: 5px; overflow: hidden; font-family: "Space Grotesk", sans-serif; }
 .brand-logo { width: 45px; height: 45px; object-fit: contain; flex-shrink: 0; background: transparent; border: none; box-shadow: none; border-radius: 0; }
@@ -119,12 +144,11 @@ body {
 .gd7-widget:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 0, 0, 0.25); }
 .widget-title { margin: 0 0 15px 0; color: #ffb3b3; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; white-space: nowrap;}
 .yt-btn { display: flex; justify-content: center; align-items: center; background: #ff0000; color: white; text-decoration: none; padding: 12px 0; border-radius: 8px; font-weight: 700; font-size: 1rem; transition: background 0.2s; }
-.discord-widget { background: linear-gradient(135deg, #050a1f, #000a3a); border: 1px solid #101a5a; }
+
+.discord-widget { background: linear-gradient(135deg, #050a1f, #000a3a); border: 1px solid #101a5a; box-shadow: 0 0 15px rgba(0, 0, 255, 0.4); transition: box-shadow 0.3s ease; }
+.discord-widget:hover { box-shadow: 0 0 30px rgba(0, 0, 255, 0.8); }
 .discord-btn { display: flex; justify-content: center; align-items: center; background: #5865F2; color: white; text-decoration: none; padding: 12px 0; border-radius: 8px; font-weight: 700; font-size: 1rem; transition: background 0.2s; }
 
-/* =========================================
-   MAIN WORKSPACE & PERFECT CENTERING
-========================================= */
 .workspace { flex-grow: 1; display: flex; flex-direction: column; background: transparent; position: relative; overflow: hidden; height: 100vh; width: 100%; }
 .view-section { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; opacity: 1; transition: opacity 0.3s ease; z-index: 1; box-sizing: border-box; overflow-y: auto; padding: 60px; }
 .view-section.hidden { display: none !important; opacity: 0; }
@@ -132,10 +156,7 @@ body {
 #view-launch { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 20px; }
 .launch-center { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; margin: auto; }
 
-.system-title { 
-    font-size: 5.5rem; font-weight: 900; margin: 0; letter-spacing: -2px; 
-    text-shadow: 0 5px 20px rgba(0,0,0,0.2); font-family: "Inter", sans-serif; white-space: nowrap; 
-}
+.system-title { font-size: 5.5rem; font-weight: 900; margin: 0; letter-spacing: -2px; text-shadow: 0 5px 20px rgba(0,0,0,0.2); font-family: "Inter", sans-serif; white-space: nowrap; }
 .version-text { color: var(--text); font-weight: 900; font-size: 5.5rem; font-family: "Inter", sans-serif; }
 .subtitle { color: var(--text-muted); font-size: 1.1rem; font-weight: 500; margin: 5px 0 35px 0; }
 
@@ -151,18 +172,7 @@ body {
 .cherri-icon { display: flex; align-items: center; justify-content: center; }
 .cherri-text { color: var(--text); font-family: inherit; font-size: 0.95rem; font-weight: 700; }
 
-/* =========================================
-   ACTIVE GAME PROXY VIEW & SMART EXIT BUTTON
-========================================= */
-.floating-exit-btn { 
-    position: absolute; top: 20px; left: 20px; z-index: 9999; 
-    background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); 
-    border: 1px solid rgba(255,255,255,0.2); color: white; 
-    padding: 12px 24px; border-radius: 30px; cursor: grab; 
-    font-weight: 800; font-family: "Inter", sans-serif; 
-    transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s ease; 
-    user-select: none; opacity: 0.6;
-}
+.floating-exit-btn { position: absolute; top: 20px; left: 20px; z-index: 9999; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 30px; cursor: grab; font-weight: 800; font-family: "Inter", sans-serif; transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s ease; user-select: none; opacity: 0.6; }
 .floating-exit-btn:hover { background: var(--ac); border-color: var(--ac); transform: scale(1.05); opacity: 1; }
 .floating-exit-btn:active { cursor: grabbing; transform: scale(0.98); }
 
@@ -177,9 +187,6 @@ body {
 .loader-text { margin-top: 20px; color: var(--ac); font-size: 1rem; letter-spacing: 3px; font-weight: 800; animation: loader-pulse 1.5s infinite; }
 @keyframes loader-pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
-/* =========================================
-   GAMES HUB
-========================================= */
 .page-header { width: 100%; max-width: 1000px; margin-bottom: 40px; text-align: left; }
 .page-header h2 { font-size: 3.5rem; margin: 0 0 5px 0; color: var(--text); font-weight: 900; letter-spacing: -2px; text-shadow: 0 2px 10px rgba(0,0,0,0.1); font-family: "Space Grotesk", sans-serif; }
 .page-header p { color: var(--text-muted); margin: 0; font-size: 1.2rem; font-weight: 500;}
@@ -197,9 +204,6 @@ body {
 .game-details { padding: 20px; display: flex; flex-direction: column; gap: 5px; text-align: center;}
 .game-details h3 { margin: 0; color: var(--text); font-size: 1.2rem; font-weight: 800; font-family: "Space Grotesk", sans-serif; }
 
-/* =========================================
-   SETTINGS PAGE
-========================================= */
 .glass-panel { background: rgba(var(--surface-rgb), 0.7); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
 .settings-wrapper { display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 900px; }
 .settings-card { padding: 30px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; }
@@ -213,16 +217,15 @@ body {
 .theme-btn:hover { border-color: var(--ac); color: var(--text); transform: translateY(-3px); background: var(--surface-solid); }
 .theme-preview { width: 100%; height: 40px; border-radius: 8px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); font-size: 1.5rem; overflow: hidden;}
 
-/* =========================================
-   BROWSER HUB
-========================================= */
 .browser-app { width: 100%; height: 100%; display: flex; flex-direction: column; background: var(--bg); }
 .browser-tab-bar { display: flex; background: var(--surface); padding: 10px 16px 0; border-bottom: 1px solid var(--border); gap: 4px; overflow-x: hidden; }
-.tabs-scroll { display: flex; gap: 4px; overflow-x: hidden; flex-grow: 1; scrollbar-width: none; }
-.browser-tab { flex: 1 1 150px; min-width: 40px; max-width: 180px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-bottom: none; border-radius: 12px 12px 0 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s ease; overflow: hidden; }
+
+.tabs-scroll { display: flex; align-items: center; justify-content: flex-start; gap: 4px; overflow-x: auto; flex-grow: 1; scrollbar-width: none; }
+.browser-tab { flex: 1 1 150px; min-width: 40px; max-width: 180px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-bottom: none; border-radius: 12px 12px 0 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s ease; overflow: hidden; margin-top: 5px; }
 .browser-tab.active { background: var(--surface-solid); color: var(--text); border-color: var(--border2); }
 .tab-close { background: transparent; border: none; color: inherit; cursor: pointer; font-size: 1rem; opacity: 0.6; padding:0; flex-shrink: 0;}
-.new-tab-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--border2); color: var(--text); width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; margin-bottom: 5px; font-weight: bold;}
+.new-tab-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--border2); color: var(--text); width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; font-weight: bold; margin: 0 0 0 5px; padding: 0; display: flex; align-items: center; justify-content: center; position: static !important; float: none !important; }
+
 .proxy-top-bar { display: flex; align-items: center; background: var(--surface-solid); border-bottom: 1px solid var(--border); height: 60px; padding: 0 20px; gap: 20px; width: 100%; box-sizing: border-box; z-index: 2;}
 .nav-controls button { background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; padding: 10px; border-radius: 8px; transition: all 0.2s; font-weight: bold;}
 .top-search-box { flex-grow: 1; display: flex; max-width: 800px; margin: 0 auto; }
@@ -233,9 +236,6 @@ body {
 .browser-iframe.hidden { display: none !important; }
 .browser-splash { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-/* =========================================
-   OVERLAYS (UPDATE & ADBLOCK)
-========================================= */
 #anti-adblock-overlay, #sleep-overlay, #update-overlay { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background: rgba(10, 12, 16, 0.92); backdrop-filter: blur(10px); 
@@ -257,80 +257,75 @@ body {
 .adblock-modal button, .sleep-content button { background: var(--ac); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1rem; width: 100%; transition: filter 0.2s; }
 .adblock-modal button:hover, .sleep-content button:hover { filter: brightness(1.15); }
 
-/* Update Screen Specifics */
 .update-content { align-items: flex-start; text-align: left; max-width: 550px; padding: 35px; }
-.update-header h2 { margin: 0; font-size: 2.2rem; font-family: "Space Grotesk", sans-serif; letter-spacing: -1px; }
-.update-body ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; width: 100%; }
-.update-body li { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; background: rgba(0,0,0,0.2); padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border2); }
-.update-body strong { color: var(--text); font-weight: 800; display: inline-block; margin-bottom: 3px; }
+.update-body { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.update-body li { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; background: rgba(0,0,0,0.2); padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border2); }
+.update-body strong { color: var(--text); font-weight: 800; display: inline-block; margin-bottom: 2px; }
 
-/* =========================================
-   AD BANNERS (RESTORED - Off-screen translation)
-========================================= */
+/* ── BANNER SYSTEM & THEMED CLOSE BUTTONS ── */
 #proxy-ad-banner-top, #proxy-ad-banner-bottom { 
     position: fixed; left: 50%; width: 100%; max-width: 760px; 
     background: rgba(var(--surface-rgb), 0.95); z-index: 2000; text-align: center; 
     padding: 15px; box-sizing: border-box; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
 }
-#proxy-ad-banner-top { 
-    top: 0; transform: translateX(-50%) translateY(-150%); 
-    border: 1px solid var(--border2); border-top: none; border-radius: 0 0 16px 16px; 
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-}
+#proxy-ad-banner-top { top: 0; transform: translateX(-50%) translateY(-150%); border: 1px solid var(--border2); border-top: none; border-radius: 0 0 16px 16px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 #proxy-ad-banner-top.show { transform: translateX(-50%) translateY(0); }
-
-#proxy-ad-banner-bottom { 
-    bottom: 0; transform: translateX(-50%) translateY(150%); 
-    border: 1px solid var(--border2); border-bottom: none; border-radius: 16px 16px 0 0; 
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-}
+#proxy-ad-banner-bottom { bottom: 0; transform: translateX(-50%) translateY(150%); border: 1px solid var(--border2); border-bottom: none; border-radius: 16px 16px 0 0; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 #proxy-ad-banner-bottom.show { transform: translateX(-50%) translateY(0); }
 
 #close-ad-top-btn, #close-ad-bottom-btn { 
-    position: absolute; right: -10px; background: var(--ac); color: white; border: none; 
-    border-radius: 50%; width: 30px; height: 30px; font-size: 18px; font-weight: bold; 
-    cursor: pointer; box-shadow: 0 4px 15px var(--ag); z-index: 2001; 
+    position: absolute; 
+    right: -10px; 
+    background: var(--ac); 
+    color: white; 
+    border: 3px solid var(--bg); 
+    border-radius: 50%; 
+    width: 32px; 
+    height: 32px; 
+    font-size: 18px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    box-shadow: 0 4px 15px var(--ag); 
+    z-index: 2001; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform 0.2s, filter 0.2s;
+}
+#close-ad-top-btn:hover, #close-ad-bottom-btn:hover {
+    transform: scale(1.15);
+    filter: brightness(1.2);
 }
 #close-ad-top-btn { bottom: -15px; } 
 #close-ad-bottom-btn { top: -15px; }
 
-
-/* =========================================
-   📱 BULLETPROOF MOBILE FIXES 
-========================================= */
 @media (max-width: 850px) {
     .mobile-toggle { display: block !important; }
-
     .system-title { font-size: 3.2rem; letter-spacing: -1px; white-space: nowrap; }
     .version-text { font-size: 3.2rem; }
-    
     .stealth-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; top: 15px; right: 15px; max-width: calc(100vw - 80px); gap: 8px; }
     .stealth-pill-btn { padding: 8px 12px; font-size: 0.85rem; }
-    
     .search-box { flex-direction: column; }
     .launch-btn { width: 100%; padding: 16px; border-radius: 14px;}
     #sj-address { padding: 18px 20px; font-size: 1.1rem; width: 100%; min-width: 0; box-sizing: border-box; }
     .search-box { width: 100%; box-sizing: border-box; }
     .launch-center { padding-left: 20px; padding-right: 20px; box-sizing: border-box; }
-    
     .cherri-links { gap: 12px; }
     .cherri-card { width: 95px; height: 95px; border-radius: 16px; }
-    
     .sidebar { position: fixed; left: -100%; top: 0; height: 100vh; z-index: 99999; transition: 0.3s ease; overflow-y: auto; overflow-x: hidden; }
     .sidebar.open { left: 0; padding-top: 80px; } 
     .sidebar-inner { padding-bottom: 100px; } 
     .collapse-btn { display: none; }
-    
     #view-launch { padding-top: 60px; } 
     .view-section { padding: 80px 20px 20px 20px !important; } 
-
-    /* MOBILE: Keep exit button fixed out of the way, no drag needed here */
     .floating-exit-btn { top: 15px !important; left: 70px !important; padding: 10px 16px; font-size: 0.9rem; opacity: 1 !important; transform: none !important;}
-
     .proxy-top-bar { padding: 0 10px; gap: 8px; }
     .top-search-box input { font-size: 0.9rem; padding: 10px 15px; }
     .nav-controls button { padding: 6px; font-size: 1rem; }
-
     #vault-header { flex-direction: column; align-items: flex-start; }
     .game-search { width: 100%; max-width: 100%; }
+    
+    .support-btn-premium { padding: 6px 12px 6px 8px; font-size: 0.85rem; }
+    .click-badge { font-size: 0.7rem; padding: 2px 6px; }
 }
