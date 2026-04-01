@@ -355,7 +355,7 @@ const { ScramjetController } = window.$scramjetLoadController ? window.$scramjet
 
 if (ScramjetController) {
     window.scramjet = new ScramjetController({
-        files: { wasm: "/scram/scramjet.wasm.wasm?bypass=1", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
+        files: { wasm: "/scram/scramjet.wasm.wasm", all: "/scram/scramjet.all.js", sync: "/scram/scramjet.sync.js" }
     });
     window.scramjet.init();
 }
@@ -538,6 +538,8 @@ if(browserUrlForm) {
 }
 
 async function loadUrlInBrowserTab(id, rawInput) {
+    try { if(window.registerSW) await registerSW(); } catch (err) { console.error(err); }
+
     const url = window.search ? search(rawInput, searchEngine.value) : rawInput;
     const tab = browserTabs.find(t => t.id === id);
     if(!tab) return;
@@ -859,7 +861,9 @@ async function loadGameCatalog() {
 }
 
 // Update Screen Check & Boot Logic
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    try { if(window.registerSW) await registerSW(); } catch (err) { console.error("SW Error:", err); }
+
     const savedTheme = localStorage.getItem("chroblox-theme") || "dark";
     setTheme(savedTheme);
     loadGameCatalog();
