@@ -173,7 +173,7 @@ function runAdblockCheck() {
 }
 
 // ==========================================
-// 4. OS NAVIGATION & CLOAKING (Game State Fix included)
+// 4. OS NAVIGATION & CLOAKING
 // ==========================================
 const navButtons = document.querySelectorAll('.nav-item');
 const viewSections = document.querySelectorAll('.view-section');
@@ -862,8 +862,8 @@ async function loadGameCatalog() {
 
 // Update Screen Check & Boot Logic
 document.addEventListener("DOMContentLoaded", async () => {
-    try { if(window.registerSW) await registerSW(); } catch (err) { console.error("SW Error:", err); }
-
+    
+    // 1. LOAD UI FIRST (Prevents mobile freezing)
     const savedTheme = localStorage.getItem("chroblox-theme") || "dark";
     setTheme(savedTheme);
     loadGameCatalog();
@@ -880,6 +880,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem("chroblox-v1.3-seen", "true");
         document.getElementById("update-overlay").classList.add("hidden");
     });
+
+    // 2. BOOT PROXY LAST (In the background)
+    try { if(window.registerSW) await registerSW(); } catch (err) { console.error("SW Error:", err); }
 });
 
 const gameBtn = document.querySelector('[data-target="view-games"]');
