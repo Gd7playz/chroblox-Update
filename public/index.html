@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Chroblox | Workspace v1.3</title>
+    <title>Chroblox | Workspace v1.4</title>
     <meta name="description" content="Chroblox is a fast, secure web proxy optimized for Chromebooks." />
     
     <link rel="shortcut icon" href="favicon.ico" />
@@ -61,20 +61,21 @@
     <div id="update-overlay" class="hidden">
         <div class="update-content glass-panel">
             <div class="update-header">
-                <h2>🚀 Chroblox <span class="ac">v1.3</span> is here!</h2>
-                <p style="color: var(--text-muted); margin-top: 5px;">Stability & smarter ads.</p>
+                <h2>🚀 Chroblox <span class="ac">v1.4</span> is here!</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">451 games, better browser, & legal pages.</p>
             </div>
             <div class="update-body">
                 <ul>
-                    <li><strong>🖥️ Server Upgrade:</strong> Migrated to a dedicated server — faster, more stable, no more downtime.</li>
-                    <li><strong>📢 Smarter Ads:</strong> Less spammy ad system — no interruptions during gameplay.</li>
+                    <li><strong>🎮 451 Games:</strong> Massive game catalog with cover art, powered by direct iframe loading.</li>
+                    <li><strong>🔍 Fast Search:</strong> Instant game search with debounced filtering — no more lag.</li>
+                    <li><strong>🌐 Browser Upgrade:</strong> Back, forward, and reload buttons with a search icon.</li>
+                    <li><strong>📜 Legal Pages:</strong> Privacy Policy, Terms of Service, and DMCA — all in Settings.</li>
+                    <li><strong>📱 Mobile Fixes:</strong> Touch support for proxy, better game grid, and sidebar handling.</li>
                 </ul>
-                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 15px 0 5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">v1.2 — Previous Update</p>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 15px 0 5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">v1.3 — Previous Update</p>
                 <ul>
-                    <li><strong>📱 Mobile Optimized:</strong> Flawless UI and controls for playing on your phone.</li>
-                    <li><strong>🎨 Global Themes:</strong> Interactive Particles, Dark/Light modes, & sleek animations.</li>
-                    <li><strong>👻 Privacy Masking:</strong> Instantly cloak your tab as Google Drive or Classroom.</li>
-                    <li><strong>🎮 App Vault Search:</strong> Easily find your favorite games with the live search bar.</li>
+                    <li><strong>🖥️ Server Upgrade:</strong> Migrated to a dedicated server — faster, more stable.</li>
+                    <li><strong>📢 Smarter Ads:</strong> Less spammy ad system — no interruptions during gameplay.</li>
                 </ul>
             </div>
             <button id="close-update-btn" class="launch-btn" style="width:100%; margin-top: 15px; padding: 15px;">Let's go!</button>
@@ -142,7 +143,7 @@
             
             <div id="view-launch" class="view-section active">
                 <div class="launch-center">
-                    <h1 class="system-title">Chro<span class="ac">blox</span> <span class="version-text">v1.3</span></h1>
+                    <h1 class="system-title">Chro<span class="ac">blox</span> <span class="version-text">v1.4</span></h1>
                     <p class="subtitle">Your secure, high-speed workspace.</p>
                     
                     <form id="sj-form" class="search-box">
@@ -204,14 +205,14 @@
                     </div>
                     <div class="proxy-top-bar browser-toolbar-custom">
                         <div class="nav-controls">
+                            <button onclick="goBackBrowser()" title="Back">◀</button>
+                            <button onclick="goForwardBrowser()" title="Forward">▶</button>
                             <button onclick="reloadBrowserTab()" title="Reload">↻</button>
                         </div>
-                        <form id="browser-url-form" class="top-search-box" style="margin:0;">
+                        <form id="browser-url-form" class="top-search-box">
                             <input type="text" id="browser-url-bar" placeholder="Search or type a URL..." autocomplete="off" />
+                            <button type="submit" class="bar-search-btn" title="Go">🔍</button>
                         </form>
-                        <div class="nav-controls">
-                            <button onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
-                        </div>
                     </div>
                     <div id="browser-viewport" class="browser-viewport">
                         <div id="browser-splash" class="browser-splash">
@@ -307,6 +308,125 @@
                             <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="handleCloak('blooket')">🟦 Blooket</button>
                         </div>
                     </div>
+
+                    <div class="settings-card glass-panel">
+                        <div class="card-header">
+                            <span class="card-icon">📜</span>
+                            <div>
+                                <h3>Legal & Policies</h3>
+                                <p>Transparency and compliance.</p>
+                            </div>
+                        </div>
+                        <div class="theme-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="switchView('view-privacy')">🔒 Privacy Policy</button>
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="switchView('view-tos')">📋 Terms of Service</button>
+                            <button class="theme-btn" style="padding: 18px; font-size: 1rem;" onclick="switchView('view-dmca')">⚖️ DMCA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-privacy" class="view-section hidden" style="padding: 60px;">
+                <div class="legal-page" style="max-width: 760px; width: 100%;">
+                    <button class="legal-back-btn" onclick="switchView('view-settings')">← Back to Settings</button>
+                    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:900; margin: 20px 0 5px;">Privacy <span class="ac">Policy</span></h2>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:30px;">Last updated: April 5, 2026</p>
+                    
+                    <p style="color:var(--text-muted); line-height:1.8; margin-bottom:30px; padding-bottom:25px; border-bottom:1px solid var(--border);">Your privacy matters to us. This policy explains what data Chroblox collects, how we use it, and your rights.</p>
+
+                    <div class="legal-section">
+                        <h3>1. Data We Collect</h3>
+                        <p>Chroblox does not require user accounts or registration. When you use our service, we may collect anonymous usage analytics via Umami Analytics, browser-stored preferences (theme, sidebar state) via localStorage which never leaves your device, and standard server logs processed by our hosting provider.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>2. How We Use Your Data</h3>
+                        <p>We use collected data to understand how users interact with the site, monitor server performance and prevent abuse, and display advertisements through our ad partners.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>3. Third-Party Services</h3>
+                        <p>We use Umami Analytics (privacy-focused, no cookies), Adsterra (advertising partner, may use cookies), and Cloudflare (DNS and security). Please refer to their respective privacy policies for details.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>4. Cookies and Tracking</h3>
+                        <p>Chroblox itself does not set tracking cookies. Our advertising partners may use cookies to serve and measure ads. You can disable third-party cookies through your browser settings.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>5. Proxy and Browsing Data</h3>
+                        <p>Pages you visit through the proxy are routed through our server but we do not log, store, or monitor the content of your proxied browsing sessions.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>6. Children's Privacy</h3>
+                        <p>Our service is not directed to children under 13. We do not knowingly collect personal data from children. If you believe a child has provided us data, please contact us for removal.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>7. Changes</h3>
+                        <p>We may update this policy periodically. Continued use constitutes acceptance.</p>
+                    </div>
+                    <div class="legal-contact">Contact: <a href="mailto:Contact.Chroblox@gmail.com" style="color:var(--ac); text-decoration:none; font-weight:700;">Contact.Chroblox@gmail.com</a></div>
+                </div>
+            </div>
+
+            <div id="view-tos" class="view-section hidden" style="padding: 60px;">
+                <div class="legal-page" style="max-width: 760px; width: 100%;">
+                    <button class="legal-back-btn" onclick="switchView('view-settings')">← Back to Settings</button>
+                    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:900; margin: 20px 0 5px;">Terms of <span class="ac">Service</span></h2>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:30px;">Last updated: April 5, 2026</p>
+                    
+                    <p style="color:var(--text-muted); line-height:1.8; margin-bottom:30px; padding-bottom:25px; border-bottom:1px solid var(--border);">By accessing or using Chroblox, you agree to these Terms of Service.</p>
+
+                    <div class="legal-section">
+                        <h3>1. Acceptance of Terms</h3>
+                        <p>By using Chroblox, you confirm that you are at least 13 years of age and agree to these terms.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>2. Description of Service</h3>
+                        <p>Chroblox provides a web proxy service and access to a curated catalog of browser-based games for entertainment purposes. The service is free and supported by advertising.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>3. Acceptable Use</h3>
+                        <p>You must not attempt to hack or reverse-engineer our platform, use automated tools to abuse the service, use the proxy to access illegal content, interfere with service availability, or bypass the advertising system.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>4. Game Content</h3>
+                        <p>Games are embedded from third-party sources. We do not claim ownership over embedded content. All trademarks and copyrights belong to their respective owners.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>5. Proxy Service</h3>
+                        <p>The web proxy is provided as a convenience. You are solely responsible for your browsing activity and compliance with applicable laws.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>6. Disclaimers</h3>
+                        <p>The service is provided "as is" without warranties. We are not liable for damages arising from your use of the platform, proxy, or linked games.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>7. Changes</h3>
+                        <p>We may update these terms at any time. Continued use constitutes acceptance.</p>
+                    </div>
+                    <div class="legal-contact">Contact: <a href="mailto:Contact.Chroblox@gmail.com" style="color:var(--ac); text-decoration:none; font-weight:700;">Contact.Chroblox@gmail.com</a></div>
+                </div>
+            </div>
+
+            <div id="view-dmca" class="view-section hidden" style="padding: 60px;">
+                <div class="legal-page" style="max-width: 760px; width: 100%;">
+                    <button class="legal-back-btn" onclick="switchView('view-settings')">← Back to Settings</button>
+                    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:900; margin: 20px 0 5px;">DMCA <span class="ac">Policy</span></h2>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:30px;">Last updated: April 5, 2026</p>
+                    
+                    <p style="color:var(--text-muted); line-height:1.8; margin-bottom:30px; padding-bottom:25px; border-bottom:1px solid var(--border);">Chroblox respects intellectual property rights and complies with the Digital Millennium Copyright Act (DMCA).</p>
+
+                    <div class="legal-section">
+                        <h3>Filing a DMCA Takedown Request</h3>
+                        <p>To submit a valid DMCA notice, send a written request to Contact.Chroblox@gmail.com including: a physical or electronic signature of the copyright owner, identification of the copyrighted work, identification of the infringing material and its location on our site, your contact information, a good-faith belief statement, and a statement under penalty of perjury that the information is accurate.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>Counter-Notification</h3>
+                        <p>If you believe your content was removed in error, you may send a counter-notice to the same email address with the required DMCA counter-notification elements.</p>
+                    </div>
+                    <div class="legal-section">
+                        <h3>Repeat Infringers</h3>
+                        <p>We reserve the right to remove content and terminate access for repeat infringers.</p>
+                    </div>
+                    <div class="legal-contact">DMCA notices: <a href="mailto:Contact.Chroblox@gmail.com" style="color:var(--ac); text-decoration:none; font-weight:700;">Contact.Chroblox@gmail.com</a></div>
                 </div>
             </div>
 
@@ -337,8 +457,8 @@
         </div>
     </div>
     
-    <script src="register-sw.js?v=1.3.5"></script>
-    <script src="search.js?v=1.3.5"></script>
-    <script src="index.js?v=1.3.5"></script>
+    <script src="register-sw.js?v=1.4.0"></script>
+    <script src="search.js?v=1.4.0"></script>
+    <script src="index.js?v=1.4.0"></script>
 </body>
 </html>

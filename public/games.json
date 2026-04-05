@@ -1,33 +1,838 @@
 [
   {
-    "name": "Minecraft",
+    "name": "1v1.LOL",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/1v1.lol-old.webp",
+    "url": "https://maddox.games/db/html/1v1lol/index.html?school=1"
+  },
+  {
+    "name": "2 Player Crazy Racer",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/2-Player-Crazy-Racer.jpg",
+    "url": "https://maddox.games/db2/2022/unity3/2-player-crazy-racer/index.html?school=1"
+  },
+  {
+    "name": "2048",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/2048.webp",
+    "url": "https://maddox.games/db/html/2048/index.html?school=1"
+  },
+  {
+    "name": "2D Fortnite",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fort-battle-royale.webp",
+    "url": "https://maddox.games/db2/2025/more/fort-battle-royale/index.html?school=1"
+  },
+  {
+    "name": "8 Ball Pool",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2022/unity3/8-ball-pool-billiard/index.html?school=1"
+  },
+  {
+    "name": "99 Nights Forest Survival",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/99-nights-in-the-forest-survival-lg.webp",
+    "url": "https://maddox.games/db2/2026/unity/99-nights-in-the-forest-survival/index.html?school=1"
+  },
+  {
+    "name": "99 Nights In The Forest",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/99-nights-in-the-forest.png",
+    "url": "https://maddox.games/db/html/99_nights_in_the_forest/index.html?school=1"
+  },
+  {
+    "name": "Ado Cars Drifter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/ado-cars-drifter.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/ado-cars-drifter/index.html?school=1"
+  },
+  {
+    "name": "Age Of Battle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/age-of-battle-game-lg.webp",
+    "url": "https://maddox.games/db2/2026/unity/age-of-battle/index.html?school=1"
+  },
+  {
+    "name": "Agent Smith",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Agent-Smith-2.jpg",
+    "url": "https://maddox.games/db2/2021/unity/agent-smith/index.html?school=1"
+  },
+  {
+    "name": "Alien Hominid",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/alien.webp",
+    "url": "https://maddox.games/db/html/alien_hominid/index.html?school=1"
+  },
+  {
+    "name": "Alien Sky Invasion",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Alien-Sky-Invasion.jpg",
+    "url": "https://maddox.games/db2/2021/unity3/alien-sky-invasion/index.html?school=1"
+  },
+  {
+    "name": "American Touchdown",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/American-Touchdown-Game.jpg",
+    "url": "https://maddox.games/db2/2021/unity3/american-touchdown/index.html?school=1"
+  },
+  {
+    "name": "Among Impostor",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/among-impostor-512.jpg",
+    "url": "https://maddox.games/db2/2023/construct/234/among-impostor/index.html?school=1"
+  },
+  {
+    "name": "Among Us",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/amongus.webp",
+    "url": "https://maddox.games/db/html/among_us/index.html?school=1"
+  },
+  {
+    "name": "Animal Crossing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/animal_crossing.webp",
+    "url": "https://maddox.games/db/html/animal_crossing/index.html?school=1"
+  },
+  {
+    "name": "Apple Knight",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/apple-knight.webp",
+    "url": "https://maddox.games/db/html/apple_knight_mini_dungeons/index.html?school=1"
+  },
+  {
+    "name": "Arcane Archer",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/arcane-archer.jpg",
+    "url": "https://maddox.games/db/html/arcane_archer/index.html?school=1"
+  },
+  {
+    "name": "Archer Hero",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Archer-Hero-Online.jpg",
+    "url": "https://maddox.games/db2/2023/unity/archer-hero/index.html?school=1"
+  },
+  {
+    "name": "Archer Master 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/archer-master-3d-castle-defender.jpg",
+    "url": "https://maddox.games/db/html/archer_master_3d_castle_defender/index.html?school=1"
+  },
+  {
+    "name": "Arena Of Heroes",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Arena-of-Heroes.webp",
+    "url": "https://maddox.games/db2/2022/unity/arena-of-heroes/index.html?school=1"
+  },
+  {
+    "name": "Armed Forces.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Armed-Forces-io.jpg",
+    "url": "https://maddox.games/db2/2021/unity3/armedforces-io/index.html?school=1"
+  },
+  {
+    "name": "Arrow Master",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/arrowmaster.oi.webp",
+    "url": "https://maddox05.github.io/gba_emu/launcher.html#pokemonred?school=1"
+  },
+  {
+    "name": "Awesome Pirates",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/awesome-pirates-512.webp",
+    "url": "https://maddox.games/db2/2024/flash/awesome-pirates/index.html?school=1"
+  },
+  {
+    "name": "Awesome Tanks",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/awesometanks1.webp",
+    "url": "https://maddox.games/db/html/awesometanks/index.html?school=1"
+  },
+  {
+    "name": "Awesome Tanks 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/awesome-tanks-2.webp",
+    "url": "https://maddox.games/db/html/awesometanks2/index.html?school=1"
+  },
+  {
+    "name": "Axis Football League",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/axis-football-league-game.webp",
+    "url": "https://maddox.games/db2/2024/flash/axis-football-league/index.html?school=1"
+  },
+  {
+    "name": "Backflip Challenge",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/backflip-challenge-game-lg.webp",
+    "url": "https://maddox.games/db2/2026/unity/backflip-challenge/index.html?school=1"
+  },
+  {
+    "name": "Backrooms",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/backrooms1.webp",
+    "url": "https://maddox.games/db/html/backroomsv1.5/index.html?school=1"
+  },
+  {
+    "name": "Baldi's Basics",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2026/more/baldis-basics/index.html?school=1"
+  },
+  {
+    "name": "Baseball Bros",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/baseball-bros.jpg",
+    "url": "https://maddox.games/db/html/baseball_bros/index.html?school=1"
+  },
+  {
+    "name": "Basket Bros",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/basket-bros.jpeg",
+    "url": "https://maddox.games/db/html/basket_bros/index.html?school=1"
+  },
+  {
+    "name": "Basket Hoop",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Basket-Hoop.jpg",
+    "url": "https://maddox.games/db2/2024/construct/311/basket-hoop/index.html?school=1"
+  },
+  {
+    "name": "Basket Random",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Basket-Random.jpg",
+    "url": "https://maddox.games/db/html/basket_random/index.html?school=1"
+  },
+  {
+    "name": "Basket Random Pro",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2025/construct/320/basket-random-pro/index.html?school=1"
+  },
+  {
+    "name": "Basketball King",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/basketball-king.jpg",
+    "url": "https://maddox.games/db2/2024/construct/316/basketball-king/index.html?school=1"
+  },
+  {
+    "name": "Basketball Legends",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/basketball-legends.jpg",
+    "url": "https://maddox.games/db/html/basketball_legends/index.html?school=1"
+  },
+  {
+    "name": "Basketball Slam Dunk",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Basketball-Slam-Dunk.jpg",
+    "url": "https://maddox.games/db2/2021/unity2/basketball-slam-dunk/index.html?school=1"
+  },
+  {
+    "name": "Basketball Stars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/basketball-stars.webp",
+    "url": "https://maddox.games/db/html/basketball_stars/index.html?school=1"
+  },
+  {
+    "name": "Battle Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/tabs.webp",
+    "url": "https://maddox.games/db/html/battle_simulator/index.html?school=1"
+  },
+  {
+    "name": "BFFs Black Friday Collection",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/bffs-black-friday-collection.webp",
+    "url": "https://maddox.games/db2/2024/fabbox/bffs-black-friday-collection/index.html?school=1"
+  },
+  {
+    "name": "Bit Planes",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/bit-planes.webp",
+    "url": "https://maddox.games/db/html/bit_planes/index.html?school=1"
+  },
+  {
+    "name": "BitLife",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2025/more/e-life-simulation/index.html?school=1"
+  },
+  {
+    "name": "Block Blast",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/block-blast.jpg",
+    "url": "https://maddox.games/db2/2024/unity3/block-blast/index.html?school=1"
+  },
+  {
+    "name": "Blocky Combat SWAT",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/blocky-combat-swat.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/blocky-combat-swat/index.html?school=1"
+  },
+  {
+    "name": "Blocky Puzzle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/blocky-puzzle.jpg",
+    "url": "https://maddox.games/db/html/blocky_puzzle/index.html?school=1"
+  },
+  {
+    "name": "Bloons TD",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/bloons1.webp",
+    "url": "https://maddox.games/db/html/bloonstd/index.html?school=1"
+  },
+  {
+    "name": "Bloons TD 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/bloons2.webp",
+    "url": "https://maddox.games/db/html/bloonstd2/index.html?school=1"
+  },
+  {
+    "name": "Bloons TD 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/bloons3.webp",
+    "url": "https://maddox.games/db/html/bloonstd3/index.html?school=1"
+  },
+  {
+    "name": "Bloons TD 5",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/bloonstd-5.jpg",
+    "url": "https://maddox.games/db/html/btd5/index.html?school=1"
+  },
+  {
+    "name": "Bloxorz",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/bloxorz.webp",
+    "url": "https://maddox.games/db/html/bloxorz/index.html?school=1"
+  },
+  {
+    "name": "Blumgi Racers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/blumgi-racers.jpg",
+    "url": "https://maddox.games/db/html/blumgi_racers/index.html?school=1"
+  },
+  {
+    "name": "Bob The Robber 4",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/bob-the-robber-4.jpg",
+    "url": "https://maddox.games/db/html/bob_the_robber_4/index.html?school=1"
+  },
+  {
+    "name": "Bookworm",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/bookworm.webp",
+    "url": "https://maddox.games/db2/2024/flash/bookworm/index.html?school=1"
+  },
+  {
+    "name": "Boxing Random",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Boxing-Random.jpg",
+    "url": "https://maddox.games/db/html/boxing_random/index.html?school=1"
+  },
+  {
+    "name": "Breaking The Bank",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/breakbank.webp",
+    "url": "https://maddox.games/db/html/breakingthebank/index.html?school=1"
+  },
+  {
+    "name": "Bridge Race",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/bridge-race.jpg",
+    "url": "https://maddox.games/db/html/bridge_race/index.html?school=1"
+  },
+  {
+    "name": "Brookhaven",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/brookhaven/index.html?school=1"
+  },
+  {
+    "name": "Bubble Shooter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/bubble-shooter-ez-512.webp",
+    "url": "https://maddox.games/db2/2024/koz/bubble-shooter-easy/index.html?school=1"
+  },
+  {
+    "name": "Buckshot Roulette",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/buckshot-roulette.jpg",
+    "url": "https://maddox.games/db/html/buckshot_roulette/index.html?school=1"
+  },
+  {
+    "name": "Burnout City",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/burnoutcity.jpg",
+    "url": "https://maddox.games/db2/2024/unity/burnout-city/index.html?school=1"
+  },
+  {
+    "name": "Burnout Drift Hunter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Burnout-Drift-Hunter-Online.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/burnout-drift-hunter/index.html?school=1"
+  },
+  {
+    "name": "Burnout Racers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Burnout-Racers.jpg",
+    "url": "https://maddox.games/db2/2024/unity/burnout-racers/index.html?school=1"
+  },
+  {
+    "name": "Burrito Bison",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/burrito-bison.jpg",
+    "url": "https://maddox.games/db/html/burrito_bison_launcha_libre/index.html?school=1"
+  },
+  {
+    "name": "Cactus McCoy 1",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/cactus-mccoy-1.webp",
+    "url": "https://maddox.games/db2/2024/flash/cactus-mccoy-1/index.html?school=1"
+  },
+  {
+    "name": "Cactus McCoy 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/cactus-mccoy-2-game.webp",
+    "url": "https://maddox.games/db2/2024/flash/cactus-mccoy-2/index.html?school=1"
+  },
+  {
+    "name": "Cake Match Puzzle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/cake-match-puzzle.webp",
+    "url": "https://maddox.games/db2/2024/unity3/cake-match-puzzle/index.html?school=1"
+  },
+  {
+    "name": "Capybara Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/capybara-clicker.jpg",
+    "url": "https://maddox.games/db2/2023/q2/capy-cutie-clicker/index.html?school=1"
+  },
+  {
+    "name": "Car Football",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Car-Football.jpg",
+    "url": "https://maddox.games/db/html/car_football/index.html?school=1"
+  },
+  {
+    "name": "Car Parkour",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Car-Parkour.webp",
+    "url": "https://maddox.games/db2/2022/construct/163/car-parkour/index.html?school=1"
+  },
+  {
+    "name": "Car Stunt King",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Car-Stunt-King.jpg",
+    "url": "https://maddox.games/db2/2024/unity/car-stunt-king/index.html?school=1"
+  },
+  {
+    "name": "Car Wash",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Car-Wash-Online-Game.jpg",
+    "url": "https://maddox.games/db2/2023/unity2/car-wash/index.html?school=1"
+  },
+  {
+    "name": "Cargo Jeep Racing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Cargo-Jeep-Racing.webp",
+    "url": "https://maddox.games/db2/2021/4/cargo-jeep-racing/index.html?school=1"
+  },
+  {
+    "name": "Cat Miner 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/cat-miner.webp",
+    "url": "https://scratch.mit.edu/projects/351793769/embed?school=1"
+  },
+  {
+    "name": "Cat Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Cat-Simulator-Online.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/cat-simulator/index.html?school=1"
+  },
+  {
+    "name": "Checkout Frenzy",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/checkout-frenzy-cashier-game.jpg",
+    "url": "https://maddox.games/db2/2025/unity/checkout-frenzy/index.html?school=1"
+  },
+  {
+    "name": "Cheese Chompers 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/cheese-chompers-3d.jpeg",
+    "url": "https://maddox.games/db/html/cheese_chompers_3d/index.html?school=1"
+  },
+  {
+    "name": "Chess",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/chess-freezenova.webp",
+    "url": "https://maddox.games/db2/2025/unity3/chess/index.html?school=1"
+  },
+  {
+    "name": "Choppy Orc",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/choppy-orc.jpg",
+    "url": "https://maddox.games/db/html/choppy_orc/index.html?school=1"
+  },
+  {
+    "name": "City Stunts",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/City-Stunts-Game.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/city-stunts/index.html?school=1"
+  },
+  {
+    "name": "Clash Royale",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/clash-royale.jpg",
+    "url": "https://maddox.games/db/html/clash_royale/index.html?school=1"
+  },
+  {
+    "name": "Classic Minecraft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/mc-classic.webp",
+    "url": "https://maddox.games/db2/2026/more/duckcraft/index.html?school=1"
+  },
+  {
+    "name": "ClassiCube",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/classicube.jpg",
+    "url": "https://maddox.games/db2/2024/cube/classicube/index.html?school=1"
+  },
+  {
+    "name": "Cloud",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/cloud-gaming.webp",
+    "url": "https://maddox.games/db2/2001/cloud/index.html?school=1"
+  },
+  {
+    "name": "Cluster Rush",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/cluster_rush.webp",
+    "url": "https://maddox.games/db/html/cluster_rush/index.html?school=1"
+  },
+  {
+    "name": "CobraZ.io Classic",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Cobraz.io-Classic.jpg",
+    "url": "https://maddox.games/db2/2022/unity/cobraz-io-classic/index.html?school=1"
+  },
+  {
+    "name": "COD Zombies",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/cod-zombies-portable.jpeg",
+    "url": "https://maddox.games/db/html/cod_zombies_portable/index.html?school=1"
+  },
+  {
+    "name": "Conquer Kingdoms",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/conquer-kingdoms.webp",
+    "url": "https://maddox.games/db2/2025/unity/conquer-kingdoms/index.html?school=1"
+  },
+  {
+    "name": "Cookie Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/cookieclicker.webp",
+    "url": "https://maddox.games/db/html/cookie_clicker/index.html?school=1"
+  },
+  {
+    "name": "Cool",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/heck.png",
+    "url": "https://maddox.games/db/html/heck_sucker/index.html?school=1"
+  },
+  {
+    "name": "Cool Cookie Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/cool-cookie-clicker.webp",
+    "url": "https://maddox.games/db2/2025/construct/260/cool-cookie-clicker/index.html?school=1"
+  },
+  {
+    "name": "Crazy Cars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/crazycars.webp",
+    "url": "https://maddox.games/db/html/crazy_cars/index.html?school=1"
+  },
+  {
+    "name": "Crazy Cattle 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Crazy-Cattle-3D.jpg",
+    "url": "https://maddox.games/db/html/crazycattle3d/index.html?school=1"
+  },
+  {
+    "name": "Crazy Cattle 3D Pro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/crazy-cattle-3d.webp",
+    "url": "https://maddox.games/db2/2025/unity3/crazy-cattle-3d/index.html?school=1"
+  },
+  {
+    "name": "Crazy Christmas 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/crazy-christmas-game.webp",
+    "url": "https://maddox.games/db2/2025/unity3/crazy-christmas-3d/index.html?school=1"
+  },
+  {
+    "name": "Crazy Hill Climb",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Crazy-Hill-Climb.jpg",
+    "url": "https://maddox.games/db2/2023/construct/209/crazy-hill-climb/index.html?school=1"
+  },
+  {
+    "name": "Crazy Karts",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/crazy-karts.webp",
+    "url": "https://maddox.games/db/html/crazy_karts/index.html?school=1"
+  },
+  {
+    "name": "Crazy Moto Racing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/crazy-moto-racing.jpg",
+    "url": "https://maddox.games/db2/2022/unity3/crazy-moto-racing/index.html?school=1"
+  },
+  {
+    "name": "Crazy Parking Fury",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Crazy-Parking-Fury.jpg",
+    "url": "https://maddox.games/db2/2022/unity3/crazy-parking-fury/index.html?school=1"
+  },
+  {
+    "name": "Crazy Roll 3D",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2021/unity2/crazy-roll/index.html?school=1"
+  },
+  {
+    "name": "Crazy Stickman Physics",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Crazy-Stickman-Physics.jpg",
+    "url": "https://maddox.games/db2/2023/construct/185/crazy-stickman-physics/index.html?school=1"
+  },
+  {
+    "name": "Cross Roads",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/crossyroad.webp",
+    "url": "https://maddox.games/db2/2023/unity/cross-the-road/index.html?school=1"
+  },
+  {
+    "name": "Crown Defense",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/crown-defense-online.webp",
+    "url": "https://maddox.games/db2/2025/construct/337/crown-defense/index.html?school=1"
+  },
+  {
+    "name": "CS",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/1.6.webp",
+    "url": "https://maddox.games/db/html/cs_online/index.html?school=1"
+  },
+  {
+    "name": "CS Surf",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/cssurf.webp",
+    "url": "https://scratch.mit.edu/projects/159243389/embed?school=1"
+  },
+  {
+    "name": "Cube Worlds",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Cube-Worlds.jpg",
+    "url": "https://maddox.games/db2/2025/html/cube-worlds/index.html?school=1"
+  },
+  {
+    "name": "Cubecraft Survival",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/cubecraft-survival.webp",
+    "url": "https://maddox.games/db2/2025/unity4/cubecraft-survival/index.html?school=1"
+  },
+  {
+    "name": "Dark Forest Idle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/dark-forest-idle-512.webp",
+    "url": "https://maddox.games/db2/2024/godot/dark-forest-idle/index.html?school=1"
+  },
+  {
+    "name": "Darkness Survivors",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Darkness-Survivors.jpg",
+    "url": "https://maddox.games/db2/2024/q2/darkness-survivors/index.html?school=1"
+  },
+  {
+    "name": "Davo",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/davo.webp",
+    "url": "https://maddox.games/db2/2025/construct/302/davo/index.html?school=1"
+  },
+  {
+    "name": "Deadly Descent",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/deadly-descent.jpg",
+    "url": "https://maddox.games/db/html/deadly_descent/index.html?school=1"
+  },
+  {
+    "name": "Deepest Sword",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/deepest-sword.jpg",
+    "url": "https://maddox.games/db/html/deepest_sword/index.html?school=1"
+  },
+  {
+    "name": "Deer Hunter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Deer-Hunter.jpg",
+    "url": "https://maddox.games/db2/2021/1/deer-hunter/index.html?school=1"
+  },
+  {
+    "name": "Diggy",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/diggy.webp",
+    "url": "https://maddox.games/db2/2024/flash/diggy/index.html?school=1"
+  },
+  {
+    "name": "Digital Museum",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/digital.webp",
+    "url": "https://noclip.website/?school=1"
+  },
+  {
+    "name": "Discus",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/disc_us.webp",
+    "url": "https://maddox.games/db/html/discus/index.html?school=1"
+  },
+  {
+    "name": "Diver Down",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/diver-down-512.webp",
+    "url": "https://maddox.games/db2/2024/godot/diver-down/index.html?school=1"
+  },
+  {
+    "name": "Doge Miner",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/doge_miner/index.html?school=1"
+  },
+  {
+    "name": "Doggo Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Doggo-Clicker.jpg",
+    "url": "https://maddox.games/db2/2024/gm/games4/doggo-clicker/index.html?school=1"
+  },
+  {
+    "name": "Doki Doki Literature Club",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/doki-doki-literature-club.jpg",
+    "url": "https://maddox.games/db/html/ddlc/index.html?school=1"
+  },
+  {
+    "name": "Don't Fall.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Dont-Fall-io-2.jpg",
+    "url": "https://maddox.games/db2/2021/unity/dont-fall-io/index.html?school=1"
+  },
+  {
+    "name": "Doodle Jump",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/doodle.webp",
+    "url": "https://maddox.games/db/html/doodle_jump/index.html?school=1"
+  },
+  {
+    "name": "DOOM",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/doom1.webp",
+    "url": "https://maddox.games/db/html/doom_1/index.html?school=1"
+  },
+  {
+    "name": "DOOM 2D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/doom-2d.webp",
+    "url": "https://maddox.games/db2/2024/flash/doom-2d/index.html?school=1"
+  },
+  {
+    "name": "Draw The Bridge",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/draw_bridge.webp",
+    "url": "https://maddox.games/db/html/draw_the_bridge/index.html?school=1"
+  },
+  {
+    "name": "Dreamlike Room",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/dreamlike-room.webp",
+    "url": "https://maddox.games/db2/2024/code/dreamlike-room/index.html?school=1"
+  },
+  {
+    "name": "Drift Boss",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/driftboss.webp",
+    "url": "https://maddox.games/db/html/drift_boss/index.html?school=1"
+  },
+  {
+    "name": "Drift City",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/drift-city-unblocked.jpg",
+    "url": "https://maddox.games/db2/2024/gm/games2/drift-city/index.html?school=1"
+  },
+  {
+    "name": "Drift Fury",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Drift-Fury.jpg",
+    "url": "https://maddox.games/db2/2023/unity/drift-fury/index.html?school=1"
+  },
+  {
+    "name": "Drift Hunters",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Drift-Hunters-Game.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/drift-hunters/index.html?school=1"
+  },
+  {
+    "name": "Drift Hunters 2024",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/drift-hunters-2024-freezenova.jpg",
+    "url": "https://maddox.games/db2/2024/unity/drift-hunters-2024/index.html?school=1"
+  },
+  {
+    "name": "Drift Hunters Pro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Drift-Hunters-Pro.jpg",
+    "url": "https://maddox.games/db2/2023/unity/drift-hunters-pro/index.html?school=1"
+  },
+  {
+    "name": "Drift King",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2024/unity/drift-king/index.html?school=1"
+  },
+  {
+    "name": "Drift Rider",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Drift-Rider.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/drift-rider/index.html?school=1"
+  },
+  {
+    "name": "Dublix",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/dublix.webp",
+    "url": "https://maddox.games/db2/2025/unity4/dublix/index.html?school=1"
+  },
+  {
+    "name": "Duck Life",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/dl1.webp",
+    "url": "https://maddox.games/db/html/duck_life/index.html?school=1"
+  },
+  {
+    "name": "Duck Life 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/dl2.webp",
+    "url": "https://maddox.games/db/html/duck_life_2/index.html?school=1"
+  },
+  {
+    "name": "Duck Life 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/dl3.webp",
+    "url": "https://maddox.games/db/html/duck_life_3/index.html?school=1"
+  },
+  {
+    "name": "Duck Life 4",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/dl4.webp",
+    "url": "https://maddox.games/db/html/duck_life_4/index.html?school=1"
+  },
+  {
+    "name": "Duck Life 5",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/duck-life-5.jpg",
+    "url": "https://maddox.games/db/html/duck_life_5/index.html?school=1"
+  },
+  {
+    "name": "Ducklings.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ducklingsio.jpg",
+    "url": "https://maddox.games/db/html/ducklingsio/index.html?school=1"
+  },
+  {
+    "name": "Dune",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/dune.jpg",
+    "url": "https://maddox.games/db/html/dune/index.html?school=1"
+  },
+  {
+    "name": "Eagle DuckCraft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/eagle-duckcraft-new.webp",
+    "url": "https://maddox.games/db/html/minecraft/duckcraft/duckcraft-v1.html?school=1"
+  },
+  {
+    "name": "Eaglercraft Minecraft",
     "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/eagle-craft.jpg",
-    "url": "https://maddox.games/db/html/minecraft/index.html"
+    "url": "https://maddox.games/db/html/minecraft/index.html?school=1"
   },
   {
-    "name": "Subway Surfers",
-    "img": "https://szgames.github.io/img/subway-surfers-beijing.png",
-    "url": "https://iframe.unblocked-76-games.org/subway-surfers-main"
+    "name": "Edy's Car Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Edys-Car-Simulator-Online.jpg",
+    "url": "https://maddox.games/db2/2022/unity/edys-car-simulator/index.html?school=1"
   },
   {
-    "name": "Traffic Escape",
-    "img": "https://szgames.github.io/img/traffic-escape.png",
-    "url": "https://iframe.unblocked-76-games.org/traffic-escape-main"
+    "name": "Egg Car Racing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/egg-car-racing.jpg",
+    "url": "https://maddox.games/db2/2024/construct/289/egg-car-racing/index.html?school=1"
   },
   {
-    "name": "Steal a Brainrot",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/steal-a-brainrot.jpg",
-    "url": "https://maddox.games/db/html/steal_a_brainrot_2/index.html?school=1"
+    "name": "Eggy Car",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/eggy-car.webp",
+    "url": "https://maddox.games/db/html/eggy_car/index.html?school=1"
   },
   {
-    "name": "Friday Night Funkin",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/friday.webp",
-    "url": "https://maddox.games/db/html/friday_night_funkin/index.html?school=1"
+    "name": "Elastic Man",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2025/more/elastic-man/gm/index.html?school=1"
   },
   {
-    "name": "Moto X3M",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io//img/gun-spin.jpg",
-    "url": "https://maddox.games/db/html/gun_spin/index.html?school=1"
+    "name": "Electric Man 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/electric.webp",
+    "url": "https://maddox.games/db2/2024/flash/electric-man-2/index.html?school=1"
+  },
+  {
+    "name": "Endless Lake",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/endlesslake.webp",
+    "url": "https://maddox.games/db/html/endless_lake/index.html?school=1"
+  },
+  {
+    "name": "Escape Car",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Escape-Car.jpg",
+    "url": "https://maddox.games/db/html/escape_car/index.html?school=1"
+  },
+  {
+    "name": "Escape Tsunami For Brainrots",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/escape-tsunami-for-brainrots/index.html?school=1"
+  },
+  {
+    "name": "Escaping The Prison",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/escapeprison.webp",
+    "url": "https://maddox.games/db/html/escapetheprison/index.html?school=1"
+  },
+  {
+    "name": "F1 Drift Racer",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/F1-Drift-Racer.jpg",
+    "url": "https://maddox.games/db2/2022/construct/134/f1-drift-racer/index.html?school=1"
+  },
+  {
+    "name": "Fall Boys",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Fall-Boys.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/fall-boys/index.html?school=1"
+  },
+  {
+    "name": "Fall Brainrots",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/fall-brainrots-game-lg.webp",
+    "url": "https://maddox.games/db2/2026/unity/fall-brainrots/index.html?school=1"
+  },
+  {
+    "name": "Fancy Pants Adventures World 1",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fancy.webp",
+    "url": "https://maddox.games/db/html/fancypantsadventure/index.html?school=1"
+  },
+  {
+    "name": "Fancy Pants Adventures World 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fpaw2.webp",
+    "url": "https://maddox.games/db/html/fpaworld2/index.html?school=1"
+  },
+  {
+    "name": "Fancy Pants Adventures World 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fpaw3.webp",
+    "url": "https://maddox.games/db/html/fpaworld3/index.html?school=1"
+  },
+  {
+    "name": "Fantasy Tower Defense",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Fantasy-Tower-Defense-2.jpg",
+    "url": "https://maddox.games/db2/2022/unity/fantasy-tower-defense/index.html?school=1"
+  },
+  {
+    "name": "Farming Island",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/farming-island.jpg",
+    "url": "https://maddox.games/db2/2025/unity/farming-island/index.html?school=1"
+  },
+  {
+    "name": "Fast Food Manager",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fast-food-manager.webp",
+    "url": "https://maddox.games/db2/2025/unity4/fast-food-manager/index.html?school=1"
+  },
+  {
+    "name": "Fast Food Rush",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fast-food-rush.jpg",
+    "url": "https://maddox.games/db2/2025/unity/fast-food-rush/index.html?school=1"
+  },
+  {
+    "name": "Fighter Aircraft Pilot",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fighter-aircraft-pilotb.webp",
+    "url": "https://maddox.games/db/html/fighter_aircraft_pilot/index.html?school=1"
+  },
+  {
+    "name": "Find It",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Find-It.jpg",
+    "url": "https://maddox.games/db2/2025/unity/find-it/index.html?school=1"
+  },
+  {
+    "name": "Fireboy And Watergirl",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fireboy.webp",
+    "url": "https://maddox.games/db2/2023/construct/179/fire-and-water/index.html?school=1"
+  },
+  {
+    "name": "Fish It",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fish-it.jpg",
+    "url": "https://maddox.games/db/html/fish_it/index.html?school=1"
   },
   {
     "name": "Five Nights At Freddy's",
@@ -35,39 +840,124 @@
     "url": "https://maddox.games/db/html/fnaf/index.html?school=1"
   },
   {
-    "name": "Race Survival Arena King",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/race-survival-arena-king.jpg",
-    "url": "https://maddox.games/db/html/race_survival_arena_king/index.html?school=1"
+    "name": "Flappy Bird",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/flappy-bird-game.webp",
+    "url": "https://maddox.games/db/html/flappy_bird/index.html?school=1"
   },
   {
-    "name": "Clash Royal",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/clash-royale.jpg",
-    "url": "https://maddox.games/db/html/clash_royale/index.html?school=1"
+    "name": "Flappy Circle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/flappycircle.webp",
+    "url": "https://dives05.github.io/flappyCircle/?school=1"
   },
   {
-    "name": "Golf Orbit",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Golf-Orbit-Play-Online.jpg",
-    "url": "https://maddox.games/db/html/golf_orbit/index.html?school=1"
+    "name": "Fleeing The Complex",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/complex.webp",
+    "url": "https://maddox.games/db/html/fleeingthecomplex/index.html?school=1"
   },
   {
-    "name": "ULTRAKILL",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ultrakill.jpg",
-    "url": "https://maddox.games/db/html/ultrakill/index.html?school=1"
+    "name": "FNAF",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/five-nights-at-freddys-web.jpg",
+    "url": "https://maddox.games/db2/2024/more2/five-nights-at-freddys/fnaf/index.html?school=1"
   },
   {
-    "name": "Retro Bowl",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/retro_bowl_icon.webp",
-    "url": "https://maddox.games/db/html/retro_bowl/index.html?school=1"
+    "name": "FNAF 2",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/fnaf2/index.html?school=1"
   },
   {
-    "name": "Backflip",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/backflip-challenge-game-lg.webp",
-    "url": "https://maddox.games/db2/2026/unity/backflip-challenge/index.html?school=1"
+    "name": "FNAF 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fnaf3.webp",
+    "url": "https://maddox.games/db/html/fnaf3/index.html?school=1"
   },
   {
-    "name": "Spartahoppers",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/spartahoppers.webp",
-    "url": "https://maddox.games/db2/2025/construct/227/spartahoppers/index.html?school=1"
+    "name": "FNAF 4",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fnaf4.webp",
+    "url": "https://maddox.games/db/html/fnaf4/index.html?school=1"
+  },
+  {
+    "name": "FNAF 5",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/fnaf5.webp",
+    "url": "https://maddox.games/db/html/fnaf5/index.html?school=1"
+  },
+  {
+    "name": "FNAF Pizzeria Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/five-nights-at-freddys-pizzeria-simulator.jpg",
+    "url": "https://maddox.games/db/html/fnaf_pizzeria_simulator/index.html?school=1"
+  },
+  {
+    "name": "FNAF World",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fnaf-world-game.webp",
+    "url": "https://maddox.games/db2/2024/more2/fnaf-world/index.html?school=1"
+  },
+  {
+    "name": "FNF Garcello",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/fnf-garcello.webp",
+    "url": "https://maddox.games/db2/2024/cube/fnf-garcello/index.html?school=1"
+  },
+  {
+    "name": "FNF Mods",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img3/fnf-mods.webp",
+    "url": "https://maddox.games/db2/2000/fnf/index.html?school=1"
+  },
+  {
+    "name": "Football Bros",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/football-bros.jpg",
+    "url": "https://maddox.games/db/html/football_bros/index.html?school=1"
+  },
+  {
+    "name": "Football Legends",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/football_legends/index.html?school=1"
+  },
+  {
+    "name": "Fortnite Z",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fort-2d.jpg",
+    "url": "https://turbowarp.org/404950182/embed?school=1"
+  },
+  {
+    "name": "FPS Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Fps-simulator.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/fps-simulator/index.html?school=1"
+  },
+  {
+    "name": "FPS Strike",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/fps-strike-online.jpg",
+    "url": "https://maddox.games/db2/2024/unity2/fps-strike/index.html?school=1"
+  },
+  {
+    "name": "Freeway Fury 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/freewayfury2.webp",
+    "url": "https://maddox.games/db/html/freewayfury2/index.html?school=1"
+  },
+  {
+    "name": "Friday Night Funkin",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/friday.webp",
+    "url": "https://maddox.games/db/html/friday_night_funkin/index.html?school=1"
+  },
+  {
+    "name": "Fun Party Makeup",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Fun-Party-Makeup.jpg",
+    "url": "https://maddox.games/db2/2021/4/fun-party-makeup/index.html?school=1"
+  },
+  {
+    "name": "Funny Shooter 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/funntshooes.webp",
+    "url": "https://maddox.games/db/html/funny_shooter_2/index.html?school=1"
+  },
+  {
+    "name": "Funny Shooter Bro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Funny-Shooter-Bro.jpg",
+    "url": "https://maddox.games/db2/2024/unity/funny-shooter-bro/index.html?school=1"
+  },
+  {
+    "name": "Galactic Driver",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Galactic-Driver.jpg",
+    "url": "https://maddox.games/db2/2022/construct/65/galactic-driver/index.html?school=1"
+  },
+  {
+    "name": "Geometry Dash",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Geometry-Dash.jpg",
+    "url": "https://maddox.games/db/html/geometry_freezenova/index.html?school=1"
   },
   {
     "name": "Geometry Dash Scratch",
@@ -75,8 +965,1293 @@
     "url": "https://maddox.games/db2/2025/scratch/geometry-dash-scratch/index.html?school=1"
   },
   {
-    "name": "Escape car",
-    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Escape-Car.jpg",
-    "url": "https://maddox.games/db/html/escape_car/index.html?school=1"
+    "name": "Geometry Escape",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Geometry-Escape.jpg",
+    "url": "https://maddox.games/db2/2024/construct/299/geometry-escape/index.html?school=1"
+  },
+  {
+    "name": "Geometry Vector",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img3/geometry-vector.webp",
+    "url": "https://maddox.games/db2/2026/construct/329/geometry-vector/index.html?school=1"
+  },
+  {
+    "name": "Getting Over It",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Getting-Over-It.jpg",
+    "url": "https://maddox.games/db2/2025/scratch/getting-over-it-scratch/index.html?school=1"
+  },
+  {
+    "name": "Gold Miner",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/gold-miner-512.webp",
+    "url": "https://maddox.games/db2/2024/flash/gold-miner/index.html?school=1"
+  },
+  {
+    "name": "Golf Orbit",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Golf-Orbit-Play-Online.jpg",
+    "url": "https://maddox.games/db/html/golf_orbit/index.html?school=1"
+  },
+  {
+    "name": "Grand Prix Multiplication",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/grandprix.webp",
+    "url": "https://maddox.games/db/html/grand_prix_multiplication/index.html?school=1"
+  },
+  {
+    "name": "Granny Horror",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/granny.webp",
+    "url": "https://maddox.games/db/html/granny/index.html?school=1"
+  },
+  {
+    "name": "Grow A Garden",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/grow-a-garden.jpg",
+    "url": "https://maddox.games/db/html/grow_a_garden/index.html?school=1"
+  },
+  {
+    "name": "Growden.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/growden-io.jpeg",
+    "url": "https://maddox.games/db/html/growden_io/index.html?school=1"
+  },
+  {
+    "name": "GTA Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/GTA-Simulator.jpg",
+    "url": "https://maddox.games/db2/2023/unity2/gta-simulator/index.html?school=1"
+  },
+  {
+    "name": "GunSpin",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io//img/gun-spin.jpg",
+    "url": "https://maddox.games/db/html/gun_spin/index.html?school=1"
+  },
+  {
+    "name": "Head Ball",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/head-ball-online-512.webp",
+    "url": "https://maddox.games/db2/2024/unity2/head-ball-online/index.html?school=1"
+  },
+  {
+    "name": "Head Basketball",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Head-Basketball.jpg",
+    "url": "https://maddox.games/db2/2022/unity/head-basketball/index.html?school=1"
+  },
+  {
+    "name": "Head Soccer",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/head-soccer.jpg",
+    "url": "https://maddox.games/db/html/head_soccer/index.html?school=1"
+  },
+  {
+    "name": "Heist Escape",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Heist-Escape.jpg",
+    "url": "https://maddox.games/db2/2022/construct/119/heist-escape/index.html?school=1"
+  },
+  {
+    "name": "Helix Jump",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/helix-jump.jpg",
+    "url": "https://maddox.games/db/html/helix_jump/index.html?school=1"
+  },
+  {
+    "name": "Hero Dragon Power",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Hero-Dragon-Power-Game.jpg",
+    "url": "https://maddox.games/db2/2023/unity/hero-dragon-power/index.html?school=1"
+  },
+  {
+    "name": "Hero Rush Tower Defense",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Hero-Rush-Tower-Defense-Play.jpg",
+    "url": "https://maddox.games/db2/2023/unity/hero-rush-tower-defense/index.html?school=1"
+  },
+  {
+    "name": "Hexa Puzzle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/hexa-puzzle-512.webp",
+    "url": "https://maddox.games/db2/2024/unity2/hexa-puzzle/index.html?school=1"
+  },
+  {
+    "name": "Highway Driver",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/highway-driver-512.webp",
+    "url": "https://maddox.games/db2/2024/unity2/highway-driver/index.html?school=1"
+  },
+  {
+    "name": "Highway Moto",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/highway-moto-512.webp",
+    "url": "https://maddox.games/db2/2024/unity/highway-moto/index.html?school=1"
+  },
+  {
+    "name": "Highway Racer Pro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Highway-Racer-Pro.jpg",
+    "url": "https://maddox.games/db2/2024/unity/highway-racer-pro/index.html?school=1"
+  },
+  {
+    "name": "Highway Traffic",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Highway-Traffic-2.jpg",
+    "url": "https://maddox.games/db2/2022/unity/highway-traffic/index.html?school=1"
+  },
+  {
+    "name": "Hill Climb Cars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Hill-Climb-Cars.jpg",
+    "url": "https://maddox.games/db2/2021/3/hill-climb-cars/index.html?school=1"
+  },
+  {
+    "name": "Hole.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/hole.io.webp",
+    "url": "https://maddox.games/db/html/holeio/index.html?school=1"
+  },
+  {
+    "name": "Hollow Knight",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/hollow-knight.jpg",
+    "url": "https://maddox.games/db/html/hollow_knight/index.html?school=1"
+  },
+  {
+    "name": "Hook Wars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Hook-Wars.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/hook-wars/index.html?school=1"
+  },
+  {
+    "name": "House Painter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/house-painter-512.jpg",
+    "url": "https://maddox.games/db2/2023/construct/238/house-painter/index.html?school=1"
+  },
+  {
+    "name": "Hover Racer Pro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Hover-Racer-Pro.jpg",
+    "url": "https://maddox.games/db2/2021/unity/hover-racer-pro/index.html?school=1"
+  },
+  {
+    "name": "Idle Dev Startup",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/idle-dev-startup.jpg",
+    "url": "https://maddox.games/db/html/idle_dev_startup/index.html?school=1"
+  },
+  {
+    "name": "Idle Restaurant",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Idle-Restaurant.jpg",
+    "url": "https://maddox.games/db2/2023/unity2/idle-restaurant/index.html?school=1"
+  },
+  {
+    "name": "Incredibox",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/incredibox.webp",
+    "url": "https://maddox.games/db/html/incredibox/index.html?school=1"
+  },
+  {
+    "name": "Infiltrating The Airship",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/airship.webp",
+    "url": "https://maddox.games/db/html/infiltratingtheairship/index.html?school=1"
+  },
+  {
+    "name": "Interactive Buddy",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/interactive-buddy-game.webp",
+    "url": "https://maddox.games/db2/2024/flash/interactive-buddy/index.html?school=1"
+  },
+  {
+    "name": "Jacksmith",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/jackSmith.webp",
+    "url": "https://maddox.games/db/html/jacksmith/index.html?school=1"
+  },
+  {
+    "name": "Jasmine Beauty Salon",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Jasmine-Beauty-Salon.webp",
+    "url": "https://maddox.games/db2/2021/2/jasmine-beauty-salon/index.html?school=1"
+  },
+  {
+    "name": "Jetpack Joyride",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/jetpackjoyride.webp",
+    "url": "https://maddox.games/db/html/jetpack_joyride/index.html?school=1"
+  },
+  {
+    "name": "Jewelanche",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/jewelanche.jpg",
+    "url": "https://maddox.games/db/html/jewelanche/index.html?school=1"
+  },
+  {
+    "name": "Jungle Mart",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img3/jungle-mart.webp",
+    "url": "https://maddox.games/db2/2026/construct/339/jungle-mart/index.html?school=1"
+  },
+  {
+    "name": "JustFall.lol",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/justfall-lol.jpeg",
+    "url": "https://maddox.games/db/html/just_fall_lol/index.html?school=1"
+  },
+  {
+    "name": "Kart Bros",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/kart-bros.jpg",
+    "url": "https://maddox.games/db2/2024/unity3/survival-karts/index.html?school=1"
+  },
+  {
+    "name": "Kawai Run 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/kawai-run-2.jpg",
+    "url": "https://maddox.games/db/html/kawai_run_2_offline/index.html?school=1"
+  },
+  {
+    "name": "Kawaii Shooter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Kawaii-Shooter.jpg",
+    "url": "https://maddox.games/db2/2024/unity/kawaii-shooter/index.html?school=1"
+  },
+  {
+    "name": "Kingdom Attack",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io//img2/kingdom-battle-3d.webp",
+    "url": "https://maddox.games/db2/2021/unity3/kingdom-attack/index.html?school=1"
+  },
+  {
+    "name": "Kingdom Battle 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/kingdom-battle-3d.webp",
+    "url": "https://maddox.games/db2/2025/unity2/kingdom-battle-3d/index.html?school=1"
+  },
+  {
+    "name": "Kingdom Rush Frontiers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/kingdom-rush-frontiers-512.webp",
+    "url": "https://maddox.games/db2/2024/flash/kingdom-rush-frontiers/index.html?school=1"
+  },
+  {
+    "name": "Learn 2 Fly 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/learntofly2.webp",
+    "url": "https://maddox.games/db/html/learn_to_fly_2/index.html?school=1"
+  },
+  {
+    "name": "Learn To Fly",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/learn-to-fly.webp",
+    "url": "https://maddox.games/db2/2024/flash/learn-to-fly/index.html?school=1"
+  },
+  {
+    "name": "Learn To Fly 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/learn-to-fly-3.webp",
+    "url": "https://maddox.games/db2/2024/flash/learn-to-fly-3/index.html?school=1"
+  },
+  {
+    "name": "Learn To Fly Idle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/learn-to-fly-idle.webp",
+    "url": "https://maddox.games/db2/2024/flash/learn-to-fly-idle/index.html?school=1"
+  },
+  {
+    "name": "Level Troll",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/troll-level-game.webp",
+    "url": "https://maddox.games/db2/2024/unity2/troll-level/index.html?school=1"
+  },
+  {
+    "name": "Life Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/life-simulator.jpg",
+    "url": "https://maddox.games/db2/2025/unity/life-sim-v1/index.html?school=1"
+  },
+  {
+    "name": "Little Alchemy 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/little-alchemy-2.jpg",
+    "url": "https://maddox.games/db/html/little_alchemy_2/index.html?school=1"
+  },
+  {
+    "name": "Love Tester",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/love-tester.jpg",
+    "url": "https://maddox.games/db2/2021/3/love-tester/index.html?school=1"
+  },
+  {
+    "name": "Madalin Stunt Cars 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/madalin.webp",
+    "url": "https://maddox.games/db/html/madalin_stunt_cars_2/index.html?school=1"
+  },
+  {
+    "name": "Madalin Stunt Cars Pro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Madalin-Stunt-Cars-Pro-Game.jpg",
+    "url": "https://maddox.games/db2/2023/unity/madalin-stunt-cars-pro/index.html?school=1"
+  },
+  {
+    "name": "Maddox Craft",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5WNDcygoPAwSWspPFv-JcgYC2b4eQ_xjNgw&s",
+    "url": "https://maddox.games/db/html/minecraft/maddox/maddoxcraft.html?school=1"
+  },
+  {
+    "name": "Mafia Getaway Cars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Mafia-Getaway-Cars.jpg",
+    "url": "https://maddox.games/db2/2025/construct/298/mafia-getaway-cars/index.html?school=1"
+  },
+  {
+    "name": "Mahjong",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Mahjong.jpg",
+    "url": "https://maddox.games/db2/2025/unity/mahjong/index.html?school=1"
+  },
+  {
+    "name": "Marble Skies",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/marble_skies.webp",
+    "url": "https://maddox.games/db/html/marble_skies/index.html?school=1"
+  },
+  {
+    "name": "Marco",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Marco-Online.jpg",
+    "url": "https://maddox.games/db2/2023/unity/marco/index.html?school=1"
+  },
+  {
+    "name": "Masked Special Forces",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/masked-special-forces.jpg",
+    "url": "https://maddox.games/db/html/masked_special_forces/index.html?school=1"
+  },
+  {
+    "name": "Math Duck",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/math_duck/index.html?school=1"
+  },
+  {
+    "name": "Math Experta",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/math-experta-512-2.webp",
+    "url": "https://maddox.games/db2/2024/unity2/math-experta/index.html?school=1"
+  },
+  {
+    "name": "Meat Boy",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/meat.webp",
+    "url": "https://maddox.games/db/html/meat/index.html?school=1"
+  },
+  {
+    "name": "Mini Cars Racing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Mini-Cars-Racing.jpg",
+    "url": "https://maddox.games/db2/2021/unity/mini-cars-racing/index.html?school=1"
+  },
+  {
+    "name": "Mini Golf",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/golfmini.webp",
+    "url": "https://maddox.games/db/html/mini_golf/index.html?school=1"
+  },
+  {
+    "name": "Mini Shooters",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/mini-shooters.jpg",
+    "url": "https://maddox.games/db/html/mini_shooters/index.html?school=1"
+  },
+  {
+    "name": "Mini Zombie Shooters",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Mini-Zombie-Shooters.webp",
+    "url": "https://maddox.games/db2/2022/construct/162/mini-zombie-shooters/index.html?school=1"
+  },
+  {
+    "name": "Money Movers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/moneymovers1.webp",
+    "url": "https://maddox.games/db/html/money_movers/index.html?school=1"
+  },
+  {
+    "name": "Monster Survivors",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Monster-survivors.jpg",
+    "url": "https://maddox.games/db2/2025/unity/monster-survivors/index.html?school=1"
+  },
+  {
+    "name": "Moto X3M",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/motox3m.webp",
+    "url": "https://maddox.games/db/html/motox3m/index.html?school=1"
+  },
+  {
+    "name": "Moto X3M 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/moto-x3m-3.jpg",
+    "url": "https://maddox.games/db/html/moto_x3m_3/index.html?school=1"
+  },
+  {
+    "name": "Moto X3M Pool Party",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Moto-X3M-Pool-Party-512x512.jpg",
+    "url": "https://maddox.games/db/html/moto_x3m_pool_party/index.html?school=1"
+  },
+  {
+    "name": "Moto X3M Spooky Land",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/Moto-X3M-Pool-Party-512x512.jpg",
+    "url": "https://maddox.games/db/html/moto_x3m_spooky_land/index.html?school=1"
+  },
+  {
+    "name": "Moto X3M Winter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/motox3mwinter.webp",
+    "url": "https://maddox.games/db/html/moto_x3m_winter/index.html?school=1"
+  },
+  {
+    "name": "Neighborhood Defense",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Neighborhood-Defense.jpg",
+    "url": "https://maddox.games/db/html/neighborhood_defense/index.html?school=1"
+  },
+  {
+    "name": "Neon Moto Driver",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/neon-moto-driver.webp",
+    "url": "https://maddox.games/db2/2022/construct/138/neon-moto-driver/index.html?school=1"
+  },
+  {
+    "name": "Nova Billiard",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Nova-Billiard-Game.jpg",
+    "url": "https://maddox.games/db2/2021/unity2/nova-billiard/index.html?school=1"
+  },
+  {
+    "name": "Nova Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Nova-Clicker.jpg",
+    "url": "https://maddox.games/db2/2024/construct/314/nova-clicker/index.html?school=1"
+  },
+  {
+    "name": "Nova Craft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Nova-Craft.jpg",
+    "url": "https://maddox.games/db/html/nova_craft/index.html?school=1"
+  },
+  {
+    "name": "Nuts And Bolts Puzzle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/nuts-and-bolts-puzzle.jpg",
+    "url": "https://maddox.games/db2/2025/unity/nuts-and-bolts-puzzle/index.html?school=1"
+  },
+  {
+    "name": "Obby But You're On A Bike",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/obby-but-youre-on-a-bike.jpg",
+    "url": "https://maddox.games/db/html/obby_but_youre_on_a_bike/index.html?school=1"
+  },
+  {
+    "name": "Orb Farm",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/orb-farm.jpg",
+    "url": "https://maddox.games/db/html/orb_farm/index.html?school=1"
+  },
+  {
+    "name": "Orion Sandbox",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/orion-sandbox.jpg",
+    "url": "https://maddox.games/db/html/orion_sandbox/index.html?school=1"
+  },
+  {
+    "name": "OvO",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ovo.jpg",
+    "url": "https://maddox.games/db/html/ovo/index.html?school=1"
+  },
+  {
+    "name": "OvO Multiplayer",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ovo-multiplayer.jpg",
+    "url": "https://maddox.games/db2/2025/html/ovo-online/index.html?school=1"
+  },
+  {
+    "name": "Pac-Man",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/pacman.webp",
+    "url": "https://maddox.games/db/html/pac_man/index.html?school=1"
+  },
+  {
+    "name": "Papa Louie 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/papalouie2_100x100%20(1).webp",
+    "url": "https://maddox.games/db/html/papalouie2/index.html?school=1"
+  },
+  {
+    "name": "Papa's Bakeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-bakeria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-bakeria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Burgeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/burger.webp",
+    "url": "https://maddox.games/db/html/papasburgeria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Cheeseria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-cheeseria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-cheeseria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Cupcakeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-cupcakeria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-cupcakeria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Donuteria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/donuteria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-donuteria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Hot Doggeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/hot-doggeria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-hot-doggeria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Pancakeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-pancakeria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-pancakeria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Pastaria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-pastaria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-pastaria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Pizzeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/papapizza.webp",
+    "url": "https://maddox.games/db/html/papaspizzeria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Scooperia",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-scooperia.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-scooperia/index.html?school=1"
+  },
+  {
+    "name": "Papa's Sushiria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-sushiria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-sushiria/index.html?school=1"
+  },
+  {
+    "name": "Papa's Taco Mia",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/taco.webp",
+    "url": "https://maddox.games/db/html/papastacomia/index.html?school=1"
+  },
+  {
+    "name": "Papa's Wingeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/papas-wingeria.webp",
+    "url": "https://maddox.games/db2/2024/flash/papas-wingeria/index.html?school=1"
+  },
+  {
+    "name": "Papa'szeria",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/icecream.webp",
+    "url": "https://maddox.games/db/html/papasfreezeria/index.html?school=1"
+  },
+  {
+    "name": "Paper Minecraft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Paper-Minecraft.jpg",
+    "url": "https://maddox.games/db2/2025/scratch/paper-minecraft-scratch/index.html?school=1"
+  },
+  {
+    "name": "Paper Planets",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/paper-planets.webp",
+    "url": "https://maddox.games/db2/2023/unity3/paper-planets/index.html?school=1"
+  },
+  {
+    "name": "Paw Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Paw-Clicker.webp",
+    "url": "https://maddox.games/db2/2025/construct/331/paw-clicker/index.html?school=1"
+  },
+  {
+    "name": "Penalty Challenge",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/penalty-challenge-512.jpg",
+    "url": "https://maddox.games/db2/2023/code/penalty-challenge/index.html?school=1"
+  },
+  {
+    "name": "Penalty King",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/penalty-king.webp",
+    "url": "https://maddox.games/db2/2024/q2/penalty-king/index.html?school=1"
+  },
+  {
+    "name": "Pixel Path",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/pixel-path.webp",
+    "url": "https://maddox.games/db/html/pixel_path/index.html?school=1"
+  },
+  {
+    "name": "Pixelmon Town",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/pixelmon-town-game-512.webp",
+    "url": "https://maddox.games/db2/2025/html/pixelmon-town/index.html?school=1"
+  },
+  {
+    "name": "Pizza Party",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/pizzaparty.webp",
+    "url": "https://maddox.games/db/html/pizza_party/index.html?school=1"
+  },
+  {
+    "name": "Pizza Tower",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/pizza-tower.jpg",
+    "url": "https://maddox.games/db/html/pizza_tower/index.html?school=1"
+  },
+  {
+    "name": "Plants vs Brainrots",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/plants-vs-brainrots.jpg",
+    "url": "https://maddox.games/db/html/plants_vs_brainrots/index.html?school=1"
+  },
+  {
+    "name": "Plants vs Zombies",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/pvz.webp",
+    "url": "https://maddox.games/db/html/pvz/index.html?school=1"
+  },
+  {
+    "name": "Plants vs Zombies Hybrid Mod",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/pvz_hybrid_story_mod/index.html?school=1"
+  },
+  {
+    "name": "Playground",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/playground-latest-version.jpg",
+    "url": "https://maddox.games/db/html/playground_latest_version/index.html?school=1"
+  },
+  {
+    "name": "Pocket Champions",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/pocket-champions.jpg",
+    "url": "https://maddox.games/db/html/pocket_champions/index.html?school=1"
+  },
+  {
+    "name": "Pokemon Emerald",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/pokemon-emerald.jpg",
+    "url": "https://maddox05.github.io/gba_emu/launcher.html#pokemonemerald?school=1"
+  },
+  {
+    "name": "Police Chase Drifter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Police-Chase-Drifter-Online.jpg",
+    "url": "https://maddox.games/db2/2021/3/police-chase-drifter/index.html?school=1"
+  },
+  {
+    "name": "Poop Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Poop-Clicker.jpg",
+    "url": "https://maddox.games/db2/2024/construct/292/poop-clicker/index.html?school=1"
+  },
+  {
+    "name": "Poppy Playtime",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/poppy.webp",
+    "url": "https://maddox.games/db2/2026/more/poppy-playtime/index.html?school=1"
+  },
+  {
+    "name": "Portal",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/portal.webp",
+    "url": "https://maddox.games/db/html/portal_tfv/index.html?school=1"
+  },
+  {
+    "name": "Potty Racers 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/potty-racers-2.jpg",
+    "url": "https://maddox.games/db/html/pottyracers2/index.html?school=1"
+  },
+  {
+    "name": "Powerslide Kart Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Powerslide-Kart-Simulator.jpg",
+    "url": "https://maddox.games/db2/2022/unity3/powerslide-kart-simulator/index.html?school=1"
+  },
+  {
+    "name": "President Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/pres_sim.webp",
+    "url": "https://maddox.games/db/html/president_simulator/index.html?school=1"
+  },
+  {
+    "name": "Race Survival Arena King",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/race-survival-arena-king.jpg",
+    "url": "https://maddox.games/db/html/race_survival_arena_king/index.html?school=1"
+  },
+  {
+    "name": "Raft Wars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/rw1.webp",
+    "url": "https://maddox.games/db/html/raftwars/index.html?school=1"
+  },
+  {
+    "name": "Raft Wars 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/rw2.webp",
+    "url": "https://maddox.games/db/html/raftwars2/index.html?school=1"
+  },
+  {
+    "name": "Ragdoll Archers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ragdoll-archers.jpg",
+    "url": "https://maddox.games/db/html/ragdoll_archers/index.html?school=1"
+  },
+  {
+    "name": "Ragdoll Hit",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ragdoll-hit.jpg",
+    "url": "https://maddox.games/db/html/ragdoll_hit/index.html?school=1"
+  },
+  {
+    "name": "Rainbow Friends Return",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/rainbow-friends-return.jpg",
+    "url": "https://maddox.games/db/html/rainbow_friends_return/index.html?school=1"
+  },
+  {
+    "name": "Rally Point",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/rallypoint.webp",
+    "url": "https://maddox.games/db/html/rally_point/index.html?school=1"
+  },
+  {
+    "name": "Real Flight Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Real-Flight-Simulator-2.jpg",
+    "url": "https://maddox.games/db2/2023/unity2/real-flight-simulator/index.html?school=1"
+  },
+  {
+    "name": "Red Ball 4",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/red-ball-4.jpg",
+    "url": "https://maddox.games/db/html/redball_4/index.html?school=1"
+  },
+  {
+    "name": "Retro Bowl",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/retro_bowl_icon.webp",
+    "url": "https://maddox.games/db/html/retro_bowl/index.html?school=1"
+  },
+  {
+    "name": "Riddle School",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img3/riddle-school.webp",
+    "url": "https://maddox.games/db2/2025/flash/riddle-school/index.html?school=1"
+  },
+  {
+    "name": "Rocket Hero Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/rocket-hero-clicker.webp",
+    "url": "https://maddox.games/db2/2025/unity4/rocket-hero-clicker/index.html?school=1"
+  },
+  {
+    "name": "Rodeo Stampede",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/rodeo-stampede.webp",
+    "url": "https://maddox.games/db/html/rodeo_stampede/index.html?school=1"
+  },
+  {
+    "name": "Rogue Soul 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/rogue-soul-2-512.webp",
+    "url": "https://maddox.games/db2/2024/flash/rogue-soul-2/index.html?school=1"
+  },
+  {
+    "name": "Rooftop Duel",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Rooftop-Duel-Online.jpg",
+    "url": "https://maddox.games/db2/2025/construct/213/rooftop-duel/index.html?school=1"
+  },
+  {
+    "name": "Rooftop Snipers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/rooftop.webp",
+    "url": "https://maddox.games/db/html/rooftop_snipers/index.html?school=1"
+  },
+  {
+    "name": "Run 1",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/run-1-game.webp",
+    "url": "https://maddox.games/db2/2024/flash/run-1/index.html?school=1"
+  },
+  {
+    "name": "Run 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/run-freezenova.webp",
+    "url": "https://maddox.games/db2/2026/unity/run-3/index.html?school=1"
+  },
+  {
+    "name": "Run 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/run3.webp",
+    "url": "https://maddox.games/db/html/run3/index.html?school=1"
+  },
+  {
+    "name": "Run 3 Space",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Run-3-Space.jpg",
+    "url": "https://maddox.games/db2/2023/construct/192/run-3-space/index.html?school=1"
+  },
+  {
+    "name": "Secret Sniper Agent",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Secret-Sniper-Agent.jpg",
+    "url": "https://maddox.games/db2/2022/construct/129/secret-sniper-agent/index.html?school=1"
+  },
+  {
+    "name": "ShellShock",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/shell-shockers.webp",
+    "url": "https://mathlete.pages.dev/?school=1"
+  },
+  {
+    "name": "Siegius",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/siegius-512.jpg",
+    "url": "https://maddox.games/db2/2024/flash/siegius/index.html?school=1"
+  },
+  {
+    "name": "Simple Loot Idle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/simple-loot-idle.jpg",
+    "url": "https://maddox.games/db2/2024/gm/games3/simple-loot-idle/index.html?school=1"
+  },
+  {
+    "name": "Simply Up",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/simply-up.jpg",
+    "url": "https://maddox.games/db/html/simply_up/index.html?school=1"
+  },
+  {
+    "name": "Slime Rush TD",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/slime-rush-td.jpg",
+    "url": "https://maddox.games/db/html/slime_rush_td/index.html?school=1"
+  },
+  {
+    "name": "Smash Karts",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/smashkarts.webp",
+    "url": "https://maddox.games/db/html/smash_karts/index.html?school=1"
+  },
+  {
+    "name": "Snake",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/snake.jpg",
+    "url": "https://maddox.games/db2/2024/phaser/snake/index.html?school=1"
+  },
+  {
+    "name": "Snake Wars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Snake-Wars-Free-Game.jpg",
+    "url": "https://maddox.games/db2/2024/unity/snake-wars/index.html?school=1"
+  },
+  {
+    "name": "Snek.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/snek-io.webp",
+    "url": "https://maddox.games/db2/2026/more/snek-io/index.html?school=1"
+  },
+  {
+    "name": "Snow Rider 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/snowrider3d.webp",
+    "url": "https://maddox.games/db/html/snow_rider_3d/index.html?school=1"
+  },
+  {
+    "name": "Soccer Random",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/soccer_random/index.html?school=1"
+  },
+  {
+    "name": "Soccer Random Pro",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/soccer-random-pro.jpg",
+    "url": "https://maddox.games/db2/2024/construct/303/soccer-random-pro/index.html?school=1"
+  },
+  {
+    "name": "Solar Smash",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/solar_smash/index.html?school=1"
+  },
+  {
+    "name": "Solitaire Adventure",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Solitaire-Adventure-Tripeaks.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/solitaire-adventure/index.html?school=1"
+  },
+  {
+    "name": "Soul Essence Adventure",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Soul-Essence-Adventure.jpg",
+    "url": "https://maddox.games/db2/2022/unity2/soul-essence-adventure/index.html?school=1"
+  },
+  {
+    "name": "Spacebar Clicker",
+    "img": "sj.png",
+    "url": "https://maddox.games/db2/2024/more/spacebar-clicker/index.html?school=1"
+  },
+  {
+    "name": "Spartahoppers",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/spartahoppers.webp",
+    "url": "https://maddox.games/db2/2025/construct/227/spartahoppers/index.html?school=1"
+  },
+  {
+    "name": "Speedrun Parkour",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Speedrun-Parkour.jpg",
+    "url": "https://maddox.games/db2/2022/construct/145/speedrun-parkour/index.html?school=1"
+  },
+  {
+    "name": "Spider Dude Parkour",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/spider-dude-parkour.jpg",
+    "url": "https://maddox.games/db/html/spider_dude_parkour/index.html?school=1"
+  },
+  {
+    "name": "Spiral Roll",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/spiralroll.webp",
+    "url": "https://maddox.games/db/html/spiral_roll/index.html?school=1"
+  },
+  {
+    "name": "Sprunki",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Sprunki.jpg",
+    "url": "https://maddox.games/db2/2024/more2/sprunki/index.html?school=1"
+  },
+  {
+    "name": "Squad Shooter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/squad-shooter-512.webp",
+    "url": "https://maddox.games/db2/2024/unity2/squad-shooter/index.html?school=1"
+  },
+  {
+    "name": "Stack Fire Ball",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Stack-Fire-Ball-Game.jpg",
+    "url": "https://maddox.games/db2/2021/unity/stack-fire-ball/index.html?school=1"
+  },
+  {
+    "name": "Staggering Beauty",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/staggering-beauty.jpg",
+    "url": "https://maddox.games/db/html/staggering_beauty/index.html?school=1"
+  },
+  {
+    "name": "State.io Wars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/State-io-Wars.jpg",
+    "url": "https://maddox.games/db2/2024/construct/233/state-io-wars/index.html?school=1"
+  },
+  {
+    "name": "Steal A Brainrot",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/steal-a-brainrot.jpg",
+    "url": "https://maddox.games/db/html/steal_a_brainrot_2/index.html?school=1"
+  },
+  {
+    "name": "Steal A Brainrot Temu Version",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/steal-a-brainrot-temu-version.jpg",
+    "url": "https://maddox.games/db/html/steal_a_brainrot/index.html?school=1"
+  },
+  {
+    "name": "Steal Brainrot Duel",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/steal-brainrot-duel-2.webp",
+    "url": "https://maddox.games/db2/2025/rhm2/steal-brainrot-duel/index.html?school=1"
+  },
+  {
+    "name": "Steal Brainrot Heist",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/steal-brainrot-heist-2.webp",
+    "url": "https://maddox.games/db2/2026/unity/steal-brainrot-heist/index.html?school=1"
+  },
+  {
+    "name": "Stealing The Diamond",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/stealdiamond.webp",
+    "url": "https://maddox.games/db/html/stealing_the_diamond/index.html?school=1"
+  },
+  {
+    "name": "Stick Battle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/stick-battle-unblocked.jpg",
+    "url": "https://maddox.games/db2/2024/code/7/stick-battle/index.html?school=1"
+  },
+  {
+    "name": "Stick Guys Defense",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Stick-Guys-Defense.jpg",
+    "url": "https://maddox.games/db2/2022/unity3/stick-guys-defense/index.html?school=1"
+  },
+  {
+    "name": "Stickman Destruction",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Stickman-Destruction.jpg",
+    "url": "https://maddox.games/db2/2021/unity3/stickman-destruction/index.html?school=1"
+  },
+  {
+    "name": "Stickman GTA City",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/stickman-gta-city-free.jpg",
+    "url": "https://maddox.games/db2/2024/unity3/stickman-gta-city/index.html?school=1"
+  },
+  {
+    "name": "Stickman Parkour",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/stickman-parkour.webp",
+    "url": "https://maddox.games/db/html/stickman_parkour/index.html?school=1"
+  },
+  {
+    "name": "Stickman Peacekeeper",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/stickmanpeace.webp",
+    "url": "https://maddox.games/db/html/stickman_peacekeeper/index.html?school=1"
+  },
+  {
+    "name": "Storm City Mafia",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Storm-City-Mafia.jpg",
+    "url": "https://maddox.games/db2/2022/unity/storm-city-mafia/index.html?school=1"
+  },
+  {
+    "name": "Storm The House",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/stormthehouse.webp",
+    "url": "https://maddox.games/db/html/stormthehouse/index.html?school=1"
+  },
+  {
+    "name": "Storm The House 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/storm-the-house-2.webp",
+    "url": "https://maddox.games/db/html/storm_the_house_2/index.html?school=1"
+  },
+  {
+    "name": "Storm The House 3",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/storm-house-3.webp",
+    "url": "https://maddox.games/db/html/stormthehouse3/index.html?school=1"
+  },
+  {
+    "name": "Street Fighter",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/street-fighter.webp",
+    "url": "https://maddox.games/db/html/street_fighter/index.html?school=1"
+  },
+  {
+    "name": "Stunt Rider",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/stunt-rider.webp",
+    "url": "https://maddox.games/db2/2024/unity/stunt-rider/index.html?school=1"
+  },
+  {
+    "name": "Stunt Simulator 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Stunt-simulator-2.jpg",
+    "url": "https://maddox.games/db2/2021/unity3/stunt-simulator-2/index.html?school=1"
+  },
+  {
+    "name": "SU Battle Royale",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Su-Battle-Royale.jpg",
+    "url": "https://maddox.games/db2/2024/su-battle-royale/index.html?school=1"
+  },
+  {
+    "name": "Subway Idle 3D",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Subway-Idle.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/subway-idle-3d/index.html?school=1"
+  },
+  {
+    "name": "Subway Runner",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/subway-runner-barcelona.jpg",
+    "url": "https://maddox.games/db2/2022/unity/bus-subway-runner/index.html?school=1"
+  },
+  {
+    "name": "Sudoku",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Sudoku.jpg",
+    "url": "https://maddox.games/db2/2025/html/sudoku/index.html?school=1"
+  },
+  {
+    "name": "Super Car Driving",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/supercardriving-2.jpg",
+    "url": "https://maddox.games/db2/2024/unity2/super-car-driving/index.html?school=1"
+  },
+  {
+    "name": "Super Liquid Soccer",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/super_liquid_soccer/index.html?school=1"
+  },
+  {
+    "name": "Super Mario 64",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/supermario64.webp",
+    "url": "https://maddox.games/db/html/super_mario_64/index.html?school=1"
+  },
+  {
+    "name": "Super Mario Bros",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/super_mario_bros_old.webp",
+    "url": "https://maddox.games/db/html/super_mario_bros/index.html?school=1"
+  },
+  {
+    "name": "Super Mario Defense",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/super-mario-defense.jpg",
+    "url": "https://maddox.games/db/html/super_mario_defense/index.html?school=1"
+  },
+  {
+    "name": "Super Mini Racing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Super-Mini-Racing.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/super-mini-racing/index.html?school=1"
+  },
+  {
+    "name": "Super Smash Flash",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/smashflash2.webp",
+    "url": "https://maddox.games/db/html/supersmashflash/index.html?school=1"
+  },
+  {
+    "name": "Super Star Car",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/superstarcar.webp",
+    "url": "https://maddox.games/db/html/super_star_car/index.html?school=1"
+  },
+  {
+    "name": "Super Stickman Golf",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/super-stickman-golf.jpg",
+    "url": "https://maddox.games/db/html/super_stickman_golf/index.html?school=1"
+  },
+  {
+    "name": "Supercars Drift",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/SuperCars-Drift.jpg",
+    "url": "https://maddox.games/db2/2023/unity3/supercars-drift/index.html?school=1"
+  },
+  {
+    "name": "Supermarket Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Supermarket-Simulator-Online.jpg",
+    "url": "https://maddox.games/db2/2025/unity/supermarket-simulator/index.html?school=1"
+  },
+  {
+    "name": "Survival Craft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Survival-Craft-Game.jpg",
+    "url": "https://maddox.games/db2/2022/unity/survival-craft/index.html?school=1"
+  },
+  {
+    "name": "Survival Island",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Survival-Island.jpg",
+    "url": "https://maddox.games/db2/2024/unity2/survival-island/index.html?school=1"
+  },
+  {
+    "name": "Swords And Sandals 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/sas2.webp",
+    "url": "https://maddox.games/db/html/swordsandsandals2/index.html?school=1"
+  },
+  {
+    "name": "Swords And Souls",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/swords-and-souls-512.webp",
+    "url": "https://maddox.games/db2/2024/flash/swords-and-souls/index.html?school=1"
+  },
+  {
+    "name": "Tank Arena",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Tank-Arena-Online.jpg",
+    "url": "https://maddox.games/db2/2025/construct/293/tank-arena/index.html?school=1"
+  },
+  {
+    "name": "Tanuki Sunset",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/tanuki.webp",
+    "url": "https://maddox.games/db/html/tanuki_sunset/index.html?school=1"
+  },
+  {
+    "name": "Tap Tap Shots",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/TapTap-Shots.jpg",
+    "url": "https://maddox.games/db2/2023/q/1/tap-tap-shots/index.html?school=1"
+  },
+  {
+    "name": "Temple Run 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/templerun2.webp",
+    "url": "https://maddox.games/db/html/temple_run_2/index.html?school=1"
+  },
+  {
+    "name": "Tennis Masters",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Tennis-Masters-2.jpg",
+    "url": "https://maddox.games/db2/2024/gm/tennis-masters/index.html?school=1"
+  },
+  {
+    "name": "Tetris",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/tetris.webp",
+    "url": "https://scratch.mit.edu/projects/451773001/embed?school=1"
+  },
+  {
+    "name": "The Binding Of Isaac",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/thebindingofisaac/index.html?school=1"
+  },
+  {
+    "name": "The Farmer",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/The-Farmer.jpg",
+    "url": "https://maddox.games/db2/2022/unity/the-farmer/index.html?school=1"
+  },
+  {
+    "name": "The Farmer Craft",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/The-Farmer-Craft.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/the-farmer-craft/index.html?school=1"
+  },
+  {
+    "name": "The Impossible Quiz",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/impossible.webp",
+    "url": "https://maddox.games/db/html/theimpossiblequiz/index.html?school=1"
+  },
+  {
+    "name": "The Impossible Quiz 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/impossible2.webp",
+    "url": "https://maddox.games/db/html/theimpossiblequiz2/index.html?school=1"
+  },
+  {
+    "name": "The World's Hardest",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/hardgame1.webp",
+    "url": "https://maddox.games/db/html/theworldshardestgame/index.html?school=1"
+  },
+  {
+    "name": "The World's Hardest 2",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/theworldshardestgame2/index.html?school=1"
+  },
+  {
+    "name": "Thorns And Balloons",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/thorns-and-ballons.jpg",
+    "url": "https://maddox.games/db/html/thorns_and_ballons/index.html?school=1"
+  },
+  {
+    "name": "Tile Match",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/tile-match.jpg",
+    "url": "https://maddox.games/db2/2025/unity/tile-match/index.html?school=1"
+  },
+  {
+    "name": "Time Shooter 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Time-Shooter-2.jpg",
+    "url": "https://maddox.games/db/html/time_shooter_2/index.html?school=1"
+  },
+  {
+    "name": "Time Shooter SWAT",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/time-shooter-swat.jpg",
+    "url": "https://maddox.games/db/html/time_shooter_swat/index.html?school=1"
+  },
+  {
+    "name": "Tiny Castle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/tinycastle.webp",
+    "url": "https://maddox.games/db/html/tinycastle/index.html?school=1"
+  },
+  {
+    "name": "Tractor Farming Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Tractor-Farming-Simulator.jpg",
+    "url": "https://maddox.games/db2/2022/unity/tractor-farming-simulator/index.html?school=1"
+  },
+  {
+    "name": "Traffic Jam",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Traffic-Jam.jpg",
+    "url": "https://maddox.games/db2/2025/more/traffic-jam/index.html?school=1"
+  },
+  {
+    "name": "Train Racing",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Train-Racing-Game.jpg",
+    "url": "https://maddox.games/db2/2022/construct/120/train-racing/index.html?school=1"
+  },
+  {
+    "name": "Truck Loader 4",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/truckloader4.webp",
+    "url": "https://maddox.games/db/html/truck_loader_4/index.html?school=1"
+  },
+  {
+    "name": "Tunnel Rush 2",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/tunnelrush.webp",
+    "url": "https://maddox.games/db/html/tunnel_rush_2/index.html?school=1"
+  },
+  {
+    "name": "Turn Turn",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/turn-turn.webp",
+    "url": "https://maddox.games/db/html/turnturn/index.html?school=1"
+  },
+  {
+    "name": "Twerk Race 3D",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/twerk_race_3d/index.html?school=1"
+  },
+  {
+    "name": "Ultimate Moto",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ultimate-moto.jpg",
+    "url": "https://maddox.games/db2/2021/2/ultimate-moto/index.html?school=1"
+  },
+  {
+    "name": "ULTRAKILL",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/ultrakill.jpg",
+    "url": "https://maddox.games/db/html/ultrakill/index.html?school=1"
+  },
+  {
+    "name": "Undertale Yellow",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Undertale-Yellow.webp",
+    "url": "https://maddox.games/db/html/undertale_yellow/index.html?school=1"
+  },
+  {
+    "name": "UNO",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/uno.webp",
+    "url": "https://maddox.games/db/html/uno/index.html?school=1"
+  },
+  {
+    "name": "UNO",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Uno-Online-2.jpg",
+    "url": "https://maddox.games/db2/2022/unity4/uno-online/index.html?school=1"
+  },
+  {
+    "name": "Vapor Trails",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/vapor-trails.jpg",
+    "url": "https://maddox.games/db/html/vapor_trails/index.html?school=1"
+  },
+  {
+    "name": "Veggie Survivors",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/veggie-survivors-freezenova.webp",
+    "url": "https://maddox.games/db2/2025/unity3/veggie-survivors/index.html?school=1"
+  },
+  {
+    "name": "Vex 8",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/vex-8.webp",
+    "url": "https://maddox.games/db/html/vex_8/index.html?school=1"
+  },
+  {
+    "name": "Volley Random",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/volley-random.jpg",
+    "url": "https://maddox.games/db/html/volley_random/index.html?school=1"
+  },
+  {
+    "name": "Voxel World",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/voxel-world.jpg",
+    "url": "https://maddox.games/db2/2025/unity/voxel-world/index.html?school=1"
+  },
+  {
+    "name": "War Of Ships.io",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/War-of-Ships-io.jpg",
+    "url": "https://maddox.games/db2/2022/unity3/war-of-ships-io/index.html?school=1"
+  },
+  {
+    "name": "War Simulator",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/War-Simulator.jpg",
+    "url": "https://maddox.games/db2/2021/unity2/war-simulator/index.html?school=1"
+  },
+  {
+    "name": "Warstrike",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/WarStrike-Online.jpg",
+    "url": "https://maddox.games/db2/2024/unity3/warstrike/index.html?school=1"
+  },
+  {
+    "name": "Watermelon",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Watermelon-Game-Online.jpg",
+    "url": "https://maddox.games/db2/2025/construct/321/watermelon-game/index.html?school=1"
+  },
+  {
+    "name": "We Become What We Behold",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/we-become-what-we-behold-game.webp",
+    "url": "https://maddox.games/db2/2024/more/we-become-what-we-behold/index.html?school=1"
+  },
+  {
+    "name": "Wheelie Bike",
+    "img": "sj.png",
+    "url": "https://maddox.games/db/html/wheelie_bike/index.html?school=1"
+  },
+  {
+    "name": "Where's My Pizza",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img2/wheres-my-pizza-game.webp",
+    "url": "https://maddox.games/db2/2024/wix/wheres-my-pizza/index.html?school=1"
+  },
+  {
+    "name": "Where's My Water",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/wheresmywater.webp",
+    "url": "https://maddox.games/db/html/where_is_the_water/index.html?school=1"
+  },
+  {
+    "name": "Wordle",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/wordle.jpg",
+    "url": "https://maddox.games/db2/2025/html/wordle/index.html?school=1"
+  },
+  {
+    "name": "Wrestle Bros",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/wheelie-bike.jpg",
+    "url": "https://maddox.games/db/html/wrestle_bros/index.html?school=1"
+  },
+  {
+    "name": "Xmas Cookie Clicker",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Xmas-Cookie-Clicker.jpg",
+    "url": "https://maddox.games/db2/2023/construct/288/xmas-cookie-clicker/index.html?school=1"
+  },
+  {
+    "name": "Xtreme Paintball Wars",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/Xtreme-Paintball-Wars.jpg",
+    "url": "https://maddox.games/db2/2023/unity2/xtreme-paintball-wars/index.html?school=1"
+  },
+  {
+    "name": "xx142-b2.exe",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/xx142-b2.webp",
+    "url": "https://maddox.games/db/html/xx142-b2.exe/index.html?school=1"
+  },
+  {
+    "name": "Yeti Sensation",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/yetidash.webp",
+    "url": "https://maddox.games/db/html/yeti_sensation/gabe.html?school=1"
+  },
+  {
+    "name": "Zombie Derby Pixel Survival",
+    "img": "https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/zombie-derby-pixel-survival.jpg",
+    "url": "https://maddox.games/db/html/zombie_derby_pixel_survival/index.html?school=1"
   }
 ]

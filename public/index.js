@@ -12,7 +12,7 @@ const searchEngine = document.getElementById("sj-search-engine");
 const btnHome      = document.getElementById("nav-home"); 
 
 // ==========================================
-// 2. V1.3.1 AD ENGINE (The Ghost Observer)
+// 2. V1.4 AD ENGINE (The Ghost Observer)
 // ==========================================
 const DIRECT_LINK_URL = 'https://hospitalforgery.com/kycrzvi3bw?key=3fb92c421dc14fda854989cb0df7a563'; 
 const COOLDOWN_MS = 50 * 1000; 
@@ -20,9 +20,8 @@ let isAdLocked = false;
 let idleTimer;
 
 document.addEventListener('click', (e) => {
-    // 1. SAFE ZONES: Ignore specific UI elements and the Premium Support Button
-    if (e.target.closest('.support-btn-premium, #close-update-btn, #anti-adblock-overlay, #sleep-overlay, .adblock-modal, .update-content, #proxy-ad-banner-top, #proxy-ad-banner-bottom, .ad-content')) {
-        console.log("[Ad Engine] Safe Zone Intercept: Ad suppressed.");
+    // 1. SAFE ZONES: Never fire popunder on interactive elements
+    if (e.target.closest('.support-btn-premium, #close-update-btn, #anti-adblock-overlay, #sleep-overlay, .adblock-modal, .update-content, #proxy-ad-banner-top, #proxy-ad-banner-bottom, .ad-content, #sj-form, .launch-btn, .premium-game-card, #browser-url-form, .bar-search-btn, .cherri-card, .nav-item, .nav-controls, .floating-exit-btn, .legal-back-btn, .theme-btn, .stealth-pill-btn, .stealth-menu, .collapse-btn, .mobile-toggle, .browser-tab, .new-tab-btn, .tab-close')) {
         return;
     }
 
@@ -173,7 +172,7 @@ function runAdblockCheck() {
 }
 
 // ==========================================
-// 4. OS NAVIGATION & CLOAKING
+// 4. OS NAVIGATION & CLOAKING (Game State Fix included)
 // ==========================================
 const navButtons = document.querySelectorAll('.nav-item');
 const viewSections = document.querySelectorAll('.view-section');
@@ -186,8 +185,11 @@ function switchView(targetId) {
 
     viewSections.forEach(view => view.classList.add('hidden'));
     
+    // For legal sub-pages, highlight Settings in nav
+    const navTarget = ['view-privacy', 'view-tos', 'view-dmca'].includes(targetId) ? 'view-settings' : targetId;
+    
     navButtons.forEach(b => {
-        if(b.getAttribute('data-target') === targetId) {
+        if(b.getAttribute('data-target') === navTarget) {
             b.classList.add('active');
         } else {
             b.classList.remove('active');
@@ -217,7 +219,7 @@ navButtons.forEach(btn => {
 });
 
 window.handleCloak = function(type) {
-    let title = "Chroblox | Workspace v1.3";
+    let title = "Chroblox | Workspace v1.4";
     let icon = "favicon.ico";
 
     if (type === 'drive') {
@@ -365,45 +367,65 @@ const connection = window.BareMux ? new window.BareMux.BareMuxConnection("/barem
 // 8. CORE LAUNCH GAME LOGIC
 // ==========================================
 window.launchGame = async function(inputValue) {
-    try { if(window.registerSW) await registerSW(); } catch (err) { return; }
+    try {
+        if(window.registerSW) {
+            await Promise.race([
+                registerSW(),
+                new Promise((_, rej) => setTimeout(() => rej('SW timeout'), 5000))
+            ]);
+        }
+    } catch (err) { console.warn("[Game] SW init:", err); }
 
-    const url = window.search ? search(inputValue, searchEngine.value) : inputValue;
-    const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
-    if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
-        await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
-    }
+    try {
+        const url = window.search ? search(inputValue, searchEngine.value) : inputValue;
+        const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+        if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
+            await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
+        }
 
-    isGameRunning = true;
-    switchView("view-proxy");
+        isGameRunning = true;
+        switchView("view-proxy");
 
-    const loader = document.getElementById("proxy-loader");
-    if(loader) loader.classList.remove("hidden");
+        // Close mobile sidebar if open
+        if (window.innerWidth <= 850) {
+            const sb = document.getElementById('main-sidebar');
+            if (sb) sb.classList.remove('open');
+        }
 
-    if (currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
-        currentFrame.frame.parentNode.removeChild(currentFrame.frame);
-    }
+        const loader = document.getElementById("proxy-loader");
+        if(loader) loader.classList.remove("hidden");
 
-    currentFrame = window.scramjet.createFrame();
-    currentFrame.frame.id = "sj-frame";
-    currentFrame.frame.setAttribute("allow", "fullscreen *; pointer-lock *; keyboard-map *; autoplay *;");
-    currentFrame.frame.setAttribute("tabindex", "0");
+        if (currentFrame && currentFrame.frame && currentFrame.frame.parentNode) {
+            currentFrame.frame.parentNode.removeChild(currentFrame.frame);
+        }
 
-    currentFrame.frame.onload = () => {
-        if(loader) loader.classList.add("hidden");
-        try { currentFrame.frame.contentWindow.focus(); } catch(e) {}
-        currentFrame.frame.focus();
-    };
+        currentFrame = window.scramjet.createFrame();
+        currentFrame.frame.id = "sj-frame";
+        currentFrame.frame.setAttribute("allow", "fullscreen *; pointer-lock *; keyboard-map *; autoplay *;");
+        currentFrame.frame.setAttribute("tabindex", "0");
+        currentFrame.frame.style.touchAction = "auto";
 
-    const container = document.getElementById("proxy-frame-container");
-    container.appendChild(currentFrame.frame);
-    currentFrame.go(url);
-    
-    container.onmouseover = container.onclick = () => {
-        if(currentFrame && currentFrame.frame) {
+        currentFrame.frame.onload = () => {
+            if(loader) loader.classList.add("hidden");
             try { currentFrame.frame.contentWindow.focus(); } catch(e) {}
             currentFrame.frame.focus();
-        }
-    };
+        };
+
+        const container = document.getElementById("proxy-frame-container");
+        container.appendChild(currentFrame.frame);
+        currentFrame.go(url);
+        
+        const focusFrame = () => {
+            if(currentFrame && currentFrame.frame) {
+                try { currentFrame.frame.contentWindow.focus(); } catch(e) {}
+                currentFrame.frame.focus();
+            }
+        };
+        container.onmouseover = container.onclick = focusFrame;
+        container.ontouchstart = focusFrame;
+    } catch(err) {
+        console.error("[Game] Launch failed:", err);
+    }
 };
 
 if(btnHome) {
@@ -518,12 +540,17 @@ window.reloadBrowserTab = function() {
     if(tab && tab.frameObj) tab.frameObj.go(tab.url);
 };
 
-window.toggleFullscreen = function() {
-    const viewport = document.getElementById("browser-viewport");
-    if (!document.fullscreenElement) {
-        viewport.requestFullscreen().catch(err => {});
-    } else {
-        document.exitFullscreen();
+window.goBackBrowser = function() {
+    const tab = browserTabs.find(t => t.id === activeBrowserTabId);
+    if(tab && tab.domFrame) {
+        try { tab.domFrame.contentWindow.history.back(); } catch(e) {}
+    }
+};
+
+window.goForwardBrowser = function() {
+    const tab = browserTabs.find(t => t.id === activeBrowserTabId);
+    if(tab && tab.domFrame) {
+        try { tab.domFrame.contentWindow.history.forward(); } catch(e) {}
     }
 };
 
@@ -538,47 +565,58 @@ if(browserUrlForm) {
 }
 
 async function loadUrlInBrowserTab(id, rawInput) {
-    try { if(window.registerSW) await registerSW(); } catch (err) { console.error(err); }
+    try {
+        if(window.registerSW) {
+            await Promise.race([
+                registerSW(),
+                new Promise((_, rej) => setTimeout(() => rej('SW timeout'), 5000))
+            ]);
+        }
+    } catch (err) { console.warn("[Browser] SW init:", err); }
 
-    const url = window.search ? search(rawInput, searchEngine.value) : rawInput;
-    const tab = browserTabs.find(t => t.id === id);
-    if(!tab) return;
-    tab.url = url;
-    document.getElementById("browser-url-bar").value = url;
+    try {
+        const url = window.search ? search(rawInput, searchEngine.value) : rawInput;
+        const tab = browserTabs.find(t => t.id === id);
+        if(!tab) return;
+        tab.url = url;
+        document.getElementById("browser-url-bar").value = url;
 
-    const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
-    if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
-        await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
-    }
-    
-    if(!tab.frameObj) {
-        tab.frameObj = window.scramjet.createFrame();
-        tab.domFrame = tab.frameObj.frame;
-        tab.domFrame.className = "browser-iframe hidden";
-        document.getElementById("browser-viewport").appendChild(tab.domFrame);
+        const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+        if (connection && (await connection.getTransport()) !== "/libcurl/index.mjs") {
+            await connection.setTransport("/libcurl/index.mjs", [{ wisp: wispUrl }]);
+        }
         
-        tab.domFrame.onload = () => {
-            tab.tracker = setInterval(() => {
-                try {
-                    if(activeBrowserTabId !== tab.id) return; 
-                    const rawUrl = tab.domFrame.contentWindow.location.href;
-                    if(rawUrl && rawUrl !== "about:blank") {
-                        const prefix = "/scramjet/";
-                        const idx = rawUrl.indexOf(prefix);
-                        if(idx !== -1) {
-                            let decoded = decodeURIComponent(rawUrl.substring(idx + prefix.length));
-                            if(document.activeElement !== document.getElementById("browser-url-bar")) {
-                                document.getElementById("browser-url-bar").value = decoded;
+        if(!tab.frameObj) {
+            tab.frameObj = window.scramjet.createFrame();
+            tab.domFrame = tab.frameObj.frame;
+            tab.domFrame.className = "browser-iframe hidden";
+            document.getElementById("browser-viewport").appendChild(tab.domFrame);
+            
+            tab.domFrame.onload = () => {
+                tab.tracker = setInterval(() => {
+                    try {
+                        if(activeBrowserTabId !== tab.id) return; 
+                        const rawUrl = tab.domFrame.contentWindow.location.href;
+                        if(rawUrl && rawUrl !== "about:blank") {
+                            const prefix = "/scramjet/";
+                            const idx = rawUrl.indexOf(prefix);
+                            if(idx !== -1) {
+                                let decoded = decodeURIComponent(rawUrl.substring(idx + prefix.length));
+                                if(document.activeElement !== document.getElementById("browser-url-bar")) {
+                                    document.getElementById("browser-url-bar").value = decoded;
+                                }
                             }
                         }
-                    }
-                } catch(e) {}
-            }, 1000);
-        };
+                    } catch(e) {}
+                }, 1000);
+            };
+        }
+        
+        tab.frameObj.go(url);
+        renderBrowserTabs();
+    } catch(err) {
+        console.error("[Browser] Load failed:", err);
     }
-    
-    tab.frameObj.go(url);
-    renderBrowserTabs();
 }
 
 function renderBrowserTabs() {
@@ -823,11 +861,15 @@ function render() {
 }
 
 // ==========================================
-// 12. DYNAMIC GAME LOADER & SEARCH
+// 12. DYNAMIC GAME LOADER & SEARCH (Optimized)
 // ==========================================
+let _gamesCached = false;
+let _searchIndex = [];
+
 async function loadGameCatalog() {
     const grid = document.getElementById('games-grid');
     if (!grid) return;
+    if (_gamesCached) return;
 
     try {
         const response = await fetch('games.json?v=' + Date.now());
@@ -840,7 +882,9 @@ async function loadGameCatalog() {
         }
 
         grid.innerHTML = ''; 
+        _searchIndex = [];
 
+        const frag = document.createDocumentFragment();
         games.forEach(game => {
             const card = document.createElement('div');
             card.className = 'premium-game-card';
@@ -852,8 +896,11 @@ async function loadGameCatalog() {
                     <h3>${game.name}</h3>
                 </div>
             `;
-            grid.appendChild(card);
+            frag.appendChild(card);
+            _searchIndex.push({ lowerName: game.name.toLowerCase(), card });
         });
+        grid.appendChild(frag);
+        _gamesCached = true;
 
     } catch (err) {
         grid.innerHTML = `<p style="color:var(--ac); padding: 20px;">⚠️ Catalog Error: ${err.message}</p>`;
@@ -862,47 +909,48 @@ async function loadGameCatalog() {
 
 // Update Screen Check & Boot Logic
 document.addEventListener("DOMContentLoaded", async () => {
-    
-    // 1. LOAD UI FIRST (Prevents mobile freezing)
+    try {
+        if(window.registerSW) {
+            await Promise.race([
+                registerSW(),
+                new Promise((_, rej) => setTimeout(() => rej('SW timeout'), 5000))
+            ]);
+        }
+    } catch (err) { console.warn("SW boot:", err); }
+
     const savedTheme = localStorage.getItem("chroblox-theme") || "dark";
     setTheme(savedTheme);
     loadGameCatalog();
     handleViewBanners('view-launch');
     setTimeout(runAdblockCheck, 1200);
     
-    const seenUpdate = localStorage.getItem("chroblox-v1.3-seen");
+    const seenUpdate = localStorage.getItem("chroblox-v1.4-seen");
     if (!seenUpdate) {
         const updateOverlay = document.getElementById("update-overlay");
         if (updateOverlay) updateOverlay.classList.remove("hidden");
     }
 
     document.getElementById("close-update-btn")?.addEventListener("click", () => {
-        localStorage.setItem("chroblox-v1.3-seen", "true");
+        localStorage.setItem("chroblox-v1.4-seen", "true");
         document.getElementById("update-overlay").classList.add("hidden");
     });
-
-    // 2. BOOT PROXY LAST (In the background)
-    try { if(window.registerSW) await registerSW(); } catch (err) { console.error("SW Error:", err); }
 });
 
 const gameBtn = document.querySelector('[data-target="view-games"]');
 if (gameBtn) gameBtn.addEventListener('click', loadGameCatalog);
 
-// Search Bar Live Filtering
+// Search Bar Live Filtering (debounced + pre-indexed)
+let _searchTimer = null;
 const searchInput = document.getElementById('game-search-input');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.premium-game-card');
-        
-        cards.forEach(card => {
-            const title = card.querySelector('h3').innerText.toLowerCase();
-            if (title.includes(term)) {
-                card.style.display = 'flex'; 
-            } else {
-                card.style.display = 'none'; 
+        clearTimeout(_searchTimer);
+        _searchTimer = setTimeout(() => {
+            const term = e.target.value.toLowerCase();
+            for (let i = 0; i < _searchIndex.length; i++) {
+                _searchIndex[i].card.style.display = _searchIndex[i].lowerName.includes(term) ? 'flex' : 'none';
             }
-        });
+        }, 150);
     });
 }
 

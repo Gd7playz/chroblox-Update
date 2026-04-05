@@ -1,8 +1,15 @@
 "use strict";
 const stockSW = "./sw.js";
 
+/**
+ * List of hostnames that are allowed to run serviceworkers on http://
+ */
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
+/**
+ * Global util
+ * Used in 404.html and index.html
+ */
 async function registerSW() {
 	if (!navigator.serviceWorker) {
 		if (
@@ -19,13 +26,7 @@ async function registerSW() {
     // Wait for the proxy to be fully awake before continuing
     if (!navigator.serviceWorker.controller) {
         await new Promise((resolve) => {
-            // MOBILE BUG FIX: 500ms safety timeout so the app never freezes
-            const fallbackTimer = setTimeout(resolve, 500); 
-            
-            navigator.serviceWorker.addEventListener("controllerchange", () => {
-                clearTimeout(fallbackTimer);
-                resolve();
-            }, { once: true });
+            navigator.serviceWorker.addEventListener("controllerchange", resolve, { once: true });
         });
     }
 }
