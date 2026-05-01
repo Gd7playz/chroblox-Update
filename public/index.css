@@ -352,3 +352,2108 @@ body {
     .support-btn-premium { padding: 6px 12px 6px 8px; font-size: 0.85rem; }
     .click-badge { font-size: 0.7rem; padding: 2px 6px; }
 }
+/* ==========================================================
+   v1.5 LIQUID GLASS LAUNCH HUB
+   ========================================================== */
+
+:root {
+    --glass-blur: blur(22px) saturate(160%);
+    --glass-fill: rgba(255,255,255,0.045);
+    --glass-fill-h: rgba(255,255,255,0.085);
+    --glass-fill-strong: rgba(255,255,255,0.07);
+    --glass-bord: rgba(255,255,255,0.09);
+    --glass-bord-h: rgba(255,255,255,0.18);
+    --glass-sheen: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 38%, rgba(255,255,255,0.025) 100%);
+}
+[data-mode="light"] {
+    --glass-fill: rgba(255,255,255,0.5);
+    --glass-fill-h: rgba(255,255,255,0.7);
+    --glass-fill-strong: rgba(255,255,255,0.6);
+    --glass-bord: rgba(0,0,0,0.08);
+    --glass-bord-h: rgba(0,0,0,0.18);
+}
+
+/* SOON pip on sidebar nav items */
+.soon-pip {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-size: 0.55rem;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 8px;
+    margin-left: auto;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
+}
+.sidebar.collapsed .soon-pip { display: none; }
+
+/* ──────────────────────────────────────────
+   LIQUID LAUNCH ROOT
+   ────────────────────────────────────────── */
+#view-launch.liquid-launch {
+    padding: 0 !important;
+    overflow: hidden;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    height: 100%;
+    width: 100%;
+    gap: 0;
+}
+
+.launch-main {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+}
+
+/* ──────────────────────────────────────────
+   CORE HUB (centered: title + search + dock)
+   ────────────────────────────────────────── */
+.core-hub {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 780px;
+    padding: 0 30px;
+    text-align: center;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hub-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+    font-weight: 900;
+    letter-spacing: -2.5px;
+    line-height: 1;
+    margin: 0 0 26px 0;
+    color: var(--text);
+}
+.hub-title .ac { color: var(--ac); }
+.version-tag {
+    display: inline-block;
+    margin-left: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    vertical-align: middle;
+    padding: 5px 12px;
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-bord);
+    border-radius: 999px;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.hub-search {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+.hub-search input[type="text"] {
+    flex: 1;
+    background: var(--glass-fill);
+    background-image: var(--glass-sheen);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-bord-h);
+    color: var(--text);
+    padding: 18px 24px;
+    border-radius: 18px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.25s;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 6px 22px rgba(0,0,0,0.2);
+}
+.hub-search input[type="text"]:focus {
+    border-color: var(--ac);
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.hub-search input::placeholder { color: var(--text-muted); }
+.hub-search .launch-btn {
+    background: var(--ac);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 0 32px;
+    border-radius: 18px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    transition: 0.2s;
+    box-shadow: 0 8px 24px rgba(255, 71, 87, 0.3);
+}
+.hub-search .launch-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 12px 30px rgba(255, 71, 87, 0.45);
+}
+
+/* Center dock — 6 apps */
+.hub-dock {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* ──────────────────────────────────────────
+   APP CARD — shared by dock + floating
+   Interactive: brand tint + glow + lift
+   ────────────────────────────────────────── */
+.app-card {
+    width: 110px;
+    height: 110px;
+    border-radius: 24px;
+    background: var(--glass-fill);
+    background-image: var(--glass-sheen);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-bord);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    color: var(--text);
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+/* brand-color radial tint underneath the glass — keys off --brand */
+.app-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 110%, var(--brand, transparent), transparent 65%);
+    opacity: 0.35;
+    transition: opacity 0.35s;
+    pointer-events: none;
+}
+/* top sheen highlight (the "wet glass" feel) */
+.app-card::after {
+    content: '';
+    position: absolute;
+    top: 1px; left: 1px; right: 1px;
+    height: 50%;
+    border-radius: 24px 24px 100% 100% / 24px 24px 50% 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent);
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+.app-card:hover {
+    border-color: var(--brand, var(--ac));
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px var(--brand, var(--ac)),
+                0 0 30px var(--brand, rgba(255, 71, 87, 0.4));
+    z-index: 60;
+}
+.app-card:hover::before { opacity: 0.7; }
+.app-card:hover::after { opacity: 1; }
+.app-card .app-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.25, 1.5, 0.25, 1);
+    position: relative;
+    z-index: 2;
+}
+.app-card:hover .app-icon {
+    transform: scale(1.18) rotate(-3deg);
+}
+.app-card .app-icon svg { width: 100%; height: 100%; }
+.app-card .app-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--text);
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.1px;
+}
+
+/* ──────────────────────────────────────────
+   FLOATING APPS — scattered safe zones
+   ────────────────────────────────────────── */
+.floatee {
+    position: absolute;
+    z-index: 10;
+}
+
+@keyframes levitate {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.lev-1 { animation: levitate 7s ease-in-out infinite; }
+.lev-2 { animation: levitate 8s ease-in-out infinite 1s reverse; }
+.lev-3 { animation: levitate 6.5s ease-in-out infinite 2s; }
+.lev-4 { animation: levitate 9s ease-in-out infinite 0.5s reverse; }
+.lev-5 { animation: levitate 7.5s ease-in-out infinite 1.5s; }
+.lev-6 { animation: levitate 8.2s ease-in-out infinite 0.8s; }
+.lev-7 { animation: levitate 7.8s ease-in-out infinite 2.2s reverse; }
+
+.floatee:hover { animation-play-state: paused; }
+
+/* Safe-zone positions (avoid title at ~38%/center, avoid huge cards at bottom corners) */
+.pos-tl  { top: 70px;       left: 4%; }      /* Netflix */
+.pos-tcl { top: 70px;       left: 26%; }     /* Reddit */
+.pos-tcr { top: 70px;       right: 26%; }    /* Twitch */
+.pos-tr  { top: 70px;       right: 4%; }     /* Quizlet */
+.pos-ml  { top: calc(50% - 55px); left: 3%; }   /* ChatGPT */
+.pos-mr  { top: calc(50% - 55px); right: 3%; }  /* Google Docs */
+.pos-bcl { bottom: 30%;     left: 22%; }     /* GitHub — moved well clear of title */
+
+/* ──────────────────────────────────────────
+   HUGE FEATURE CARDS — Game Vault + Movie Center
+   ────────────────────────────────────────── */
+.app-card.huge {
+    width: 220px;
+    height: 220px;
+    border-radius: 32px;
+    padding: 22px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    cursor: pointer;
+}
+.app-card.huge::after { display: none; }
+.app-card.huge .app-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.5px;
+    color: white;
+}
+.app-card.huge .app-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 0 14px 0;
+    font-weight: 500;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+.app-card.huge .btn-action {
+    background: var(--ac);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 71, 87, 0.35);
+    transition: 0.2s;
+}
+.app-card.huge .btn-action.muted {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+.app-card.huge:hover .btn-action {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+.huge-games {
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80') center/cover;
+    --brand: #ff4757;
+}
+.huge-movies {
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.1) 100%),
+        url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=600&q=80') center/cover;
+    --brand: #6366f1;
+}
+
+.pos-bl-huge { bottom: 28px; left: 28px; }
+.pos-br-huge { bottom: 28px; right: 28px; }
+
+/* ──────────────────────────────────────────
+   LAUNCH RIGHT COLUMN — panel per segment
+   Top padding clears the fixed stealth-controls
+   ────────────────────────────────────────── */
+.launch-right {
+    width: 320px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 95px 18px 18px 0;
+    z-index: 40;
+}
+.lr-panel {
+    flex: 1;
+    background: rgba(20, 24, 32, 0.45);
+    background-image: var(--glass-sheen);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-bord);
+    border-radius: 24px;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    min-height: 0;
+}
+[data-mode="light"] .lr-panel { background: rgba(255, 255, 255, 0.55); }
+
+.lr-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0 0 14px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+}
+.lr-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    padding-right: 4px;
+    min-height: 0;
+}
+.lr-empty {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 24px 0;
+    text-align: center;
+    font-style: italic;
+}
+.lr-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 13px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-bord);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.lr-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--glass-bord-h);
+    transform: translateX(3px);
+}
+.lr-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.lr-meta { flex: 1; min-width: 0; }
+.lr-meta h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lr-meta p {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* AI workspace messages */
+.ai-history {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-right: 4px;
+    min-height: 0;
+}
+.ai-msg {
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    max-width: 90%;
+}
+.ai-msg.bot {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-bord);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    color: var(--text);
+}
+[data-mode="light"] .ai-msg.bot { background: rgba(0, 0, 0, 0.06); }
+.ai-msg.user {
+    background: var(--ac);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    font-weight: 600;
+}
+.ai-msg.system {
+    background: rgba(255, 71, 87, 0.12);
+    border: 1px solid rgba(255, 71, 87, 0.32);
+    color: var(--ac);
+    align-self: stretch;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+.ai-input-row {
+    display: flex;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-bord);
+    flex-shrink: 0;
+}
+[data-mode="light"] .ai-input-row { background: rgba(0, 0, 0, 0.05); }
+.ai-input-row:focus-within { border-color: var(--ac); }
+.ai-input-row input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    padding: 8px 12px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.88rem;
+}
+.ai-input-row input::placeholder { color: var(--text-muted); }
+.ai-input-row button {
+    background: var(--ac);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.2s;
+    box-shadow: 0 2px 10px rgba(255, 71, 87, 0.3);
+}
+.ai-input-row button:hover { transform: scale(1.06); filter: brightness(1.1); }
+
+/* ──────────────────────────────────────────
+   COMING SOON VIEWS (Movies, AI Studio)
+   ────────────────────────────────────────── */
+.coming-soon-view {
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 60px 40px !important;
+}
+.cs-stack {
+    max-width: 580px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cs-glyph {
+    width: 100px;
+    height: 100px;
+    border-radius: 28px;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    background: var(--glass-fill);
+    background-image: var(--glass-sheen);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-bord-h);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+.cs-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 0 0 8px 0;
+    color: var(--text);
+    line-height: 1;
+}
+.cs-subtitle {
+    color: var(--ac);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 22px 0;
+}
+.cs-body {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0 0 28px 0;
+    max-width: 460px;
+}
+.cs-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 30px;
+}
+.cs-feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--glass-fill);
+    background-image: var(--glass-sheen);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-bord);
+    border-radius: 14px;
+    text-align: left;
+    color: var(--text);
+    font-size: 0.93rem;
+    font-weight: 500;
+}
+.cs-feat-icon { font-size: 1.3rem; flex-shrink: 0; }
+.cs-cta {
+    background: var(--glass-fill-strong);
+    border: 1px solid var(--glass-bord-h);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    color: var(--text);
+    padding: 12px 26px;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.cs-cta:hover {
+    border-color: var(--ac);
+    color: var(--ac);
+    transform: translateX(-3px);
+}
+
+/* ──────────────────────────────────────────
+   BOOT SCREEN — educational decoy → name reveal
+   ────────────────────────────────────────── */
+.boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99998;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease;
+    overflow-y: auto;
+}
+.boot-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+.boot-screen.hidden { display: none !important; }
+
+.boot-decoy {
+    width: 100%;
+    max-width: 720px;
+    padding: 50px 40px 80px;
+    transition: opacity 0.4s;
+}
+.boot-decoy.hidden { display: none; }
+
+.decoy-page {
+    background: white;
+    color: #1f2937;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.65;
+}
+.decoy-header {
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 18px;
+    margin-bottom: 24px;
+}
+.decoy-school {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #6b7280;
+    letter-spacing: 1.8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.decoy-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+}
+.decoy-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+.decoy-section { margin-bottom: 22px; }
+.decoy-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.18rem;
+    color: #1a73e8;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+}
+.decoy-section p {
+    font-size: 0.97rem;
+    color: #374151;
+    margin: 0 0 12px 0;
+}
+.decoy-section em { color: #1f2937; font-style: italic; font-weight: 600; }
+.decoy-eq {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 1.02rem;
+    background: #f3f4f6;
+    border-left: 3px solid #1a73e8;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin: 12px 0;
+    color: #1f2937;
+    font-weight: 700;
+    overflow-x: auto;
+}
+.decoy-problems {
+    padding-left: 22px;
+    color: #374151;
+    font-size: 0.95rem;
+}
+.decoy-problems li { margin-bottom: 6px; }
+.decoy-footer {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 22px;
+}
+.decoy-status {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.74rem;
+    color: #9ca3af;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+.decoy-status::after {
+    content: '_';
+    margin-left: 4px;
+    animation: blink 1s steps(2) infinite;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.boot-name {
+    display: none;
+    text-align: center;
+}
+.boot-name.show { display: block; }
+.boot-glitch {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 900;
+    letter-spacing: -4px;
+    color: #141820;
+    text-shadow: 0 0 40px rgba(255, 71, 87, 0.45);
+    transform: scale(0.4);
+    opacity: 0;
+    animation: blastIn 0.7s cubic-bezier(0.25, 1, 0.25, 1) forwards;
+}
+.boot-glitch span { color: var(--ac); }
+@keyframes blastIn {
+    0%   { transform: scale(0.3); opacity: 0; filter: blur(20px); }
+    70%  { transform: scale(1.1); opacity: 1; filter: blur(0); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* hide stealth controls during boot phase */
+.stealth-controls.boot-hidden { opacity: 0 !important; pointer-events: none !important; }
+
+/* fade workspace in after boot */
+#home-ui { transition: opacity 0.6s ease; }
+#home-ui.boot-fade { opacity: 0; }
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────── */
+@media (max-width: 1280px) {
+    /* Tighten — hide far-edge floats so the hub stays clean */
+    .floatee:not(.huge-games):not(.huge-movies) { display: none; }
+    .core-hub { top: 36%; }
+    .app-card.huge { width: 180px; height: 180px; border-radius: 28px; padding: 18px; }
+    .app-card.huge .app-title { font-size: 1.3rem; }
+    .pos-bl-huge { bottom: 22px; left: 22px; }
+    .pos-br-huge { bottom: 22px; right: 22px; }
+}
+@media (max-width: 980px) {
+    .launch-right { display: none; }
+    .floatee.huge { display: none; }
+    .core-hub { top: 50%; }
+}
+@media (max-width: 720px) {
+    .core-hub { padding: 0 18px; }
+    .hub-title { font-size: 2.2rem; letter-spacing: -1.5px; margin-bottom: 18px; }
+    .version-tag { font-size: 0.7rem; padding: 4px 9px; }
+    .hub-search { flex-direction: column; gap: 8px; }
+    .hub-search input[type="text"] { width: 100%; padding: 14px 18px; }
+    .hub-search .launch-btn { width: 100%; padding: 12px; }
+    .hub-dock { gap: 8px; }
+    .app-card { width: 88px; height: 88px; border-radius: 20px; }
+    .app-card .app-icon { width: 32px; height: 32px; margin-bottom: 6px; }
+    .app-card .app-title { font-size: 0.72rem; }
+    .cs-title { font-size: 2.2rem; }
+    .cs-glyph { width: 80px; height: 80px; font-size: 2.4rem; }
+    .boot-decoy { padding: 30px 22px 70px; }
+    .decoy-header h1 { font-size: 1.5rem; }
+}
+
+/* ==========================================================
+   v1.5.1 — REFINEMENTS
+   • Floating sidebar (rounded glass, margin from edges)
+   • Aurora drifting background
+   • Gradient + glow hub title (no blue selection block)
+   • 8-card dock
+   • Auto-scrolling app/game carousel
+   • Kill all old floating cards (override v1.5 styles)
+   ========================================================== */
+
+/* Sidebar floats now — pull it off the wall, give it glass + radius */
+.webos-container {
+    padding: 16px 0 16px 16px;
+    box-sizing: border-box;
+    gap: 0;
+}
+.sidebar {
+    border-radius: 28px !important;
+    background: rgba(20, 24, 32, 0.55) !important;
+    backdrop-filter: blur(22px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+    border: 1px solid var(--glass-bord) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    overflow: hidden;
+    height: calc(100vh - 32px) !important;
+    margin-right: 16px;
+    position: relative;
+}
+[data-mode="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.55) !important;
+    border-color: rgba(0, 0, 0, 0.07) !important;
+}
+/* Subtle inner sheen on the sidebar */
+.sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 100%);
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Workspace area — fill remaining space cleanly */
+.workspace {
+    height: calc(100vh - 32px) !important;
+    margin: 0 !important;
+}
+
+/* Kill ALL legacy float positioning — those cards no longer exist but the rules linger */
+.floatee, .floatee.huge,
+.pos-tl, .pos-tcl, .pos-tcr, .pos-tr,
+.pos-ml, .pos-mr, .pos-bcl, .pos-bl-huge, .pos-br-huge,
+.huge-games, .huge-movies,
+.app-card.huge { display: none !important; }
+
+/* Clean up the page-select bug: keep large titles non-selectable */
+.hub-title, .cs-title, .boot-glitch, .lr-title { user-select: none; -webkit-user-select: none; }
+
+/* ──────────────────────────────────────────
+   AURORA DRIFTING BLOBS (background flavor)
+   ────────────────────────────────────────── */
+.aurora {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+.aurora-1 {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, var(--ac, #ff4757), transparent 65%);
+    top: -180px; left: -120px;
+    animation: drift-1 28s ease-in-out infinite;
+}
+.aurora-2 {
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, #6366f1, transparent 65%);
+    bottom: -160px; right: -80px;
+    animation: drift-2 34s ease-in-out infinite;
+}
+.aurora-3 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, #10a37f, transparent 65%);
+    top: 35%; left: 60%;
+    opacity: 0.22;
+    animation: drift-3 40s ease-in-out infinite;
+}
+@keyframes drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(80px, 60px) scale(1.1); }
+    66%      { transform: translate(-40px, 90px) scale(0.95); }
+}
+@keyframes drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-100px, -80px) scale(1.15); }
+}
+@keyframes drift-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25%      { transform: translate(60px, -40px) scale(0.9); }
+    75%      { transform: translate(-50px, 30px) scale(1.1); }
+}
+[data-mode="light"] .aurora { opacity: 0.18; }
+
+/* ──────────────────────────────────────────
+   LAUNCH MAIN — flex column (hub on top, carousel below)
+   ────────────────────────────────────────── */
+.launch-main {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 20px 30px 30px;
+    gap: 32px;
+}
+
+/* Override absolute positioning from earlier v1.5 block */
+.core-hub {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 auto;
+    z-index: 5;
+    max-width: 880px;
+}
+
+/* ──────────────────────────────────────────
+   HUB TITLE — gradient + glow (no flat block)
+   ────────────────────────────────────────── */
+.hub-title {
+    background: linear-gradient(135deg, var(--text) 0%, var(--text) 30%, var(--ac) 50%, var(--text) 70%, var(--text) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: title-shimmer 8s ease-in-out infinite;
+    position: relative;
+    line-height: 1.1;
+}
+@keyframes title-shimmer {
+    0%, 100% { background-position: 0% center; }
+    50%      { background-position: 100% center; }
+}
+/* Halo glow behind the title */
+.hub-title::after {
+    content: 'CHROBLOX';
+    position: absolute;
+    inset: 0;
+    background: var(--ac);
+    filter: blur(40px);
+    opacity: 0.28;
+    z-index: -1;
+    -webkit-text-fill-color: var(--ac);
+    color: var(--ac);
+    pointer-events: none;
+}
+[data-mode="light"] .hub-title::after { opacity: 0.18; }
+.version-tag {
+    -webkit-text-fill-color: var(--text-muted);
+    color: var(--text-muted);
+}
+
+/* ──────────────────────────────────────────
+   DOCK — 8 icons, wraps cleanly on smaller widths
+   ────────────────────────────────────────── */
+.hub-dock {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 920px;
+}
+.dock-card {
+    width: 100px;
+    height: 100px;
+    border-radius: 22px;
+}
+.dock-card .app-icon { width: 36px; height: 36px; margin-bottom: 8px; }
+.dock-card .app-title { font-size: 0.78rem; }
+
+/* Dock card press animation */
+.dock-card:active { transform: translateY(-2px) scale(0.98); transition-duration: 0.08s; }
+
+/* ──────────────────────────────────────────
+   AUTO-SCROLLING CAROUSEL — slides left, pause on hover/touch
+   ────────────────────────────────────────── */
+.carousel-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 240px;
+    overflow: hidden;
+    z-index: 5;
+    /* Fade edges so cards drift in/out softly */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent);
+}
+.carousel-track {
+    display: flex;
+    gap: 16px;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 6px 4px;
+    will-change: scroll-position;
+    scroll-behavior: auto; /* JS handles smooth motion */
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.carousel-skeleton {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 60px 30px;
+    font-family: 'Inter', sans-serif;
+    align-self: center;
+}
+
+.carousel-card {
+    flex: 0 0 200px;
+    height: 220px;
+    border-radius: 22px;
+    background: var(--glass-fill);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-bord);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+                box-shadow 0.3s,
+                border-color 0.3s;
+    display: block;
+    text-align: left;
+    color: var(--text);
+    font-family: inherit;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+.carousel-card .cc-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.carousel-card .cc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.85) 100%);
+    transition: background 0.3s;
+}
+.carousel-card .cc-shine {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 2;
+}
+.carousel-card .cc-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 16px;
+    z-index: 3;
+}
+.carousel-card .cc-icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.25, 1);
+}
+.carousel-card .cc-icon svg { width: 100%; height: 100%; }
+.carousel-card .cc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    color: white;
+    letter-spacing: -0.3px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    line-height: 1.15;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.carousel-card .cc-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 0 10px 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.carousel-card .cc-cta {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: 0.2s;
+}
+
+/* Card hover — scale up, 3D tilt, brand glow, parallax bg */
+.carousel-card:hover {
+    transform: translateY(-6px) scale(1.04) rotateX(2deg) rotateY(-3deg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45),
+                0 0 0 1.5px var(--brand, var(--ac)),
+                0 0 40px var(--brand, rgba(255, 71, 87, 0.4));
+    border-color: var(--brand, var(--ac));
+    z-index: 30;
+}
+.carousel-card:hover .cc-bg {
+    transform: scale(1.1);
+}
+.carousel-card:hover .cc-icon {
+    transform: scale(1.15) rotate(-4deg);
+}
+.carousel-card:hover .cc-cta {
+    background: var(--brand, var(--ac));
+    border-color: transparent;
+}
+
+/* Site-style cards: brand-color gradient bg, big logo top, label below */
+.carousel-card.cc-site .cc-bg {
+    background:
+        radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.18), transparent 60%),
+        linear-gradient(160deg, var(--brand) 0%, color-mix(in srgb, var(--brand) 45%, #0a0c10) 80%);
+}
+.carousel-card.cc-site .cc-overlay {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.55) 100%);
+}
+.carousel-card.cc-site .cc-icon {
+    width: 64px;
+    height: 64px;
+    margin: 36px auto 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 14px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 3;
+}
+.carousel-card.cc-site .cc-icon svg { fill: white; }
+
+/* Game cards: cover art bg, dark gradient overlay, title bottom */
+.carousel-card.cc-game .cc-bg { background-color: #0a0c10; }
+.carousel-card.cc-game .cc-cta { background: rgba(236, 72, 153, 0.85); border-color: transparent; }
+
+/* Feature cards (Game Vault, Movie Center): image bg, bigger title */
+.carousel-card.cc-feature .cc-title { font-size: 1.25rem; }
+.carousel-card.cc-feature .cc-sub { color: rgba(255, 255, 255, 0.85); }
+
+/* ──────────────────────────────────────────
+   RESPONSIVE TWEAKS for the new layout
+   ────────────────────────────────────────── */
+@media (max-width: 1280px) {
+    .hub-dock { gap: 10px; }
+    .dock-card { width: 90px; height: 90px; }
+    .dock-card .app-title { font-size: 0.72rem; }
+    .carousel-card { flex: 0 0 180px; height: 200px; }
+    .carousel-wrap { height: 220px; }
+}
+@media (max-width: 980px) {
+    .launch-right { display: none; }
+    .launch-main { padding: 20px; }
+    .hub-dock { max-width: 100%; }
+}
+@media (max-width: 720px) {
+    .webos-container { padding: 8px; }
+    .sidebar { height: calc(100vh - 16px) !important; margin-right: 8px; }
+    .workspace { height: calc(100vh - 16px) !important; }
+    .launch-main { padding: 16px 12px; gap: 20px; }
+    .core-hub { margin-top: 8px; }
+    .hub-dock { gap: 8px; max-width: 100%; }
+    .dock-card { width: 76px; height: 76px; border-radius: 18px; }
+    .dock-card .app-icon { width: 28px; height: 28px; margin-bottom: 4px; }
+    .dock-card .app-title { font-size: 0.65rem; }
+    .carousel-card { flex: 0 0 160px; height: 180px; border-radius: 18px; }
+    .carousel-wrap { height: 200px; }
+    .carousel-card .cc-title { font-size: 0.95rem; }
+}
+
+/* ==========================================================
+   v1.5.2 — REGRESSION FIXES (responses to live screenshots)
+   • Kill aurora blobs (looked like floating layers in bg)
+   • Sidebar blends into page bg (no contrasting glass slab)
+   • Restore v1.4-style solid bold CHROBLOX title
+   • Carousel pushed lower with breathing room
+   • Force dock to single line (7 icons)
+   ========================================================== */
+
+/* 1. KILL AURORA — page bg should be ONE clean surface */
+.aurora, .aurora-1, .aurora-2, .aurora-3 { display: none !important; }
+
+/* 2. SIDEBAR — drop the contrasting glass fill, blend with bg */
+.webos-container {
+    padding: 0 !important;
+    gap: 0 !important;
+}
+.sidebar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
+.sidebar::before { display: none !important; }
+.workspace { height: 100vh !important; }
+
+/* Make sure the collapse-toggle chevron isn't clipped */
+.sidebar .collapse-btn,
+.sidebar #desktop-collapse-btn {
+    overflow: visible !important;
+    z-index: 50 !important;
+}
+
+/* 3. RESTORE V1.4 CHROBLOX TITLE — solid bold, big, no shimmer/halo */
+.hub-title {
+    /* Override v1.5.1 gradient + shimmer */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: var(--text) !important;
+    color: var(--text) !important;
+    animation: none !important;
+    /* v1.4 weight + size */
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.6rem, 6.5vw, 5.8rem);
+    letter-spacing: -3px;
+    line-height: 1;
+    margin: 0 0 28px 0;
+}
+.hub-title::after { display: none !important; }
+.hub-title .ac {
+    -webkit-text-fill-color: var(--ac) !important;
+    color: var(--ac) !important;
+}
+.version-tag {
+    -webkit-text-fill-color: var(--text-muted) !important;
+    color: var(--text-muted) !important;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+}
+
+/* 4. PUSH CAROUSEL LOWER — hub stays up top, carousel sits at bottom */
+.launch-main {
+    justify-content: flex-start !important;
+    padding: 5vh 20px 3vh 30px !important;
+    gap: 0 !important;
+}
+.core-hub {
+    margin: 0 auto !important;
+    flex-shrink: 0;
+}
+.carousel-wrap {
+    margin-top: auto !important;
+    margin-bottom: 20px;
+}
+
+/* 5. DOCK — force single line for 7 icons (no wrap) */
+.hub-dock {
+    flex-wrap: nowrap !important;
+    overflow: visible;
+}
+
+/* Responsive — carousel still pushed down on smaller screens */
+@media (max-width: 1280px) {
+    .hub-title { font-size: clamp(3rem, 5.8vw, 5rem); letter-spacing: -2.5px; }
+}
+@media (max-width: 980px) {
+    .launch-main { padding: 4vh 18px 3vh !important; }
+    .hub-title { font-size: 3rem; letter-spacing: -2px; margin-bottom: 22px; }
+    .hub-dock { flex-wrap: wrap !important; } /* allow wrap on phones */
+}
+@media (max-width: 720px) {
+    .hub-title { font-size: 2.4rem; letter-spacing: -1.5px; margin-bottom: 18px; }
+}
+
+/* ==========================================================
+   v1.5.3 — RESTORE GLASS SIDEBAR + MODERN NAV + CHUNKY TITLE
+   • Bring back v1.5.1 liquid-glass sidebar (aurora stays gone)
+   • Fresh nav-item active state: vertical accent bar + tinted bg + icon glow
+   • CHROBLOX: Archivo Black, much bigger, vertically centered hub
+   ========================================================== */
+
+/* 1. RESTORE SIDEBAR GLASS — overrides v1.5.2's transparent flatten */
+.webos-container {
+    padding: 16px 0 16px 16px !important;
+    box-sizing: border-box;
+    gap: 0 !important;
+}
+.sidebar {
+    background: rgba(20, 24, 32, 0.55) !important;
+    backdrop-filter: blur(22px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+    border: 1px solid var(--glass-bord) !important;
+    border-radius: 28px !important;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    height: calc(100vh - 32px) !important;
+    margin: 0 16px 0 0 !important;
+    overflow: visible !important;
+    position: relative;
+}
+[data-mode="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.55) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+.sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.02) 100%);
+    pointer-events: none;
+    border-radius: inherit;
+    display: block;
+}
+.workspace {
+    height: calc(100vh - 32px) !important;
+    margin: 0 !important;
+}
+/* Make sure the inner scrollable container respects the rounded sidebar */
+.sidebar .sidebar-inner { border-radius: inherit; }
+
+/* Collapse-toggle chevron stays visible above the rounded edge */
+.sidebar .collapse-btn,
+.sidebar #desktop-collapse-btn {
+    overflow: visible !important;
+    z-index: 50 !important;
+}
+
+/* 2. MODERN NAV-ITEM ACTIVE STATE
+   Vertical accent bar (left edge) + soft gradient tint + icon glow + scale */
+.nav-item {
+    position: relative !important;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.3s cubic-bezier(0.25, 1.5, 0.25, 1) !important;
+    overflow: visible !important;
+}
+
+/* Base hover (non-active) — subtle, distinct from active */
+.nav-item:not(.active):hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--text) !important;
+}
+.nav-item:not(.active):hover .icon {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+}
+[data-mode="light"] .nav-item:not(.active):hover {
+    background: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* The bar — vertical accent strip on the left of active item */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 50%;
+    width: 3px;
+    height: 60%;
+    background: var(--ac);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 12px var(--ac), 0 0 22px var(--ac);
+    transform: translateY(-50%) scaleY(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.25, 1.5, 0.25, 1);
+    pointer-events: none;
+    z-index: 1;
+}
+.nav-item.active::before { transform: translateY(-50%) scaleY(1); }
+
+/* Active fill — gradient that fades to transparent on the right */
+.nav-item.active {
+    background: linear-gradient(90deg,
+        color-mix(in srgb, var(--ac) 22%, transparent) 0%,
+        color-mix(in srgb, var(--ac) 8%, transparent) 60%,
+        transparent 100%) !important;
+    color: var(--ac) !important;
+}
+.nav-item.active .icon {
+    filter: drop-shadow(0 0 10px var(--ac));
+    transform: scale(1.08);
+}
+
+/* Icon transition (so hover/active feel responsive) */
+.nav-item .icon {
+    transition: transform 0.3s cubic-bezier(0.25, 1.5, 0.25, 1), filter 0.3s !important;
+    display: inline-flex;
+}
+
+/* Make sure the SOON pip stays readable on top of the new active fill */
+.nav-item.active .soon-pip { box-shadow: 0 2px 10px rgba(99, 102, 241, 0.6); }
+
+/* 3. CHUNKY CHROBLOX TITLE — Archivo Black, big, properly weighted */
+.hub-title {
+    font-family: 'Archivo Black', 'Space Grotesk', 'Inter', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(4.2rem, 8vw, 7rem) !important;
+    letter-spacing: -1.5px !important;
+    line-height: 0.92 !important;
+    margin: 0 0 34px 0 !important;
+    color: var(--text) !important;
+    text-rendering: optimizeLegibility;
+}
+.hub-title .ac { color: var(--ac) !important; }
+.version-tag {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 1.4px !important;
+    color: var(--text-muted) !important;
+    -webkit-text-fill-color: var(--text-muted) !important;
+    margin-left: 18px;
+    padding: 7px 14px !important;
+    vertical-align: middle;
+    transform: translateY(-0.55em);
+    display: inline-block;
+}
+
+/* 4. CENTER HUB VERTICALLY — fill available space, push carousel to bottom */
+.launch-main {
+    justify-content: flex-start !important;
+    padding: 0 20px 20px 30px !important;
+    gap: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+.core-hub {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    padding: 30px 0 40px !important;
+    width: 100%;
+    max-width: 880px !important;
+}
+.carousel-wrap {
+    flex-shrink: 0;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+/* Responsive — keep title proportions tight */
+@media (max-width: 1280px) {
+    .hub-title { font-size: clamp(3.6rem, 7vw, 5.8rem) !important; }
+}
+@media (max-width: 980px) {
+    .webos-container { padding: 10px 0 10px 10px !important; }
+    .sidebar { height: calc(100vh - 20px) !important; margin-right: 10px !important; }
+    .workspace { height: calc(100vh - 20px) !important; }
+    .hub-title { font-size: 3.4rem !important; letter-spacing: -1px !important; }
+    .version-tag { transform: translateY(-0.4em); margin-left: 12px; }
+}
+@media (max-width: 720px) {
+    .hub-title { font-size: 2.6rem !important; letter-spacing: -0.5px !important; margin-bottom: 22px !important; }
+    .version-tag { font-size: 0.78rem !important; padding: 5px 10px !important; }
+}
+
+/* ==========================================================
+   v1.5.4 — MOVIES VIEW
+   • Poster grid (taller cards than games — 2:3 aspect)
+   • Hover: scale + brand glow + show overview/year/rating
+   • Provider switcher dropdown (rotate sources when one rots)
+   ========================================================== */
+
+#view-movies { padding: 48px 60px !important; }
+#view-movies .page-header { margin-bottom: 24px; }
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 22px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.movie-card {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-bord);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.1),
+                box-shadow 0.3s,
+                border-color 0.3s;
+    will-change: transform;
+}
+.movie-card .mc-poster {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: #0a0c10;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.movie-card .mc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.5) 30%,
+        rgba(0, 0, 0, 0) 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.movie-card .mc-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px;
+    z-index: 2;
+    transform: translateY(20%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.1), opacity 0.3s;
+}
+.movie-card .mc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.movie-card .mc-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 8px;
+}
+.movie-card .mc-rating {
+    background: rgba(255, 215, 0, 0.18);
+    color: #ffd700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.movie-card .mc-play {
+    display: inline-block;
+    background: var(--ac);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.74rem;
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+/* Hover */
+.movie-card:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45),
+                0 0 0 1.5px var(--ac),
+                0 0 30px rgba(255, 71, 87, 0.4);
+    border-color: var(--ac);
+    z-index: 5;
+}
+.movie-card:hover .mc-poster { transform: scale(1.08); }
+.movie-card:hover .mc-overlay { opacity: 1; }
+.movie-card:hover .mc-info { transform: translateY(0); opacity: 1; }
+
+/* Skeleton placeholder while images load */
+.movie-card.mc-loading .mc-poster {
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+    background-size: 200% 100%;
+    animation: mc-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes mc-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Empty / error state */
+.movies-grid .mc-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 80px 20px;
+    font-family: 'Inter', sans-serif;
+}
+.movies-grid .mc-empty h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text);
+    margin: 0 0 8px 0;
+}
+
+/* ──────────────────────────────────────────
+   PROVIDER SWITCHER — sits on top of view-proxy when a movie is playing
+   so users can flip to a different source if the current embed rots
+   ────────────────────────────────────────── */
+#movie-provider-bar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(20, 24, 32, 0.85);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid var(--glass-bord);
+    border-radius: 14px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    max-width: calc(100vw - 40px);
+}
+#movie-provider-bar.hidden { display: none; }
+#movie-provider-bar .mpb-label {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+#movie-provider-bar select {
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--text);
+    border: 1px solid var(--glass-bord);
+    border-radius: 8px;
+    padding: 5px 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    max-width: 180px;
+}
+#movie-provider-bar select:focus { border-color: var(--ac); }
+#movie-provider-bar .mpb-help {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* Responsive movies */
+@media (max-width: 980px) {
+    #view-movies { padding: 28px 24px !important; }
+    .movies-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .movie-card .mc-title { font-size: 0.85rem; }
+    #movie-provider-bar { font-size: 0.78rem; padding: 6px 10px; }
+    #movie-provider-bar .mpb-help { display: none; }
+}
+@media (max-width: 720px) {
+    .movies-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+}
+
+/* ==========================================================
+   v1.5.5 — POLISH PASS
+   • Tighter workspace gaps (sidebar near edges, not flush)
+   • 3D extruded CHROBLOX title (chunky, not flat)
+   • Boot: educational name → CHROBLOX morph (faster overall)
+   • Floating player control bar (refresh/fullscreen/exit)
+   • Hide popup-prone UI in movie sessions
+   ========================================================== */
+
+/* 1. TIGHTER WORKSPACE — sidebar sits near edges, small breathing room */
+.webos-container {
+    padding: 6px 0 6px 6px !important;
+    gap: 0 !important;
+}
+.sidebar {
+    height: calc(100vh - 12px) !important;
+    margin: 0 6px 0 0 !important;
+    border-radius: 22px !important;
+}
+.workspace { height: calc(100vh - 12px) !important; }
+
+@media (max-width: 720px) {
+    .webos-container { padding: 4px 0 4px 4px !important; }
+    .sidebar { height: calc(100vh - 8px) !important; margin-right: 4px !important; }
+    .workspace { height: calc(100vh - 8px) !important; }
+}
+
+/* 2. CHROBLOX TITLE — 3D extruded, not flat */
+.hub-title {
+    font-family: 'Archivo Black', 'Space Grotesk', 'Inter', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(4.6rem, 8.5vw, 7.4rem) !important;
+    letter-spacing: -2px !important;
+    line-height: 0.92 !important;
+    margin: 0 0 36px 0 !important;
+    color: var(--text) !important;
+    /* layered shadows = extruded 3D look */
+    text-shadow:
+        2px 2px 0 rgba(0, 0, 0, 0.35),
+        4px 4px 0 rgba(0, 0, 0, 0.28),
+        6px 6px 0 rgba(0, 0, 0, 0.22),
+        8px 8px 0 rgba(0, 0, 0, 0.16),
+        10px 10px 25px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(255, 71, 87, 0.18) !important;
+    -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.04);
+    transform: translateZ(0); /* force GPU layer for crisp shadows */
+}
+.hub-title .ac {
+    color: var(--ac) !important;
+    text-shadow:
+        2px 2px 0 rgba(0, 0, 0, 0.35),
+        4px 4px 0 rgba(0, 0, 0, 0.28),
+        6px 6px 0 rgba(0, 0, 0, 0.22),
+        8px 8px 0 rgba(0, 0, 0, 0.16),
+        0 0 30px var(--ac),
+        10px 10px 25px rgba(0, 0, 0, 0.5);
+}
+[data-mode="light"] .hub-title {
+    text-shadow:
+        2px 2px 0 rgba(0, 0, 0, 0.18),
+        4px 4px 0 rgba(0, 0, 0, 0.12),
+        6px 6px 0 rgba(0, 0, 0, 0.08),
+        8px 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+[data-mode="light"] .hub-title .ac {
+    text-shadow:
+        2px 2px 0 rgba(0, 0, 0, 0.18),
+        4px 4px 0 rgba(0, 0, 0, 0.12),
+        0 0 30px var(--ac),
+        8px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. BOOT NAME — educational name first, then CHROBLOX */
+.boot-name { display: none; text-align: center; }
+.boot-name.show { display: block; }
+
+.boot-glitch {
+    font-family: 'Archivo Black', 'Space Grotesk', sans-serif;
+    font-size: clamp(3.5rem, 11vw, 7rem);
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: #141820;
+    line-height: 1;
+}
+.boot-edu {
+    color: #1a73e8;
+    letter-spacing: 4px;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    /* shows first */
+    opacity: 0;
+    animation: edu-fade-in 0.4s ease-out forwards;
+}
+.boot-chro {
+    display: none;
+    text-shadow:
+        3px 3px 0 rgba(0, 0, 0, 0.18),
+        6px 6px 0 rgba(0, 0, 0, 0.12),
+        9px 9px 0 rgba(0, 0, 0, 0.08),
+        0 0 50px rgba(255, 71, 87, 0.4);
+}
+.boot-chro span { color: var(--ac); }
+.boot-chro.show {
+    display: block;
+    transform: scale(0.4);
+    opacity: 0;
+    animation: blastIn 0.7s cubic-bezier(0.25, 1, 0.25, 1) forwards;
+}
+.boot-edu.fade-out { animation: edu-fade-out 0.25s ease-in forwards; }
+
+@keyframes edu-fade-in {
+    0%   { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes edu-fade-out {
+    0%   { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.92); filter: blur(6px); }
+}
+
+/* 4. PLAYER CONTROL BAR — floating glass top bar inside view-proxy */
+.player-controls {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(20, 24, 32, 0.78);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--glass-bord);
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.player-controls.idle {
+    opacity: 0.18;
+    transform: translateX(-50%) translateY(-4px);
+}
+.player-controls.idle:hover { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.pc-btn {
+    background: transparent;
+    color: var(--text);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, transform 0.15s;
+    line-height: 1;
+}
+.pc-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.04);
+}
+.pc-btn:active { transform: scale(0.97); }
+.pc-btn.pc-exit {
+    background: rgba(255, 71, 87, 0.18);
+    color: var(--ac);
+    margin-left: 4px;
+}
+.pc-btn.pc-exit:hover {
+    background: var(--ac);
+    color: white;
+    box-shadow: 0 4px 14px rgba(255, 71, 87, 0.4);
+}
+.pc-spacer { width: 8px; }
+
+/* When the floating exit button gets a no-op (legacy class still in JS) */
+.floating-exit-btn { display: none !important; }
+
+/* Movie source-switcher: nudge it down so it doesn't overlap player controls */
+#movie-provider-bar {
+    top: 70px !important;
+}
+
+/* 5. PROXY VIEW — let the iframe occupy the full container */
+#view-proxy { background: #0a0c10; }
+.proxy-frame-container { height: 100vh; }
+#sj-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
+}
+
+@media (max-width: 720px) {
+    .pc-btn { font-size: 0.78rem; padding: 6px 9px; }
+    .player-controls { top: 8px; padding: 4px; gap: 4px; border-radius: 11px; }
+}
+
+/* ==========================================================
+   v1.5.6 — SHIP-READY POLISH
+   • Premium CHROBLOX (refined depth, gradient sheen, no harsh shadows)
+   • Sidebar glass that actually reads as glass (subtle bg gradient gives it something to bend)
+   • Fresh nav highlight: glass capsule + accent dot, no vertical bar
+   • Browser viewport gets the IGNITING loader
+   • All overrides marked !important to defeat earlier cascades
+   ========================================================== */
+
+/* 1. SUBTLE BODY GRADIENT — gives the glass something to blur against
+      (replaces aurora — static, no floating "blob" feel) */
+body {
+    background:
+        radial-gradient(ellipse at 12% 8%,  rgba(255, 71, 87, 0.10), transparent 55%),
+        radial-gradient(ellipse at 88% 92%, rgba(99, 102, 241, 0.10), transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(20, 24, 40, 0.4), transparent 80%),
+        var(--bg, #0a0c10) !important;
+}
+[data-mode="light"] body {
+    background:
+        radial-gradient(ellipse at 12% 8%,  rgba(255, 71, 87, 0.06), transparent 55%),
+        radial-gradient(ellipse at 88% 92%, rgba(99, 102, 241, 0.06), transparent 55%),
+        var(--bg, #f5f5f7) !important;
+}
+
+/* 2. SIDEBAR — true liquid glass, lighter fill so blur is visible */
+.sidebar {
+    background: rgba(28, 32, 44, 0.42) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow:
+        0 16px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2) !important;
+}
+[data-mode="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.42) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+/* Stronger inner sheen — glass needs a clear top highlight */
+.sidebar::before {
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 255, 255, 0.02) 30%,
+        transparent 60%,
+        rgba(255, 255, 255, 0.03) 100%) !important;
+}
+
+/* 3. NAV HIGHLIGHT — fresh "glass capsule" treatment, no more vertical bar */
+.nav-item::before { display: none !important; }  /* kill the v1.5.3 vertical bar */
+
+.nav-item {
+    margin: 2px 8px !important;
+    border-radius: 14px !important;
+}
+
+.nav-item:not(.active):hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Active state: glass capsule with accent border-glow + tiny dot indicator */
+.nav-item.active {
+    background: linear-gradient(135deg,
+        rgba(255, 71, 87, 0.18) 0%,
+        rgba(255, 71, 87, 0.06) 100%) !important;
+    border: 1px solid rgba(255, 71, 87, 0.35);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 0 24px rgba(255, 71, 87, 0.18),
+        0 4px 14px rgba(255, 71, 87, 0.1);
+    color: var(--text) !important;  /* keep text readable, not red */
+}
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ac);
+    box-shadow: 0 0 10px var(--ac), 0 0 18px var(--ac);
+    transform: translateY(-50%);
+    animation: nav-dot-pulse 2.4s ease-in-out infinite;
+}
+@keyframes nav-dot-pulse {
+    0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+    50%      { opacity: 0.6; transform: translateY(-50%) scale(0.85); }
+}
+.sidebar.collapsed .nav-item.active::after { display: none; }
+.nav-item.active .icon {
+    filter: drop-shadow(0 0 8px var(--ac)) drop-shadow(0 0 14px rgba(255, 71, 87, 0.5));
+    transform: scale(1.04);
+}
+
+/* 4. CHROBLOX — premium chunky depth, refined (not harsh stacked shadows) */
+.hub-title {
+    font-family: 'Archivo Black', 'Space Grotesk', sans-serif !important;
+    font-size: clamp(4.6rem, 8.4vw, 7.2rem) !important;
+    letter-spacing: -2.5px !important;
+    background:
+        linear-gradient(180deg,
+            #ffffff 0%,
+            #f0f0f5 45%,
+            #c8c8d0 100%) !important;
+    -webkit-background-clip: text !important;
+            background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    /* Soft refined shadow — depth without the cartoon stack */
+    filter:
+        drop-shadow(0 2px 0 rgba(0, 0, 0, 0.4))
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 0 30px rgba(255, 255, 255, 0.05));
+}
+.hub-title .ac {
+    background: linear-gradient(180deg, #ff6b7a 0%, #ff4757 50%, #d63848 100%) !important;
+    -webkit-background-clip: text !important;
+            background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+}
+[data-mode="light"] .hub-title {
+    background: linear-gradient(180deg, #1a1a2e 0%, #2d2d44 50%, #1a1a2e 100%) !important;
+    -webkit-background-clip: text !important;
+            background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    filter:
+        drop-shadow(0 2px 0 rgba(0, 0, 0, 0.18))
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+}
+[data-mode="light"] .hub-title .ac {
+    background: linear-gradient(180deg, #d63848 0%, #b3192c 100%) !important;
+    -webkit-background-clip: text !important;
+            background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* 5. BROWSER LOADER — clone of proxy-loader styling, centered in viewport */
+#browser-loader {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 12, 16, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    transition: opacity 0.3s;
+}
+#browser-loader.hidden { display: none !important; }
+#browser-loader .loader-ring {
+    width: 56px;
+    height: 56px;
+    border: 4px solid rgba(255, 71, 87, 0.18);
+    border-top-color: var(--ac);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+#browser-loader .loader-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--text);
+    text-shadow: 0 0 18px rgba(255, 71, 87, 0.4);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.browser-viewport { position: relative; }
+
+/* Hard anti-adblock lock — pairs with the JS detector */
+body.adblock-locked { overflow: hidden !important; }
+body.adblock-locked #home-ui,
+body.adblock-locked #boot-screen,
+body.adblock-locked #stealth-controls,
+body.adblock-locked #update-overlay {
+    pointer-events: none !important;
+    user-select: none !important;
+    filter: blur(8px) brightness(0.55);
+}
+body.adblock-locked #sj-frame,
+body.adblock-locked .browser-iframe {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+#anti-adblock-overlay {
+    pointer-events: auto !important;
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    background: rgba(0, 0, 0, 0.78) !important;
+}
+.adblock-modal {
+    pointer-events: auto !important;
+    max-width: 460px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 71, 87, 0.4),
+                0 0 60px rgba(255, 71, 87, 0.2);
+}
