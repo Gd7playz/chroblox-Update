@@ -1,16 +1,5 @@
 "use strict"; // Must be the very first line if you keep it
 
-import fastify from 'fastify'; // Your existing imports
-import fastifyStatic from '@fastify/static';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-// Recreate __dirname for ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// ... the rest of your code
-
 // ==========================================
 // 1. CONFIGURATION & DOM REFERENCES
 // ==========================================
