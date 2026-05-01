@@ -164,11 +164,29 @@ const ADBLOCK_SIGNALS = {
     BANNER_HIDDEN: 'banner-hidden',
     BANNER_EMPTY:  'banner-empty',
 };
-
+// v1.5.13 — Skip adblock detection in private browsing modes (incognito,
+// guest, Brave private window). These modes block third-party scripts via
+// browser policy, not user adblocker, but our probe can't tell the difference
+// and false-positives. Quota check: normal sessions get GBs; private modes
+// get capped at ~120MB on Chrome/Edge, smaller on Firefox.
+let _isPrivateMode = false;
+(async function detectPrivateMode() {
+    try {
+        if (navigator.storage && navigator.storage.estimate) {
+            const { quota } = await navigator.storage.estimate();
+            // Chrome/Edge incognito + guest cap quota at ~120MB; normal is GB+
+            if (quota && quota < 200 * 1024 * 1024) {
+                _isPrivateMode = true;
+                console.log('[Chroblox] Private browsing detected — adblock check skipped');
+            }
+        }
+    } catch (_) { /* old browser, just skip */ }
+})();
 let _adblockGracePeriod = false;
 let _adblockTripped     = false; // sticky: once tripped, stays tripped until reload
 
 async function detectAdblock() {
+    if (_isPrivateMode) return [];
     const failed = [];
 
     // Signal 1: Class-name bait
