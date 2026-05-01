@@ -160,10 +160,8 @@ function handleViewBanners(targetId) {
 
 const ADBLOCK_SIGNALS = {
     BAIT_DIV:      'bait-div',
-    INVOKE_SCRIPT: 'invoke-script',
-    BANNER_HIDDEN: 'banner-hidden',
-    BANNER_EMPTY:  'banner-empty',
 };
+
 // v1.5.13 — Skip adblock detection in private browsing modes (incognito,
 // guest, Brave private window). These modes block third-party scripts via
 // browser policy, not user adblocker, but our probe can't tell the difference
@@ -189,74 +187,28 @@ async function detectAdblock() {
     if (_isPrivateMode) return [];
     const failed = [];
 
-    // Signal 1: Class-name bait
+    // ONLY Signal 1: Class-name bait (DOM Bait). 
+    // This prevents false positives from DNS blockers or network issues.
     try {
         const bait = document.createElement("div");
         bait.className = "pub_300x250 pub_728x90 text-ad textAd text_ad adSense adBlock adContent adBanner ads ad-unit";
-        bait.style.cssText = "position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;";
-        bait.innerHTML = " ";
+        bait.style.cssText = "position:absolute;top:-9999px;left:-9999px;width:10px;height:10px;";
+        bait.innerHTML = "&nbsp;";
         document.body.appendChild(bait);
-        bait.offsetHeight; // force layout
-        const blocked = bait.offsetHeight === 0
+        
+        // Give extensions a split second to parse and hide it
+        await new Promise(resolve => setTimeout(resolve, 150));
+        
+        const cs = window.getComputedStyle(bait);
+        const blocked = bait.offsetParent === null
+                     || bait.offsetHeight === 0
                      || bait.offsetWidth === 0
-                     || window.getComputedStyle(bait).display === "none"
-                     || window.getComputedStyle(bait).visibility === "hidden";
+                     || cs.display === "none"
+                     || cs.visibility === "hidden";
+        
         bait.remove();
         if (blocked) failed.push(ADBLOCK_SIGNALS.BAIT_DIV);
     } catch (_) { /* DOM error — ignore */ }
-
-    // Signal 2: Active <script src> probe — mimics how the real ad loads.
-    // onload fires only if the script body actually executed.
-    try {
-        const scriptLoaded = await new Promise((resolve) => {
-            const s = document.createElement('script');
-            s.src = "https://hospitalforgery.com/e5329f54bea294b733b7ba46c03c2250/invoke.js?_probe=" + Date.now();
-            s.async = true;
-            let settled = false;
-            const finish = (ok) => {
-                if (settled) return;
-                settled = true;
-                try { s.remove(); } catch (_) {}
-                resolve(ok);
-            };
-            s.onload  = () => finish(true);
-            s.onerror = () => finish(false);
-            setTimeout(() => finish(false), 3000); // hard timeout
-            (document.head || document.documentElement).appendChild(s);
-        });
-        if (!scriptLoaded) failed.push(ADBLOCK_SIGNALS.INVOKE_SCRIPT);
-    } catch (_) {
-        failed.push(ADBLOCK_SIGNALS.INVOKE_SCRIPT);
-    }
-
-    // Signals 3 & 4: Inspect banners that should be visible. Skip during
-    // grace period AND on launch view (banners only render in proxy/browser).
-    if (!_adblockGracePeriod) {
-        ['proxy-ad-banner-top', 'proxy-ad-banner-bottom'].forEach(id => {
-            const container = document.getElementById(id);
-            if (!container || !container.classList.contains('show')) return;
-
-            const cs = window.getComputedStyle(container);
-            if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) === 0) {
-                failed.push(ADBLOCK_SIGNALS.BANNER_HIDDEN);
-                return;
-            }
-
-            const adContent = container.querySelector('.ad-content');
-            if (!adContent) return;
-            const iframe = adContent.querySelector('iframe');
-            if (!iframe) {
-                failed.push(ADBLOCK_SIGNALS.BANNER_EMPTY);
-                return;
-            }
-            try {
-                const inner = iframe.contentDocument && iframe.contentDocument.body;
-                if (inner && inner.children.length === 0 && inner.textContent.trim() === '') {
-                    failed.push(ADBLOCK_SIGNALS.BANNER_EMPTY);
-                }
-            } catch (_) { /* cross-origin = banner served, good */ }
-        });
-    }
 
     return failed;
 }
@@ -1101,7 +1053,7 @@ if (searchInput) {
 if (cx) render();
 // ==========================================
 // 5. v1.5.6 — BOOT SEQUENCE (tightened)
-//    decoy 2500ms → STUDY HUB 500ms → CHROBLOX 500ms → fade 400ms = ~3.4s
+//   decoy 2500ms → STUDY HUB 500ms → CHROBLOX 500ms → fade 400ms = ~3.4s
 // ==========================================
 (function bootSequence() {
     const screen     = document.getElementById('boot-screen');
@@ -1142,7 +1094,7 @@ if (cx) render();
 
 // ==========================================
 // 6. v1.5 — AI WORKSPACE STUB (launch-panel chat)
-//     Real conversational mode coming as a pending v1.5 update
+//   Real conversational mode coming as a pending v1.5 update
 // ==========================================
 (function setupAI() {
     const form    = document.getElementById('ai-form');
@@ -1176,8 +1128,8 @@ if (cx) render();
 
 // ==========================================
 // 7. v1.5.1 — APP CAROUSEL
-//    Sites + Game Vault + Movie Center + 10 random games from games.json
-//    Auto-scrolls left, pauses on hover/touch, seamless loop
+//   Sites + Game Vault + Movie Center + 10 random games from games.json
+//   Auto-scrolls left, pauses on hover/touch, seamless loop
 // ==========================================
 (function setupCarousel() {
     const track = document.getElementById('apps-carousel');
@@ -1392,10 +1344,10 @@ if (cx) render();
 
 // ==========================================
 // 8. v1.5 — MOVIE CENTER
-//    Loads movies.json, renders poster grid with debounced search,
-//    launches selected movie via the existing Scramjet frame system,
-//    floats a provider-switcher bar so users can rotate sources
-//    when an embed dies (which happens often in this niche).
+//   Loads movies.json, renders poster grid with debounced search,
+//   launches selected movie via the existing Scramjet frame system,
+//   floats a provider-switcher bar so users can rotate sources
+//   when an embed dies (which happens often in this niche).
 // ==========================================
 (function setupMovies() {
     const grid     = document.getElementById('movies-grid');
@@ -1614,10 +1566,10 @@ if (cx) render();
 
 // ==========================================
 // 9. v1.5.5 — PLAYER CONTROL BAR
-//    Floating glass bar at top of view-proxy. Refresh / Fullscreen / Exit.
-//    Auto-fades when idle so it doesn't cover content during playback.
-//    Exit is the same #nav-home element the original code already wired,
-//    so we don't touch its click handler — just style and re-position it.
+//   Floating glass bar at top of view-proxy. Refresh / Fullscreen / Exit.
+//   Auto-fades when idle so it doesn't cover content during playback.
+//   Exit is the same #nav-home element the original code already wired,
+//   so we don't touch its click handler — just style and re-position it.
 // ==========================================
 (function setupPlayerControls() {
     const bar  = document.getElementById('player-controls');
